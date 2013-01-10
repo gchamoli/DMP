@@ -61,7 +61,7 @@ namespace DMP.Controllers {
                     });
                 }
                 reportList.Add(new ReportManpowerModel {
-                    User = rm.Name,
+                    User = rm.UserRegionMaps.First().Region.Name,
                     UserUrl = string.Format("/User/RmUser/{0}", rm.Id),
                     Manpowers = targetList,
                     TrainingLevels = trainingLevelList
@@ -82,7 +82,7 @@ namespace DMP.Controllers {
                         x => x.MonthId == currentMonth.Id && productVarientIds.Contains(x.ProductVarientId) && manpowerIds.Contains(x.DealerManpowerId));
                 productStatList.Add(new ProductStatModel {
                     Product = product.Name,
-                    Competency = manpowers.Any() ? Math.Round(manpowers.Average(x => x.CompetencyProfileMaps.Average(y => y.Score)), 2) : 0,
+                    Competency = manpowers.Any() ? Math.Round(manpowers.Where(x => x.CompetencyProfileMaps.Any()).Average(x => x.CompetencyProfileMaps.Average(y => y.Score)), 2) : 0,
                     Productivity = targets.Any() ? Math.Round(targets.Average(x => x.Actual), 2) : 0,
                     Attrition = exitMnapowers / (averageEmployee > 0 ? averageEmployee : 1)
                 });
@@ -104,8 +104,9 @@ namespace DMP.Controllers {
             if (User.IsInRole("RM")) {
                 Session["BreadcrumbList"] = Utils.HtmlExtensions.SetBreadcrumbs((List<BreadcrumbModel>)Session["BreadcrumbList"], string.Format("/User/RmUser/{0}", id), "Home");
             } else {
-                Session["BreadcrumbList"] = Utils.HtmlExtensions.SetBreadcrumbs((List<BreadcrumbModel>)Session["BreadcrumbList"], string.Format("/User/RmUser/{0}", id), "RM");
-                ViewBag.UserName = userService.GetUser(id).Name;
+                var name = userService.GetUser(id).UserRegionMaps.First().Region.Name;
+                Session["BreadcrumbList"] = Utils.HtmlExtensions.SetBreadcrumbs((List<BreadcrumbModel>)Session["BreadcrumbList"], string.Format("/User/RmUser/{0}", id), name);
+                ViewBag.UserName = name;
             }
             var currentDate = DateTime.Now;
             var currentMonth = masterService.FindAndCreateMonth(currentDate.ToString("MMMM"), currentDate.Year);
@@ -153,7 +154,7 @@ namespace DMP.Controllers {
                         x => x.MonthId == currentMonth.Id && productVarientIds.Contains(x.ProductVarientId) && manpowerIds.Contains(x.DealerManpowerId));
                 productStatList.Add(new ProductStatModel {
                     Product = product.Name,
-                    Competency = manpowers.Any() ? Math.Round(manpowers.Average(x => x.CompetencyProfileMaps.Average(y => y.Score)), 2) : 0,
+                    Competency = manpowers.Any() ? Math.Round(manpowers.Where(x => x.CompetencyProfileMaps.Any()).Average(x => x.CompetencyProfileMaps.Average(y => y.Score)), 2) : 0,
                     Productivity = targets.Any() ? Math.Round(targets.Average(x => x.Actual), 2) : 0,
                     Attrition = exitMnapowers / (averageEmployee > 0 ? averageEmployee : 1)
                 });
@@ -222,7 +223,7 @@ namespace DMP.Controllers {
                         x => x.MonthId == currentMonth.Id && productVarientIds.Contains(x.ProductVarientId) && manpowerIds.Contains(x.DealerManpowerId));
                 productStatList.Add(new ProductStatModel {
                     Product = product.Name,
-                    Competency = manpowers.Any() ? Math.Round(manpowers.Average(x => x.CompetencyProfileMaps.Average(y => y.Score)), 2) : 0,
+                    Competency = manpowers.Any() ? Math.Round(manpowers.Where(x => x.CompetencyProfileMaps.Any()).Average(x => x.CompetencyProfileMaps.Average(y => y.Score)), 2) : 0,
                     Productivity = targets.Any() ? Math.Round(targets.Average(x => x.Actual), 2) : 0,
                     Attrition = exitMnapowers / (averageEmployee > 0 ? averageEmployee : 1)
                 });
@@ -289,7 +290,7 @@ namespace DMP.Controllers {
                         x => x.MonthId == currentMonth.Id && productVarientIds.Contains(x.ProductVarientId) && manpowerIds.Contains(x.DealerManpowerId));
                 productStatList.Add(new ProductStatModel {
                     Product = product.Name,
-                    Competency = manpowers.Any() ? Math.Round(manpowers.Average(x => x.CompetencyProfileMaps.Average(y => y.Score)), 2) : 0,
+                    Competency = manpowers.Any() ? Math.Round(manpowers.Where(x => x.CompetencyProfileMaps.Any()).Where(x => x.CompetencyProfileMaps.Any()).Average(x => x.CompetencyProfileMaps.Average(y => y.Score)), 2) : 0,
                     Productivity = targets.Any() ? Math.Round(targets.Average(x => x.Actual), 2) : 0,
                     Attrition = exitMnapowers / (averageEmployee > 0 ? averageEmployee : 1)
                 });

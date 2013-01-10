@@ -11,13 +11,23 @@ namespace DMP.Utils {
         }
 
         public static List<BreadcrumbModel> SetBreadcrumbs(List<BreadcrumbModel> list, string url, string urlName) {
+            var seq = 0;
             if (list.All(x => x.UrlName.ToLower() != urlName.ToLower())) {
-                list.Add(new BreadcrumbModel { Url = url, UrlName = urlName });
+                list.Add(new BreadcrumbModel { Url = url, UrlName = urlName, Sequence = list.Count + 1 });
             } else {
                 var index = list.FindIndex(x => x.UrlName.ToLower() == urlName.ToLower());
                 list[index].Url = url;
             }
-            return list;
+            foreach (var link in list) {
+                if (link.UrlName.ToLower() == urlName.ToLower()) {
+                    seq = link.Sequence;
+                }
+            }
+            var tempList = new List<BreadcrumbModel>();
+            for (var i = 0; i < seq; i++) {
+                tempList.Add(list[i]);
+            }
+            return tempList;
         }
     }
 }

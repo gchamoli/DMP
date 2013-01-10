@@ -10,3 +10,9 @@ D:\WORK\DMP\trunk\DMP\DMP.Repository\bin\Debug\DMP.Repository.pdb
 D:\WORK\DMP\trunk\DMP\DMP.Repository\obj\Debug\ResolveAssemblyReference.cache
 D:\WORK\DMP\trunk\DMP\DMP.Repository\obj\Debug\DMP.Repository.dll
 D:\WORK\DMP\trunk\DMP\DMP.Repository\obj\Debug\DMP.Repository.pdb
+D:\WORK\Work\DMP\trunk\DMP\DMP.Repository\bin\Debug\DMP.Repository.dll.config
+D:\WORK\Work\DMP\trunk\DMP\DMP.Repository\bin\Debug\DMP.Repository.dll
+D:\WORK\Work\DMP\trunk\DMP\DMP.Repository\bin\Debug\DMP.Repository.pdb
+D:\WORK\Work\DMP\trunk\DMP\DMP.Repository\obj\Debug\ResolveAssemblyReference.cache
+D:\WORK\Work\DMP\trunk\DMP\DMP.Repository\obj\Debug\DMP.Repository.dll
+D:\WORK\Work\DMP\trunk\DMP\DMP.Repository\obj\Debug\DMP.Repository.pdb

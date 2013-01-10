@@ -84,7 +84,6 @@
             @ViewBag.Month</h3>
     </div>
     <div>
-        <a href="#" id="linkEdit" style="float: right">Edit</a>
     </div>
     <div class="span11" style="overflow: auto !important;">
         @using (Html.BeginForm("SaveTargets", "Dealer", FormMethod.Post, new { @id = "targetForm" })) {
@@ -95,8 +94,11 @@
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th colspan=@(Model.ProductVarients.Sum(x => x.Varients.Count()) * 3 + 1) class="head1">
+                        <th colspan=@(Model.ProductVarients.Sum(x => x.Varients.Count()) * 3) class="head1">
                             Sales Targets
+                        </th>
+                        <th class="head1" style="text-align: right">
+                            <a href="#" id="linkEdit" class="edit" title="click here to edit targets"></a>
                         </th>
                     </tr>
                     <tr>

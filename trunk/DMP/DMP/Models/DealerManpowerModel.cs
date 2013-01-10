@@ -56,7 +56,7 @@ namespace DMP.Models {
         [Display(Name = "TIV Representing")]
         public string TIVRepresenting { get; set; }
 
-        [Display(Name = "Training Level")]
+        [Display(Name = "DDC Training")]
         public string TrainingLevel { get; set; }
 
         public DateTime? DateOfBirth { get; set; }
@@ -132,6 +132,7 @@ namespace DMP.Models {
                 TIVRepresenting = model.TIVRepresenting,
                 TrainingLevel = model.TrainingLevel,
                 DateOfLeaving = model.DateOfLeaving,
+                DateOfBirth = model.DateOfBirth,
                 Description = model.Description,
                 SAPCode = model.SAPId,
                 AreaRepresenting = model.AreaRepresenting

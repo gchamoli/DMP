@@ -121,10 +121,13 @@ namespace DMP.Controllers {
             var users = new List<User>
                               {
                                   new User {Id=0, Name="hq",Email= "hq@eicher.in",Role="HQ",Description="user",ParentId = 0},
-                                  new User {Id=0, Name="rm",Email="rm@eicher.in",Role="RM", Description="user",ParentId = 1},
+                                  new User {Id=0, Name="rm1",Email="rm1@eicher.in",Role="RM", Description="user",ParentId = 1},
                                   new User {Id=0, Name="rsm",Email="rsm@eicher.in",Role="RSM", Description="user",ParentId = 2},
                                   new User {Id=0, Name="csm",Email="csm@eicher.in",Role="CSM", Description="user",ParentId = 3},
-                                  new User {Id=0, Name="hqr",Email="hqr@eicher.in",Role="HQR", Description="user",ParentId = 0}
+                                  new User {Id=0, Name="hqr",Email="hqr@eicher.in",Role="HQR", Description="user",ParentId = 0},
+                                  new User {Id=0, Name="rm2",Email="rm2@eicher.in",Role="RM", Description="user",ParentId = 1},
+                                  new User {Id=0, Name="rm3",Email="rm3@eicher.in",Role="RM", Description="user",ParentId = 1},
+                                  new User {Id=0, Name="rm4",Email="rm4@eicher.in",Role="RM", Description="user",ParentId = 1}
                               };
 
             userService.AddUser(users);
@@ -132,7 +135,10 @@ namespace DMP.Controllers {
             //Add User-Region Map
             var userRegionMaps = new List<UserRegionMap>
                               {
-                                  new UserRegionMap {Id=0, RegionId= 1,UserId = 2,Description="user-region"}
+                                  new UserRegionMap {Id=0, RegionId= 1,UserId = 2,Description="user-region"},
+                                  new UserRegionMap {Id=0, RegionId= 2,UserId = 6,Description="user-region"},
+                                  new UserRegionMap {Id=0, RegionId= 3,UserId = 7,Description="user-region"},
+                                  new UserRegionMap {Id=0, RegionId= 4,UserId = 8,Description="user-region"},
                               };
             masterService.AddUserRegionMap(userRegionMaps);
 

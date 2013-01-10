@@ -136,25 +136,25 @@ namespace DMP.Controllers {
             };
             model.Manpower.DealerId = dealerId;
             model.Manpower.UserId = csm.Id;
-            if (id > 0) {
-                var competencies = competencyProfileMapService.FindCompetencyProfileMaps(x => x.DealerManpowerId == id);
-                model.Manpower.Competency = competencies != null && competencies.Any()
-                                              ? competencies.Average(x => x.Score)
-                                              : 0;
-                var trainings = trainingProfileMapService.FindTrainingProfileMaps(x => x.DealerManpowerId == id).GroupBy(
-                        x => x.Training);
-                var list = (from training in trainings
-                            let maxDate = training.Max(x => x.LastTrainingDate)
-                            let date = DateTime.Now - maxDate
-                            select new TrainingProfileModel {
-                                Id = 0, TrainingId = training.Key.Id, Training = training.Key.Name, TrainingDate = maxDate, NumberOfDays = date.HasValue ? date.Value.Days : 0
-                            }).ToList();
-                model.Trainings = list;
-                var attritionProfileMap = attritionProfileMapService.FindAttritionProfileMaps(x => x.DealerManpower.Id == id);
-                if (attritionProfileMap != null && attritionProfileMap.Any()) {
-                    model.Attrition = AttritionProfileModel.FromDomainModel(attritionProfileMap.First());
-                }
-            }
+            //if (id > 0) {
+            //    var competencies = competencyProfileMapService.FindCompetencyProfileMaps(x => x.DealerManpowerId == id);
+            //    model.Manpower.Competency = competencies != null && competencies.Any()
+            //                                  ? competencies.Average(x => x.Score)
+            //                                  : 0;
+            //    var trainings = trainingProfileMapService.FindTrainingProfileMaps(x => x.DealerManpowerId == id).GroupBy(
+            //            x => x.Training);
+            //    var list = (from training in trainings
+            //                let maxDate = training.Max(x => x.LastTrainingDate)
+            //                let date = DateTime.Now - maxDate
+            //                select new TrainingProfileModel {
+            //                    Id = 0, TrainingId = training.Key.Id, Training = training.Key.Name, TrainingDate = maxDate, NumberOfDays = date.HasValue ? date.Value.Days : 0
+            //                }).ToList();
+            //    model.Trainings = list;
+            //    var attritionProfileMap = attritionProfileMapService.FindAttritionProfileMaps(x => x.DealerManpower.Id == id);
+            //    if (attritionProfileMap != null && attritionProfileMap.Any()) {
+            //        model.Attrition = AttritionProfileModel.FromDomainModel(attritionProfileMap.First());
+            //    }
+            //}
             ViewBag.List = Session["BreadcrumbList"];
             return View(model);
         }
@@ -200,14 +200,16 @@ namespace DMP.Controllers {
         }
 
         public PartialViewResult Competency(int id) {
+            var competencies = competencyProfileMapService.FindCompetencyProfileMaps(x => x.DealerManpowerId == id);
             var model = new CompetencyProfileViewModel {
-                Competencies = competencyProfileMapService.FindCompetencyProfileMaps(x => x.DealerManpowerId == id).Select(x => new CompetencyProfileModel { Id = x.Id, Competency = x.Competency.Name, ComptencyId = x.CompetencyId, Score = x.Score }),
+                Competencies = competencies.Any() ? competencyProfileMapService.FindCompetencyProfileMaps(x => x.DealerManpowerId == id).Select(x => new CompetencyProfileModel { Id = x.Id, Competency = x.Competency.Name, ComptencyId = x.CompetencyId, Score = x.Score }) : masterService.GetAllCompetencies().Select(x => new CompetencyProfileModel { Id = 0, Competency = x.Name, ComptencyId = x.Id, Score = 0 }),
                 ProfileId = id
             };
             return PartialView("CompetencyPartial", model);
         }
 
         public ActionResult DseProfile(int id) {
+            Session["BreadcrumbList"] = Utils.HtmlExtensions.SetBreadcrumbs((List<BreadcrumbModel>)Session["BreadcrumbList"], string.Format("/Dealer/DseProfile?id={0}", id), "Profile");
             var trainings = trainingProfileMapService.FindTrainingProfileMaps(x => x.DealerManpowerId == id).GroupBy(
                         x => x.Training);
             var model = new ProfileViewModel {
@@ -220,6 +222,7 @@ namespace DMP.Controllers {
                              }).ToList(),
                 Months = new[] { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" }
             };
+            ViewBag.List = Session["BreadcrumbList"];
             return View("Profile", model);
         }
 
@@ -332,7 +335,7 @@ namespace DMP.Controllers {
                         x => x.MonthId == currentMonth.Id && productVarientIds.Contains(x.ProductVarientId) && manpowerIds.Contains(x.DealerManpowerId));
                 productStatList.Add(new ProductStatModel {
                     Product = product.Name,
-                    Competency = manpowers.Any() ? Math.Round(manpowers.Average(x => x.CompetencyProfileMaps.Average(y => y.Score)), 2) : 0,
+                    Competency = manpowers.Any() ? Math.Round(manpowers.Where(x => x.CompetencyProfileMaps.Any()).Average(x => x.CompetencyProfileMaps.Average(y => y.Score)), 2) : 0,
                     Productivity = dealerTargets.Any() ? Math.Round(dealerTargets.Average(x => x.Actual), 2) : 0,
                     Attrition = exitMnapowers / (averageEmployee > 0 ? averageEmployee : 1)
                 });

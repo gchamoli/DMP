@@ -54,12 +54,13 @@
         });
 
         function setFancyboxUrl() {
-            //            var id = viewModel.Manpower.Id();
-            //            if (id > 0) {
-            //                $('#linkCompetency').attr('href', '/Dealer/Competency/' + id);
-            //                $('#linkTraining').attr('href', '/Dealer/Training/' + id);
-            //                $('#linkAttrition').attr('href', '/Dealer/Attrition/' + id);
-            //            }
+            var id = @(Model.Manpower.Id);
+            if (id > 0) {
+                
+                $('#linkCompetency').attr('href', '/Dealer/Competency/' + id);
+                $('#linkTraining').attr('href', '/Dealer/Training/' + id);
+                $('#linkAttrition').attr('href', '/Dealer/Attrition/' + id);
+            }
         }
         $('#linkTrainingDisplay').bind('click', function () {
             if ($('#trainingDisplayRow').is(':visible')) {
@@ -207,7 +208,7 @@
                 <a href="#" id="linkCompetency">Competency</a>
             </div>
             <div class="span3">
-                <a href="#" id="linkTraining">Training</a>
+                <a href="#" id="linkTraining">Other Trainings</a>
             </div>
             <div class="span3">
                 <a href="#" id="linkAttrition">Remove DSE/DSM</a>
