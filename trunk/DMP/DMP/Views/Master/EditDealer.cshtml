@@ -1,0 +1,44 @@
+﻿@model DMP.ModelsView.DealerViewModel
+@using DMP.Utils
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#ddlState').bind('change', function () {
+            var stateId = $('#ddlState option:selected').val();
+            $.post("/Master/GetCsmFromState", { stateId: stateId }, function (res) {
+                if (res.success) {
+                    var str = '';
+                    for (var i = 0; i < res.csmUsers.length; i++) {
+                        var item = res.csmUsers[i];
+                        str += '<option value="' + item.Key + '">' + item.Value + '</option>';
+                    }
+                    $('#ddlUser').html(str).trigger('update');
+                }
+            });
+        });
+    });
+</script>
+<div class="span6">
+    @using (Ajax.BeginForm(new AjaxOptions { OnComplete = "closePopUp()", OnSuccess = "reLoad('/Master/Dealers')" })) {
+        @Html.HiddenFor(x => x.Dealer.Id)
+        <div>
+            @Html.LabelFor(x => x.Dealer.Name)
+            @Html.TextBoxFor(x => x.Dealer.Name)
+        </div>
+        <div>
+            @Html.LabelFor(x => x.Dealer.StateId)
+            @Html.DropDownListFor(x => x.Dealer.StateId, new SelectList(Model.States, "Key", "Value"), new { @id = "ddlState" })
+        </div>
+        <div>
+            @Html.LabelFor(x => x.Dealer.UserId)
+            @Html.DropDownListFor(x => x.Dealer.UserId, new SelectList(Model.Users, "Key", "Value"), new { @id = "ddlUser" })
+        </div>
+        <div>
+            @Html.LabelFor(x => x.Dealer.Description)
+            @Html.TextAreaFor(x => x.Dealer.Description)
+        </div>
+        <div>
+            <input type="submit" value="Save" class="btn btn-primary" />
+            <input type="reset" value="Cancel" class="btn btn-primary" />
+        </div>
+    }
+</div>

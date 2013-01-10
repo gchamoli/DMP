@@ -1,0 +1,21 @@
+C:\Users\gaurav\Documents\Visual Studio 2010\Projects\DMP\DMP.IOC\bin\Debug\DMP.IOC.dll
+C:\Users\gaurav\Documents\Visual Studio 2010\Projects\DMP\DMP.IOC\bin\Debug\DMP.IOC.pdb
+C:\Users\gaurav\Documents\Visual Studio 2010\Projects\DMP\DMP.IOC\bin\Debug\DMP.Repository.dll
+C:\Users\gaurav\Documents\Visual Studio 2010\Projects\DMP\DMP.IOC\bin\Debug\DMP.Services.dll
+C:\Users\gaurav\Documents\Visual Studio 2010\Projects\DMP\DMP.IOC\bin\Debug\Ninject.dll
+C:\Users\gaurav\Documents\Visual Studio 2010\Projects\DMP\DMP.IOC\bin\Debug\DMP.Repository.pdb
+C:\Users\gaurav\Documents\Visual Studio 2010\Projects\DMP\DMP.IOC\bin\Debug\DMP.Services.pdb
+C:\Users\gaurav\Documents\Visual Studio 2010\Projects\DMP\DMP.IOC\bin\Debug\Ninject.pdb
+C:\Users\gaurav\Documents\Visual Studio 2010\Projects\DMP\DMP.IOC\bin\Debug\Ninject.xml
+C:\Users\gaurav\Documents\Visual Studio 2010\Projects\DMP\DMP.IOC\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\gaurav\Documents\Visual Studio 2010\Projects\DMP\DMP.IOC\obj\Debug\DMP.IOC.dll
+C:\Users\gaurav\Documents\Visual Studio 2010\Projects\DMP\DMP.IOC\obj\Debug\DMP.IOC.pdb
+D:\WORK\DMP\trunk\DMP\DMP.IOC\obj\Debug\ResolveAssemblyReference.cache
+D:\WORK\DMP\trunk\DMP\DMP.IOC\bin\Debug\DMP.IOC.dll
+D:\WORK\DMP\trunk\DMP\DMP.IOC\bin\Debug\DMP.IOC.pdb
+D:\WORK\DMP\trunk\DMP\DMP.IOC\bin\Debug\DMP.Repository.dll
+D:\WORK\DMP\trunk\DMP\DMP.IOC\bin\Debug\DMP.Services.dll
+D:\WORK\DMP\trunk\DMP\DMP.IOC\bin\Debug\DMP.Repository.pdb
+D:\WORK\DMP\trunk\DMP\DMP.IOC\bin\Debug\DMP.Services.pdb
+D:\WORK\DMP\trunk\DMP\DMP.IOC\obj\Debug\DMP.IOC.dll
+D:\WORK\DMP\trunk\DMP\DMP.IOC\obj\Debug\DMP.IOC.pdb

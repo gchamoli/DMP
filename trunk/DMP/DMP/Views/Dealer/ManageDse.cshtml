@@ -1,0 +1,66 @@
+﻿@model DMP.ModelsView.ManageDseViewModel
+@using DMP.Utils
+@{
+    ViewBag.Title = "Manage DSE";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+    });
+</script>
+<div class="row-fluid">
+    <div class="span6 offset3">
+        <table id="manpowerList" class="table table-bordered">
+            <thead>
+                <tr>
+                    <th class="head1" colspan="3">
+                        DSE/DSM
+                    </th>
+                    @if (User.IsInRole("HQ")) {
+                        <th class="head1">
+                        </th>
+                    }
+                </tr>
+                <tr>
+                    <th class="head2">
+                        Name
+                    </th>
+                    <th class="head2">
+                        Designation
+                    </th>
+                    <th class="head2">
+                        Phone
+                    </th>
+                    @if (User.IsInRole("HQ")) {
+                        <th class="head2">
+                        </th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.Manpowers.Any()) {
+                    foreach (var manpower in Model.Manpowers) {
+                    <tr>
+                        <td>
+                            <a href="/Dealer/DseProfile/@manpower.Id">@manpower.Name</a>
+                        </td>
+                        <td>
+                            @manpower.Designation
+                        </td>
+                        <td>
+                            @manpower.ContactNumber
+                        </td>
+                        @if (User.IsInRole("HQ")) {
+                            <td>
+                                <a href="/Dealer/DeleteManpower/@manpower.Id" class="delete"></a>
+                            </td>
+                        }
+                    </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

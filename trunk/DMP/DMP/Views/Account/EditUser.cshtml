@@ -1,0 +1,82 @@
+﻿@model DMP.ModelsView.UserViewModel
+@using DMP.Utils
+<style type="text/css">
+    
+</style>
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $('#ddlRole').bind('change', function () {
+            var role = $('#ddlRole option:selected').text();
+            if (role == "RM") {
+                $('#dvRegion').show();
+            } else {
+                $('#dvRegion').hide();
+            }
+            if (role != '' && role != 'HQ' && role != "HQR") {
+                $.post("/Account/GetUsersFromRole", { role: role }, function (res) {
+                    if (res.success) {
+                        var str = '';
+                        for (var i = 0; i < res.users.length; i++) {
+                            var item = res.users[i];
+                            str += '<option value="' + item.Key + '">' + item.Value + '</option>';
+                        }
+                        $('#ddlParent').html(str).trigger('update');
+                        $('#dvParent').show();
+                    }
+                });
+            } else {
+                $('#dvParent').hide();
+            }
+        });
+    });
+</script>
+<div class="span6">
+    @using (Ajax.BeginForm(new AjaxOptions { OnComplete = "closePopUp()", OnSuccess = "reLoad('/Account/Users')" })) {
+        <div style="width: 100%">
+            @Html.HiddenFor(x => x.User.Id)
+            <div>
+                @Html.LabelFor(x => x.User.Role)
+                @Html.DropDownListFor(x => x.User.Role, new SelectList(Model.Roles, "Key", "Value"), new { @id = "ddlRole" })
+            </div>
+            @if (Model.ParentUsers.Any()) {
+                <div id="dvParent">
+                    @Html.LabelFor(x => x.User.ParentId)
+                    @Html.DropDownListFor(x => x.User.ParentId, new SelectList(Model.ParentUsers, "Key", "Value"), new { @id = "ddlParent" })
+                </div>
+            }
+            @if (Model.User.RegionId > 0) {
+                <div id="dvRegion">
+                    @Html.LabelFor(x => x.User.RegionId)
+                    @Html.DropDownListFor(x => x.User.RegionId, new SelectList(Model.Regions, "Key", "Value"), new { @id = "ddlRegion" })
+                </div>
+            }
+            <div>
+                @Html.LabelFor(x => x.User.Name)
+                @Html.TextBoxFor(x => x.User.Name, new { @id = "txtUserName" })
+            </div>
+            @if (Model.User.Id <= 0) {
+                <div>
+                    @Html.LabelFor(x => x.User.Email)
+                    @Html.TextBoxFor(x => x.User.Email, new { @id = "txtUserEmail" })
+                </div>
+                <div>
+                    @Html.LabelFor(x => x.User.Password)
+                    @Html.TextBoxFor(x => x.User.Password, new { @id = "txtUserPwd" })
+                </div>
+                <div>
+                    @Html.LabelFor(x => x.User.ConfirmPassword)
+                    @Html.TextBoxFor(x => x.User.ConfirmPassword, new { @id = "txtUserCnfPwd" })
+                </div>
+            }
+            <div>
+                @Html.LabelFor(x => x.User.Description)
+                @Html.TextAreaFor(x => x.User.Description, new { @id = "txtUserDescription" })
+            </div>
+            <div>
+                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="reset" value="Cancel" class="btn btn-primary" />
+            </div>
+        </div>
+    }
+</div>

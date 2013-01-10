@@ -1,0 +1,182 @@
+﻿@*<div class="well side-nav">
+    <ul class="nav nav-list">
+        @if (User.IsInRole("HQ")) {
+            <li><a href="#">RMs Retail Trend</a></li>
+            <li><a href="#">RM Dashbaoard</a></li>
+            <li><a href="#">RM Wise DSE Incentive</a></li>
+            <li><a href="#">Attrition Analysis</a></li>
+        } else if (User.IsInRole("RM")) {
+            <li><a href="#">RSMs Retail Trend</a></li>
+            <li><a href="#">RSM Dashbaoard</a></li>
+            <li><a href="#">RSM Wise DSE Incentive</a></li>
+            <li><a href="#">Attrition Analysis</a></li>
+            <li><a href="#">State Retail Trend</a></li>
+            <li><a href="#">State Dashbaoard</a></li>
+            <li><a href="#">State Wise DSE Incentive</a></li>
+            <li><a href="#">State Wise Attrition Analysis</a></li>
+        } else if (User.IsInRole("RSM")) {
+            <li><a href="#">CSMs Retail Trend</a></li>
+            <li><a href="#">CSM Dashbaoard</a></li>
+            <li><a href="#">CSM Wise DSE Incentive</a></li>
+            <li><a href="#">Attrition Analysis</a></li>
+            <li><a href="#">State wise retail trend</a></li>
+        } else if (User.IsInRole("CSM")) {
+            <li><a href="#">Dealer Retail Trend</a></li>
+            <li><a href="#">Dealer Dashbaoard</a></li>
+            <li><a href="#">DSE Incentive</a></li>
+            <li><a href="#">Attrition Analysis</a></li>
+            <li><a href="#">Monthly Productivity</a></li>
+        }
+    </ul>
+</div>*@
+<div>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th class="head1">
+                    <img src="../../Images/Reports.png" />
+                    Reports
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (ViewBag.Role == "HQ") {
+                <tr>
+                    <td class="row1">
+                        <img src="../../Images/trend_report.png" class="img1" />
+                        <a href="#">Region Retail Trend</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="row1">
+                        <img src="../../Images/Dashboard.png" class="img1" />
+                        <a href="#">Region Dashbaoard</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="row1">
+                        <img src="../../Images/incentive.png" class="img1" />
+                        <a href="#">Region Wise DSE Incentive</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="row1">
+                        <img src="../../Images/attrition.png" class="img1" />
+                        <a href="#">Attrition Analysis</a>
+                    </td>
+                </tr>
+            } else if (ViewBag.Role == "RM") {
+                <tr>
+                    <td class="row1">
+                        <img src="../../Images/trend_report.png" class="img1" />
+                        <a href="#">RSMs Retail Trend</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="row1">
+                        <img src="../../Images/Dashboard.png" class="img1" />
+                        <a href="#">RSM Dashbaoard</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="row1">
+                        <img src="../../Images/incentive.png" class="img1" />
+                        <a href="#">RSM Wise DSE Incentive</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="row1">
+                        <img src="../../Images/attrition.png" class="img1" />
+                        <a href="#">Attrition Analysis</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="row1">
+                        <img src="../../Images/trend_report.png" class="img1" />
+                        <a href="#">State Retail Trend</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="row1">
+                        <img src="../../Images/Dashboard.png" class="img1" />
+                        <a href="#">State Dashbaoard</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="row1">
+                        <img src="../../Images/incentive.png" class="img1" />
+                        <a href="#">State Wise DSE Incentive</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="row1">
+                        <img src="../../Images/attrition.png" class="img1" />
+                        <a href="#">State Wise Attrition Analysis</a>
+                    </td>
+                </tr>
+            } else if (ViewBag.Role == "RSM") {
+                <tr>
+                    <td class="row1">
+                        <img src="../../Images/trend_report.png" class="img1" />
+                        <a href="#">CSMs Retail Trend</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="row1">
+                        <img src="../../Images/Dashboard.png" class="img1" />
+                        <a href="#">CSM Dashbaoard</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="row1">
+                        <img src="../../Images/incentive.png" class="img1" />
+                        <a href="#">CSM Wise DSE Incentive</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="row1">
+                        <img src="../../Images/attrition.png" class="img1" />
+                        <a href="#">Attrition Analysis</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="row1">
+                        <img src="../../Images/trend_report.png" class="img1" />
+                        <a href="#">State wise retail trend</a>
+                    </td>
+                </tr>
+            } else if (ViewBag.Role == "CSM") {
+                <tr>
+                    <td class="row1">
+                        <img src="../../Images/trend_report.png" class="img1" />
+                        <a href="#">Dealer Retail Trend</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="row1">
+                        <img src="../../Images/Dashboard.png" class="img1" />
+                        <a href="#">Dealer Dashbaoard</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="row1">
+                        <img src="../../Images/incentive.png" class="img1" />
+                        <a href="#">DSE Incentive</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="row1">
+                        <img src="../../Images/attrition.png" class="img1" />
+                        <a href="#">Attrition Analysis</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="row1">
+                        <img src="../../Images/productivity.png" class="img1" />
+                        <a href="#">Monthly Productivity</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

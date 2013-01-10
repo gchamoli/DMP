@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="ModelDmp" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
+  <EntityContainer Name="ModelDmpContainer" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Regions" EntityType="ModelDmp.Region" />
+    <EntitySet Name="States" EntityType="ModelDmp.State" />
+    <AssociationSet Name="RegionState" Association="ModelDmp.RegionState">
+      <End Role="Region" EntitySet="Regions" />
+      <End Role="State" EntitySet="States" />
+    </AssociationSet>
+    <EntitySet Name="Products" EntityType="ModelDmp.Product" />
+    <EntitySet Name="Dealers" EntityType="ModelDmp.Dealer" />
+    <EntitySet Name="ProductVarients" EntityType="ModelDmp.ProductVarient" />
+    <AssociationSet Name="ProductProductVarient" Association="ModelDmp.ProductProductVarient">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="ProductVarient" EntitySet="ProductVarients" />
+    </AssociationSet>
+    <EntitySet Name="Users" EntityType="ModelDmp.User" />
+    <EntitySet Name="DealerManpowers" EntityType="ModelDmp.DealerManpower" />
+    <AssociationSet Name="DealerDealerManpower" Association="ModelDmp.DealerDealerManpower">
+      <End Role="Dealer" EntitySet="Dealers" />
+      <End Role="DealerManpower" EntitySet="DealerManpowers" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Region">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Name" Nullable="false" />
+    <Property Type="DateTime" Name="CreateDate" Nullable="false" />
+    <Property Type="DateTime" Name="UpdateDate" Nullable="false" />
+    <NavigationProperty Name="States" Relationship="ModelDmp.RegionState" FromRole="Region" ToRole="State" />
+  </EntityType>
+  <EntityType Name="State">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Name" Nullable="false" />
+    <Property Type="DateTime" Name="CreateDate" Nullable="false" />
+    <Property Type="DateTime" Name="UpdateDate" Nullable="false" />
+    <NavigationProperty Name="Region" Relationship="ModelDmp.RegionState" FromRole="State" ToRole="Region" />
+    <Property Type="Int32" Name="RegionId" Nullable="false" />
+  </EntityType>
+  <Association Name="RegionState">
+    <End Type="ModelDmp.Region" Role="Region" Multiplicity="1" />
+    <End Type="ModelDmp.State" Role="State" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Region">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="State">
+        <PropertyRef Name="RegionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Name" Nullable="false" />
+    <Property Type="DateTime" Name="CreateDate" Nullable="false" />
+    <Property Type="DateTime" Name="UpdateDate" Nullable="false" />
+    <NavigationProperty Name="ProductVarients" Relationship="ModelDmp.ProductProductVarient" FromRole="Product" ToRole="ProductVarient" />
+  </EntityType>
+  <EntityType Name="Dealer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Name" Nullable="false" />
+    <Property Type="DateTime" Name="CreateDate" Nullable="false" />
+    <Property Type="DateTime" Name="UpdateDate" Nullable="false" />
+    <NavigationProperty Name="DealerManpowers" Relationship="ModelDmp.DealerDealerManpower" FromRole="Dealer" ToRole="DealerManpower" />
+  </EntityType>
+  <EntityType Name="ProductVarient">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Name" Nullable="false" />
+    <Property Type="DateTime" Name="CreateDate" Nullable="false" />
+    <Property Type="DateTime" Name="UpdateDate" Nullable="false" />
+    <NavigationProperty Name="Product" Relationship="ModelDmp.ProductProductVarient" FromRole="ProductVarient" ToRole="Product" />
+    <Property Type="Int32" Name="ProductId" Nullable="false" />
+  </EntityType>
+  <Association Name="ProductProductVarient">
+    <End Type="ModelDmp.Product" Role="Product" Multiplicity="1" />
+    <End Type="ModelDmp.ProductVarient" Role="ProductVarient" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProductVarient">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Name" Nullable="false" />
+    <Property Type="String" Name="Email" Nullable="false" />
+    <Property Type="DateTime" Name="CreateDate" Nullable="false" />
+    <Property Type="DateTime" Name="UpdateDate" Nullable="false" />
+    <Property Type="String" Name="Role" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DealerManpower">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Name" Nullable="false" />
+    <Property Type="String" Name="Type" Nullable="false" />
+    <Property Type="DateTime" Name="CreateDate" Nullable="false" />
+    <Property Type="DateTime" Name="UpdateDate" Nullable="false" />
+    <NavigationProperty Name="Dealer" Relationship="ModelDmp.DealerDealerManpower" FromRole="DealerManpower" ToRole="Dealer" />
+    <Property Type="Int32" Name="DealerId" Nullable="false" />
+  </EntityType>
+  <Association Name="DealerDealerManpower">
+    <End Type="ModelDmp.Dealer" Role="Dealer" Multiplicity="1" />
+    <End Type="ModelDmp.DealerManpower" Role="DealerManpower" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Dealer">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DealerManpower">
+        <PropertyRef Name="DealerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

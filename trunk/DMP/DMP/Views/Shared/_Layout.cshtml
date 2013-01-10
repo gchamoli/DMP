@@ -1,0 +1,92 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" content="text/html; charset=UTF-8" />
+    <title>@ViewBag.Title</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Assets/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
+    <script src="@Url.Content("~/Scripts/modernizr-2.5.3.js")" type="text/javascript"></script>
+    <script src = "@Url.Content("~/Scripts/jquery-1.8.3.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Assets/bootstrap/js/bootstrap.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.tmpl.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/knockout-2.1.0.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/knockout-map.js")" type="text/javascript"></script>
+</head>
+<body>
+    <div class="row-fluid">
+        <div class="span3">
+            <a href="/Home/Index">
+                <img class="brand" src="~/Images/ETB_logo.jpg" />
+            </a>
+        </div>
+        <div class="span6">
+            @Html.Action("LogOnPartial", "Account")
+        </div>
+        <div class="span3" style="float: right; margin-top: 5px; text-align: right; margin-bottom: 5px;">
+            <div style="margin-left: 10px; margin-right: 15px; margin-left: 10px">
+                <a href="/Home/Index">
+                    <img class="brand" src="~/Images/logo.png" /></a>
+            </div>
+        </div>
+    </div>
+    <div class="navbar navbar-top">
+        <div class="navbar-inner">
+            <div class="container-fluid">
+                @*<a data-target=".nav-collapse" data-toggle="collapse" class="btn btn-navbar collapsed">
+                    <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar">
+                    </span></a>*@
+                <div class="nav-collapse collapse" style="height: 0px;">
+                    @if (User.IsInRole("HQ") || User.IsInRole("HQR")) {
+                        <ul class="nav">
+                            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Setting<b
+                                class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li>@Html.ActionLink("Region", "Regions", "Master")</li>
+                                    <li>@Html.ActionLink("State", "States", "Master")</li>
+                                    <li>@Html.ActionLink("Dealer", "Dealers", "Master")</li>
+                                    <li>@Html.ActionLink("Category", "Categories", "Master")</li>
+                                    <li>@Html.ActionLink("Product", "Products", "Master")</li>
+                                    <li>@Html.ActionLink("Varient", "Varients", "Master")</li>
+                                    <li>@Html.ActionLink("Training", "Trainings", "Master")</li>
+                                    <li>@Html.ActionLink("Attrition", "Attrition", "Master")</li>
+                                    <li>@Html.ActionLink("Competency", "Competency", "Master")</li>
+                                    <li>@Html.ActionLink("Special Schemes", "SpecialSchemes", "Master")</li>
+                                    <li>@Html.ActionLink("Users", "Users", "Account")</li>
+                                </ul>
+                            </li>
+                            <li>@Html.ActionLink("Manpower", "ManpowerTargets", "Dealer")</li>
+                        </ul>
+                       
+                    }
+                </div>
+                <!--/.nav-collapse -->
+            </div>
+        </div>
+    </div>
+    <div class="row-fluid">
+        <div style="margin: 5px 10px 5px 20px">
+            @if (ViewBag.List != null) {
+                @Html.Partial("breadcrumbs", (object)ViewBag.List)
+            }
+        </div>
+    </div>
+    <div class="container-fluid">
+        @RenderBody()
+        <div class="clear">
+        </div>
+    </div>
+    @*<div id="footer">
+        <div class="container">
+            <div class="span4 offset3">
+                <img src="~/Images/volvo-logo1.png" style="position: absolute; bottom: 0; padding: 10px" />
+            </div>
+        </div>
+    </div>*@
+    <script src = "@Url.Content("~/Scripts/jquery.unobtrusive-ajax.min.js")" type="text/javascript"></script>
+    <script src = "@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+    <script src = "@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+    <script src = "@Url.Content("~/Scripts/common.js")" type="text/javascript"></script>
+</body>
+</html>

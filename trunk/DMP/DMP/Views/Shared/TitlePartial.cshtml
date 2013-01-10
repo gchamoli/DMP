@@ -1,0 +1,17 @@
+﻿@if (User.IsInRole("HQ")) {
+    <h1>
+        <a class="brand" href="#">HQ</a>
+    </h1>
+} else if (User.IsInRole("RM")) {
+    <h1>
+        <a class="brand" href="#">RM</a></h1>
+} else if (User.IsInRole("RSM")) {
+    <h1>
+        <a class="brand" href="#">RSM</a></h1>
+} else if (User.IsInRole("CSM")) {
+    <h1>
+        <a class="brand" href="#">CSM</a></h1>
+} else {
+    <h1>
+        <a class="brand" href="#">DMP</a></h1>
+}

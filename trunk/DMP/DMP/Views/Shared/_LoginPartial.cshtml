@@ -1,0 +1,13 @@
+﻿@model DMP.Models.LoggedInUserModel
+<div style="padding: 10px 10px 10px 10px; vertical-align: middle">
+    @if (Model.IsAuthenticated) {
+        <p style="text-align: center; font-size: 11px;">
+            Welcome - <b>@Model.Name</b> | @Html.ActionLink("Log Off", "LogOff", "Account", null, new { @class = "login-link" })
+            | @Html.ActionLink("Change Credential", "Credential", "Account")
+        </p>
+       
+    } else {
+        <p style="text-align: center">
+            @Html.ActionLink("Log In", "LogIn", "Account", null, new { @class = "login-link" })</p>
+    }
+</div>

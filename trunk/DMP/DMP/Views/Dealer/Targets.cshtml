@@ -1,0 +1,145 @@
+﻿@model DMP.ModelsView.TargetViewModel
+@using DMP.Utils
+@{
+    ViewBag.Title = "Targets";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script type="text/javascript">
+    var Targets = ko.mapping.fromJS(@Html.Raw(Html.ToJSON(Model.Targets)));
+</script>
+<script type="text/javascript">
+    var viewModel = {
+        Targets: Targets
+    };
+
+    viewModel.resetTarget = function (data) {
+        $('#linkEdit').show();
+        $('.editInput').each(function () {
+            $(this).hide();
+        });
+        $('.display').each(function () {
+            $(this).show();
+        });
+    };
+
+    $(document).ready(function () {
+        ko.applyBindings(viewModel);
+
+        $('#linkEdit').bind('click', function () {
+            $('.display').each(function () {
+                $(this).hide();
+            });
+            $('.editInput').each(function () {
+                $(this).show();
+            });
+            $(this).hide();
+        });
+
+        $('#targetForm').submit(function (e) {
+            //            if (!$(this).valid()) {
+            //                e.preventDefault();
+            //                return false;
+            //            }
+            $.ajax({
+                url: '/Dealer/SaveTargets',
+                type: 'POST',
+                dataType: 'json',
+                data: JSON.stringify(ko.mapping.toJS(viewModel)),
+                contentType: 'application/json; charset=utf-8',
+                success: function (data) {
+                    if (data.success) {
+                        //                                            ko.mapping.updateFromJS(viewModel.Manpower, ko.mapping.toJS(data));
+                        //                                            viewModel.resetManpower();
+                    }
+                    viewModel.resetTarget();
+                }
+            });
+            return false;
+        });
+    });
+</script>
+<script type="text/html" id="targetTemplate">
+    <tr>
+        <td><input type="hidden" data-bind="value: ManpowerId"/><span data-bind="text: Manpower"/></td>
+        {{each(i,target) Targets}}
+        <td style="text-align: center"><span data-bind="text: target.PreviousTarget"/></td>
+        <td style="text-align: center">
+            <span class="display" data-bind="text: target.Target1"/>
+            {{if target.IsEditable}}
+            <input style="display:none" class="editInput input-micro-mini" type="Text" data-bind="value: target.Target1"/>
+            {{/if}}
+        </td>
+        <td style="text-align: center">
+            <span class="display" data-bind="text: target.Target2"/>
+            {{if target.IsEditable}}
+                <input style="display:none" class="editInput input-micro-mini" type="Text" data-bind="value: target.Target2"/>
+            {{/if}}
+        </td>
+        {{/each}}
+    </tr>
+</script>
+<div class="row-fluid">
+    <div class="span11" style="text-align: center">
+        <h3>
+            @ViewBag.Month</h3>
+    </div>
+    <div>
+        <a href="#" id="linkEdit" style="float: right">Edit</a>
+    </div>
+    <div class="span11" style="overflow: auto !important;">
+        @using (Html.BeginForm("SaveTargets", "Dealer", FormMethod.Post, new { @id = "targetForm" })) {
+            
+            @Html.HiddenFor(x => x.CsmId, new { data_bind = "value:CsmId" })
+            @Html.HiddenFor(x => x.MonthId, new { data_bind = "value:MonthId" })
+            @Html.HiddenFor(x => x.DealerId, new { data_bind = "value:DealerId" })
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th colspan=@(Model.ProductVarients.Sum(x => x.Varients.Count()) * 3 + 1) class="head1">
+                            Sales Targets
+                        </th>
+                    </tr>
+                    <tr>
+                        <th class="head2">
+                        </th>
+                        @foreach (var product in Model.ProductVarients.ToList()) {
+                            <th colspan=@(product.Varients.Count * 3) class="head2" >
+                                @product.Product
+                            </th>
+                        }
+                    </tr>
+                    <tr>
+                        <th class="head3">
+                        </th>
+                        @foreach (var varient in Model.ProductVarients.SelectMany(product => product.Varients)) {
+                            <th class="head3" colspan="3">@varient
+                            </th>
+                        }
+                    </tr>
+                    <tr>
+                        <th class="head4">
+                            DSE
+                        </th>
+                        @foreach (var product in from product in Model.ProductVarients from varient in product.Varients select product) {
+                            <th class="head4">
+                                T1 | T2 | A
+                            </th>
+                            <th class="head4">
+                                T1
+                            </th>
+                            <th class="head4">
+                                T2
+                            </th>
+                        }
+                    </tr>
+                </thead>
+                <tbody data-bind='template :{name:"targetTemplate",foreach:Targets}'>
+                </tbody>
+            </table>
+            <div class="editInput">
+                <input type="submit" value="Update" class="btn btn-primary" />
+                <input type="reset" value="Cancel" data-bind="click: resetTarget" class="btn btn-primary" />
+            </div>
+        }
+    </div>
+</div>

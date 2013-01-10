@@ -1,0 +1,21 @@
+﻿@model DMP.ModelsView.RsmUserViewModel
+<div class="row-fluid">
+    <div class="span12">
+        @if (ViewBag.UserName != null) {
+            <h3 style="text-align: center;font-weight: bold;color: red;background-color: #aaaaaa">@ViewBag.UserName</h3>
+        }
+    </div>
+</div>
+<div class="row-fluid">
+    <div class="span3">
+        @Html.Partial("ReportMenuPartial")
+    </div>
+    <div class="span9">
+        <div>
+            @Html.Partial("ReportManpowerPartial", Model.ReportManpower)
+        </div>
+        <div>
+            @Html.Partial("ProductStatPartial", Model.ProductStatistics)
+        </div>
+    </div>
+</div>

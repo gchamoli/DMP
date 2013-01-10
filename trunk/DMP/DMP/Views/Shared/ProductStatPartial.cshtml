@@ -1,0 +1,99 @@
+﻿@model IEnumerable<DMP.Models.ProductStatModel>
+<div>
+    <div class="span4" id="dvCompetency">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th colspan=@(Model.Count()) class="centerHead1">
+                        Competency
+                    </th>
+                </tr>
+                <tr>
+                    @foreach (var product in Model) {
+                        <th class="centerHead2">@product.Product
+                        </th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    @foreach (var competency in Model) {
+                        <td class="data1">@competency.Competency %
+                        </td>
+                    }
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan=@(Model.Count()) class="foot1">
+                        @Model.Average(x => x.Competency).ToString("#.##") %
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+    <div class="span4" id="dvProductivity">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th colspan=@(Model.Count()) class="centerHead1">
+                        Productivity
+                    </th>
+                </tr>
+                <tr>
+                    @foreach (var product in Model) {
+                        <th class="centerHead2">@product.Product
+                        </th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    @foreach (var productivity in Model) {
+                        <td class="data1">@productivity.Productivity %
+                        </td>
+                    }
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan=@(Model.Count()) class="foot1">
+                        @Model.Average(x => x.Productivity).ToString("#.##") %
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+    <div class="span4" id="dvAttrition">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th colspan=@(Model.Count()) class="centerHead1">
+                        Attrition
+                    </th>
+                </tr>
+                <tr>
+                    @foreach (var product in Model) {
+                        <th class="centerHead2">@product.Product
+                        </th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    @foreach (var attrition in Model) {
+                        <td class="data1">@attrition.Attrition %
+                        </td>
+                    }
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan=@(Model.Count()) class="foot1">
+                        @Model.Average(x => x.Attrition).ToString("#.##") %
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>

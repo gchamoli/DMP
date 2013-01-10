@@ -1,0 +1,20 @@
+﻿@model DMP.Models.FileUploadModel
+@{
+    ViewBag.Title = "UploadFile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h4 class="subheader">
+    UploadFile</h4>
+<div class="row">
+    @using (Html.BeginForm("UploadFile", "Dealer", FormMethod.Post, new { enctype = "multipart/form-data" })) {
+        <div>
+            <span>Upload</span> <span>
+                <input type="file" name="File" id="upload_file" />
+            </span>
+        </div>
+        <div id="audit_mapbtndiv">
+            <input type="submit" value="Upload" id="upload_btn" class="radius button" />
+        </div>
+        <span style="color: Red" id="err_msg">@Html.ValidationMessage("error")</span>
+    }
+</div>

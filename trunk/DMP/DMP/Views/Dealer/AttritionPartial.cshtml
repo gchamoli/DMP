@@ -1,0 +1,43 @@
+﻿@model DMP.ModelsView.AttritionProfileViewModel
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.datetime').datepicker({
+            changeMonth: true,
+            changeYear: true,
+            dateFormat: "dd-MM-yy"
+        });
+    });
+</script>
+<div>
+    @using (Ajax.BeginForm(new AjaxOptions { OnComplete = "closePopUp()" })) {
+        @Html.HiddenFor(x => x.ProfileId)
+        <div style="width: 100%">
+            <table class="twelve">
+                <tbody>
+                    <tr>
+                        <td>@Html.LabelFor(x => x.Attrition.AttritionId)
+                        </td>
+                        <td>@Html.DropDownListFor(x => x.Attrition.AttritionId, new SelectList(Model.Attritions, "Key", "Value"), new { @class = "custom dropdown", @style = "margin-bottom:10px" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.LabelFor(x => x.Attrition.DOLString)
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(x => x.Attrition.DOLString, new { @class = "datetime" })
+                        </td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="2" style="text-align: right">
+                            <input type="submit" value="Save"  class="btn btn-primary"  />
+                            <input type="reset" value="Clear"  class="btn btn-primary"  />
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    }
+</div>

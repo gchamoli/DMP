@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestRun id="c056fed6-804d-42d8-9a70-869441f233e6" name="gaurav@APOLLO-PC 2012-12-13 17:38:14" runUser="APOLLO-PC\gaurav" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestSettings name="Default Test Settings" id="b408bde0-ebed-47cb-886f-e61616be756f">
+    <Deployment runDeploymentRoot="gaurav_APOLLO-PC 2012-12-13 17_38_14">
+      <DeploymentItem filename="D:\WORK\DMP\trunk\DMP\DMP.Repository\bin\Debug\DMP.Repository.dll" />
+      <DeploymentItem filename="D:\WORK\DMP\trunk\DMP\packages\Microsoft.Net.Http.2.0.20710.0\lib\net40\System.Net.Http.WebRequest.dll" />
+      <DeploymentItem filename="D:\WORK\DMP\trunk\DMP\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Deployment.dll" />
+      <DeploymentItem filename="D:\WORK\DMP\trunk\DMP\packages\Microsoft.AspNet.Mvc.4.0.20710.0\lib\net40\System.Web.Mvc.dll" />
+      <DeploymentItem filename="D:\WORK\DMP\trunk\DMP\packages\Microsoft.AspNet.WebApi.Client.4.0.20710.0\lib\net40\System.Net.Http.Formatting.dll" />
+      <DeploymentItem filename="D:\WORK\DMP\trunk\DMP\packages\Newtonsoft.Json.4.5.6\lib\net40\Newtonsoft.Json.dll" />
+      <DeploymentItem filename="D:\WORK\DMP\trunk\DMP\packages\Microsoft.AspNet.WebApi.Core.4.0.20710.0\lib\net40\System.Web.Http.dll" />
+      <DeploymentItem filename="D:\WORK\DMP\trunk\DMP\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Razor.dll" />
+      <DeploymentItem filename="D:\WORK\DMP\trunk\DMP\DMP\bin\DMP.dll" />
+      <DeploymentItem filename="D:\WORK\DMP\trunk\DMP\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.dll" />
+      <DeploymentItem filename="D:\WORK\DMP\trunk\DMP\packages\Microsoft.Net.Http.2.0.20710.0\lib\net40\System.Net.Http.dll" />
+      <DeploymentItem filename="D:\WORK\DMP\trunk\DMP\DMP\bin\Ninject.dll" />
+      <DeploymentItem filename="D:\WORK\DMP\trunk\DMP\packages\Microsoft.AspNet.Razor.2.0.20710.0\lib\net40\System.Web.Razor.dll" />
+      <DeploymentItem filename="D:\WORK\DMP\trunk\DMP\packages\Microsoft.AspNet.WebApi.WebHost.4.0.20710.0\lib\net40\System.Web.Http.WebHost.dll" />
+      <DeploymentItem filename="D:\WORK\DMP\trunk\DMP\DMP.IOC\bin\Debug\DMP.IOC.dll" />
+      <DeploymentItem filename="D:\WORK\DMP\trunk\DMP\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.Helpers.dll" />
+      <DeploymentItem filename="D:\WORK\DMP\trunk\DMP\DMP.Services\bin\Debug\DMP.Services.dll" />
+      <DeploymentItem filename="D:\WORK\DMP\trunk\DMP\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll" />
+    </Deployment>
+    <Execution>
+      <TestTypeSpecific />
+      <AgentRule name="Execution Agents">
+      </AgentRule>
+    </Execution>
+  </TestSettings>
+  <Times creation="2012-12-13T17:38:14.3030321+05:30" queuing="2012-12-13T17:38:14.6810537+05:30" start="2012-12-13T17:38:14.7020549+05:30" finish="2012-12-13T17:38:15.4530979+05:30" />
+  <ResultSummary outcome="Failed">
+    <Counters total="2" executed="2" error="0" failed="2" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" passed="0" completed="0" inProgress="0" pending="0" />
+    <RunInfos>
+      <RunInfo computerName="APOLLO-PC" outcome="Warning" timestamp="2012-12-13T17:38:14.6810537+05:30">
+        <Text>Warning: Test Run deployment issue: The assembly or module 'log4net' directly or indirectly referenced by the test container 'd:\work\dmp\trunk\dmp\dmp.tests\bin\debug\dmp.tests.dll' was not found.</Text>
+      </RunInfo>
+      <RunInfo computerName="APOLLO-PC" outcome="Warning" timestamp="2012-12-13T17:38:14.6810537+05:30">
+        <Text>Warning: Test Run deployment issue: The assembly or module 'Org.Mentalis.Security.Cryptography' directly or indirectly referenced by the test container 'd:\work\dmp\trunk\dmp\dmp.tests\bin\debug\dmp.tests.dll' was not found.</Text>
+      </RunInfo>
+    </RunInfos>
+  </ResultSummary>
+  <TestDefinitions>
+    <UnitTest name="Can_Add_Region" storage="d:\work\dmp\trunk\dmp\dmp.tests\bin\debug\dmp.tests.dll" id="36df14af-f0d9-610b-cfa3-d5c082176cfe">
+      <Execution id="c2842064-1a26-46f2-ada2-163d77b1559f" />
+      <TestMethod codeBase="D:/WORK/DMP/trunk/DMP/DMP.Tests/bin/Debug/DMP.Tests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="DMP.Tests.Controllers.MasterControllerTest, DMP.Tests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="Can_Add_Region" />
+    </UnitTest>
+    <UnitTest name="TestMethod1" storage="d:\work\dmp\trunk\dmp\dmp.tests\bin\debug\dmp.tests.dll" id="5f4f1885-890f-c47f-581b-5ed142b14945">
+      <Execution id="552e843a-db6c-44bc-8ece-0c0d6c00f461" />
+      <TestMethod codeBase="D:/WORK/DMP/trunk/DMP/DMP.Tests/bin/Debug/DMP.Tests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="DMP.Tests.Controllers.MasterControllerTest, DMP.Tests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="TestMethod1" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <TestEntries>
+    <TestEntry testId="36df14af-f0d9-610b-cfa3-d5c082176cfe" executionId="c2842064-1a26-46f2-ada2-163d77b1559f" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="5f4f1885-890f-c47f-581b-5ed142b14945" executionId="552e843a-db6c-44bc-8ece-0c0d6c00f461" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <Results>
+    <UnitTestResult executionId="c2842064-1a26-46f2-ada2-163d77b1559f" testId="36df14af-f0d9-610b-cfa3-d5c082176cfe" testName="Can_Add_Region" computerName="APOLLO-PC" duration="00:00:00.4428144" startTime="2012-12-13T17:38:14.7020549+05:30" endTime="2012-12-13T17:38:15.3480918+05:30" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="c2842064-1a26-46f2-ada2-163d77b1559f">
+      <Output>
+        <Exception>Exception has been thrown by the target of an invocation.</Exception>
+        <ErrorInfo>
+          <Message>Unable to create instance of class DMP.Tests.Controllers.MasterControllerTest. Error: System.ArgumentException: The specified named connection is either not found in the configuration, not intended to be used with the EntityClient provider, or not valid..</Message>
+          <StackTrace>    at System.Data.EntityClient.EntityConnection.ChangeConnectionString(String newConnectionString)
+   at System.Data.EntityClient.EntityConnection..ctor(String connectionString)
+   at System.Data.Objects.ObjectContext.CreateEntityConnection(String connectionString)
+   at System.Data.Objects.ObjectContext..ctor(String connectionString, String defaultContainerName)
+   at DMP.Repository.DMPEntitiesContainer..ctor() in C:\Users\gaurav\Documents\Visual Studio 2010\Projects\DMP\DMP.Repository\DmpModel.Designer.cs:line 41
+   at DynamicInjector60eb0bdec4974f4ea863a561504b4810(Object[] )
+   at Ninject.Activation.Providers.StandardProvider.Create(IContext context) in c:\Projects\Ninject\ninject\src\Ninject\Activation\Providers\StandardProvider.cs:line 96
+   at Ninject.Activation.Context.Resolve() in c:\Projects\Ninject\ninject\src\Ninject\Activation\Context.cs:line 157
+   at Ninject.KernelBase.&lt;&gt;c__DisplayClass10.&lt;Resolve&gt;b__c(IBinding binding) in c:\Projects\Ninject\ninject\src\Ninject\KernelBase.cs:line 386
+   at System.Linq.Enumerable.WhereSelectEnumerableIterator`2.MoveNext()
+   at System.Linq.Enumerable.SingleOrDefault[TSource](IEnumerable`1 source)
+   at Ninject.Planning.Targets.Target`1.GetValue(Type service, IContext parent) in c:\Projects\Ninject\ninject\src\Ninject\Planning\Targets\Target.cs:line 197
+   at Ninject.Planning.Targets.Target`1.ResolveWithin(IContext parent) in c:\Projects\Ninject\ninject\src\Ninject\Planning\Targets\Target.cs:line 165
+   at Ninject.Activation.Providers.StandardProvider.GetValue(IContext context, ITarget target) in c:\Projects\Ninject\ninject\src\Ninject\Activation\Providers\StandardProvider.cs:line 114
+   at Ninject.Activation.Providers.StandardProvider.&lt;&gt;c__DisplayClass4.&lt;Create&gt;b__2(ITarget target) in c:\Projects\Ninject\ninject\src\Ninject\Activation\Providers\StandardProvider.cs:line 96
+   at System.Linq.Enumerable.WhereSelectArrayIterator`2.MoveNext()
+   at System.Linq.Buffer`1..ctor(IEnumerable`1 source)
+   at System.Linq.Enumerable.ToArray[TSource](IEnumerable`1 source)
+   at Ninject.Activation.Providers.StandardProvider.Create(IContext context) in c:\Projects\Ninject\ninject\src\Ninject\Activation\Providers\StandardProvider.cs:line 96
+   at Ninject.Activation.Context.Resolve() in c:\Projects\Ninject\ninject\src\Ninject\Activation\Context.cs:line 157
+   at Ninject.KernelBase.&lt;&gt;c__DisplayClass10.&lt;Resolve&gt;b__c(IBinding binding) in c:\Projects\Ninject\ninject\src\Ninject\KernelBase.cs:line 386
+   at System.Linq.Enumerable.WhereSelectEnumerableIterator`2.MoveNext()
+   at System.Linq.Enumerable.SingleOrDefault[TSource](IEnumerable`1 source)
+   at Ninject.Planning.Targets.Target`1.GetValue(Type service, IContext parent) in c:\Projects\Ninject\ninject\src\Ninject\Planning\Targets\Target.cs:line 197
+   at Ninject.Planning.Targets.Target`1.ResolveWithin(IContext parent) in c:\Projects\Ninject\ninject\src\Ninject\Planning\Targets\Target.cs:line 165
+   at Ninject.Activation.Providers.StandardProvider.GetValue(IContext context, ITarget target) in c:\Projects\Ninject\ninject\src\Ninject\Activation\Providers\StandardProvider.cs:line 114
+   at Ninject.Activation.Providers.StandardProvider.&lt;&gt;c__DisplayClass4.&lt;Create&gt;b__2(ITarget target) in c:\Projects\Ninject\ninject\src\Ninject\Activation\Providers\StandardProvider.cs:line 96
+   at System.Linq.Enumerable.WhereSelectArrayIterator`2.MoveNext()
+   at System.Linq.Buffer`1..ctor(IEnumerable`1 source)
+   at System.Linq.Enumerable.ToArray[TSource](IEnumerable`1 source)
+   at Ninject.Activation.Providers.StandardProvider.Create(IContext context) in c:\Projects\Ninject\ninject\src\Ninject\Activation\Providers\StandardProvider.cs:line 96
+   at Ninject.Activation.Context.Resolve() in c:\Projects\Ninject\ninject\src\Ninject\Activation\Context.cs:line 157
+   at Ninject.KernelBase.&lt;&gt;c__DisplayClass10.&lt;Resolve&gt;b__c(IBinding binding) in c:\Projects\Ninject\ninject\src\Ninject\KernelBase.cs:line 386
+   at System.Linq.Enumerable.WhereSelectEnumerableIterator`2.MoveNext()
+   at System.Linq.Enumerable.&lt;CastIterator&gt;d__b1`1.MoveNext()
+   at System.Linq.Enumerable.Single[TSource](IEnumerable`1 source)
+   at Ninject.ResolutionExtensions.Get[T](IResolutionRoot root, IParameter[] parameters) in c:\Projects\Ninject\ninject\src\Ninject\Syntax\ResolutionExtensions.cs:line 37
+   at DMP.Tests.Controllers.MasterControllerTest..ctor() in D:\WORK\DMP\trunk\DMP\DMP.Tests\Controllers\MasterControllerTest.cs:line 22
+</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="552e843a-db6c-44bc-8ece-0c0d6c00f461" testId="5f4f1885-890f-c47f-581b-5ed142b14945" testName="TestMethod1" computerName="APOLLO-PC" duration="00:00:00.0252877" startTime="2012-12-13T17:38:15.3500920+05:30" endTime="2012-12-13T17:38:15.3790936+05:30" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="552e843a-db6c-44bc-8ece-0c0d6c00f461">
+      <Output>
+        <Exception>Exception has been thrown by the target of an invocation.</Exception>
+        <ErrorInfo>
+          <Message>Unable to create instance of class DMP.Tests.Controllers.MasterControllerTest. Error: System.ArgumentException: The specified named connection is either not found in the configuration, not intended to be used with the EntityClient provider, or not valid..</Message>
+          <StackTrace>    at System.Data.EntityClient.EntityConnection.ChangeConnectionString(String newConnectionString)
+   at System.Data.EntityClient.EntityConnection..ctor(String connectionString)
+   at System.Data.Objects.ObjectContext.CreateEntityConnection(String connectionString)
+   at System.Data.Objects.ObjectContext..ctor(String connectionString, String defaultContainerName)
+   at DMP.Repository.DMPEntitiesContainer..ctor() in C:\Users\gaurav\Documents\Visual Studio 2010\Projects\DMP\DMP.Repository\DmpModel.Designer.cs:line 41
+   at DynamicInjectorf22df56c22c8461e903a771e2798b3c5(Object[] )
+   at Ninject.Activation.Providers.StandardProvider.Create(IContext context) in c:\Projects\Ninject\ninject\src\Ninject\Activation\Providers\StandardProvider.cs:line 96
+   at Ninject.Activation.Context.Resolve() in c:\Projects\Ninject\ninject\src\Ninject\Activation\Context.cs:line 157
+   at Ninject.KernelBase.&lt;&gt;c__DisplayClass10.&lt;Resolve&gt;b__c(IBinding binding) in c:\Projects\Ninject\ninject\src\Ninject\KernelBase.cs:line 386
+   at System.Linq.Enumerable.WhereSelectEnumerableIterator`2.MoveNext()
+   at System.Linq.Enumerable.SingleOrDefault[TSource](IEnumerable`1 source)
+   at Ninject.Planning.Targets.Target`1.GetValue(Type service, IContext parent) in c:\Projects\Ninject\ninject\src\Ninject\Planning\Targets\Target.cs:line 197
+   at Ninject.Planning.Targets.Target`1.ResolveWithin(IContext parent) in c:\Projects\Ninject\ninject\src\Ninject\Planning\Targets\Target.cs:line 165
+   at Ninject.Activation.Providers.StandardProvider.GetValue(IContext context, ITarget target) in c:\Projects\Ninject\ninject\src\Ninject\Activation\Providers\StandardProvider.cs:line 114
+   at Ninject.Activation.Providers.StandardProvider.&lt;&gt;c__DisplayClass4.&lt;Create&gt;b__2(ITarget target) in c:\Projects\Ninject\ninject\src\Ninject\Activation\Providers\StandardProvider.cs:line 96
+   at System.Linq.Enumerable.WhereSelectArrayIterator`2.MoveNext()
+   at System.Linq.Buffer`1..ctor(IEnumerable`1 source)
+   at System.Linq.Enumerable.ToArray[TSource](IEnumerable`1 source)
+   at Ninject.Activation.Providers.StandardProvider.Create(IContext context) in c:\Projects\Ninject\ninject\src\Ninject\Activation\Providers\StandardProvider.cs:line 96
+   at Ninject.Activation.Context.Resolve() in c:\Projects\Ninject\ninject\src\Ninject\Activation\Context.cs:line 157
+   at Ninject.KernelBase.&lt;&gt;c__DisplayClass10.&lt;Resolve&gt;b__c(IBinding binding) in c:\Projects\Ninject\ninject\src\Ninject\KernelBase.cs:line 386
+   at System.Linq.Enumerable.WhereSelectEnumerableIterator`2.MoveNext()
+   at System.Linq.Enumerable.SingleOrDefault[TSource](IEnumerable`1 source)
+   at Ninject.Planning.Targets.Target`1.GetValue(Type service, IContext parent) in c:\Projects\Ninject\ninject\src\Ninject\Planning\Targets\Target.cs:line 197
+   at Ninject.Planning.Targets.Target`1.ResolveWithin(IContext parent) in c:\Projects\Ninject\ninject\src\Ninject\Planning\Targets\Target.cs:line 165
+   at Ninject.Activation.Providers.StandardProvider.GetValue(IContext context, ITarget target) in c:\Projects\Ninject\ninject\src\Ninject\Activation\Providers\StandardProvider.cs:line 114
+   at Ninject.Activation.Providers.StandardProvider.&lt;&gt;c__DisplayClass4.&lt;Create&gt;b__2(ITarget target) in c:\Projects\Ninject\ninject\src\Ninject\Activation\Providers\StandardProvider.cs:line 96
+   at System.Linq.Enumerable.WhereSelectArrayIterator`2.MoveNext()
+   at System.Linq.Buffer`1..ctor(IEnumerable`1 source)
+   at System.Linq.Enumerable.ToArray[TSource](IEnumerable`1 source)
+   at Ninject.Activation.Providers.StandardProvider.Create(IContext context) in c:\Projects\Ninject\ninject\src\Ninject\Activation\Providers\StandardProvider.cs:line 96
+   at Ninject.Activation.Context.Resolve() in c:\Projects\Ninject\ninject\src\Ninject\Activation\Context.cs:line 157
+   at Ninject.KernelBase.&lt;&gt;c__DisplayClass10.&lt;Resolve&gt;b__c(IBinding binding) in c:\Projects\Ninject\ninject\src\Ninject\KernelBase.cs:line 386
+   at System.Linq.Enumerable.WhereSelectEnumerableIterator`2.MoveNext()
+   at System.Linq.Enumerable.&lt;CastIterator&gt;d__b1`1.MoveNext()
+   at System.Linq.Enumerable.Single[TSource](IEnumerable`1 source)
+   at Ninject.ResolutionExtensions.Get[T](IResolutionRoot root, IParameter[] parameters) in c:\Projects\Ninject\ninject\src\Ninject\Syntax\ResolutionExtensions.cs:line 37
+   at DMP.Tests.Controllers.MasterControllerTest..ctor() in D:\WORK\DMP\trunk\DMP\DMP.Tests\Controllers\MasterControllerTest.cs:line 22
+</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+  </Results>
+</TestRun>

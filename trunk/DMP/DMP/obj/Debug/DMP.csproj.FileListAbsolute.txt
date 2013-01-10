@@ -1,0 +1,144 @@
+c:\users\gaurav\documents\visual studio 2010\Projects\DMP\DMP\bin\DMP.dll
+c:\users\gaurav\documents\visual studio 2010\Projects\DMP\DMP\bin\DMP.pdb
+c:\users\gaurav\documents\visual studio 2010\Projects\DMP\DMP\bin\Antlr3.Runtime.dll
+c:\users\gaurav\documents\visual studio 2010\Projects\DMP\DMP\bin\DotNetOpenAuth.AspNet.dll
+c:\users\gaurav\documents\visual studio 2010\Projects\DMP\DMP\bin\DotNetOpenAuth.Core.dll
+c:\users\gaurav\documents\visual studio 2010\Projects\DMP\DMP\bin\DotNetOpenAuth.OAuth.Consumer.dll
+c:\users\gaurav\documents\visual studio 2010\Projects\DMP\DMP\bin\DotNetOpenAuth.OAuth.dll
+c:\users\gaurav\documents\visual studio 2010\Projects\DMP\DMP\bin\DotNetOpenAuth.OpenId.dll
+c:\users\gaurav\documents\visual studio 2010\Projects\DMP\DMP\bin\DotNetOpenAuth.OpenId.RelyingParty.dll
+c:\users\gaurav\documents\visual studio 2010\Projects\DMP\DMP\bin\EntityFramework.dll
+c:\users\gaurav\documents\visual studio 2010\Projects\DMP\DMP\bin\Microsoft.Web.Infrastructure.dll
+c:\users\gaurav\documents\visual studio 2010\Projects\DMP\DMP\bin\Microsoft.Web.WebPages.OAuth.dll
+c:\users\gaurav\documents\visual studio 2010\Projects\DMP\DMP\bin\Newtonsoft.Json.dll
+c:\users\gaurav\documents\visual studio 2010\Projects\DMP\DMP\bin\System.Net.Http.dll
+c:\users\gaurav\documents\visual studio 2010\Projects\DMP\DMP\bin\System.Net.Http.Formatting.dll
+c:\users\gaurav\documents\visual studio 2010\Projects\DMP\DMP\bin\System.Net.Http.WebRequest.dll
+c:\users\gaurav\documents\visual studio 2010\Projects\DMP\DMP\bin\System.Web.Helpers.dll
+c:\users\gaurav\documents\visual studio 2010\Projects\DMP\DMP\bin\System.Web.Http.dll
+c:\users\gaurav\documents\visual studio 2010\Projects\DMP\DMP\bin\System.Web.Http.WebHost.dll
+c:\users\gaurav\documents\visual studio 2010\Projects\DMP\DMP\bin\System.Web.Mvc.dll
+c:\users\gaurav\documents\visual studio 2010\Projects\DMP\DMP\bin\System.Web.Optimization.dll
+c:\users\gaurav\documents\visual studio 2010\Projects\DMP\DMP\bin\System.Web.Razor.dll
+c:\users\gaurav\documents\visual studio 2010\Projects\DMP\DMP\bin\System.Web.WebPages.Deployment.dll
+c:\users\gaurav\documents\visual studio 2010\Projects\DMP\DMP\bin\System.Web.WebPages.dll
+c:\users\gaurav\documents\visual studio 2010\Projects\DMP\DMP\bin\System.Web.WebPages.Razor.dll
+c:\users\gaurav\documents\visual studio 2010\Projects\DMP\DMP\bin\WebGrease.dll
+c:\users\gaurav\documents\visual studio 2010\Projects\DMP\DMP\bin\WebMatrix.Data.dll
+c:\users\gaurav\documents\visual studio 2010\Projects\DMP\DMP\bin\WebMatrix.WebData.dll
+c:\users\gaurav\documents\visual studio 2010\Projects\DMP\DMP\bin\EntityFramework.xml
+c:\users\gaurav\documents\visual studio 2010\Projects\DMP\DMP\bin\Newtonsoft.Json.xml
+c:\users\gaurav\documents\visual studio 2010\Projects\DMP\DMP\bin\System.Net.Http.xml
+c:\users\gaurav\documents\visual studio 2010\Projects\DMP\DMP\bin\System.Net.Http.Formatting.xml
+c:\users\gaurav\documents\visual studio 2010\Projects\DMP\DMP\bin\System.Net.Http.WebRequest.xml
+c:\users\gaurav\documents\visual studio 2010\Projects\DMP\DMP\bin\System.Web.Helpers.xml
+c:\users\gaurav\documents\visual studio 2010\Projects\DMP\DMP\bin\System.Web.Http.xml
+c:\users\gaurav\documents\visual studio 2010\Projects\DMP\DMP\bin\System.Web.Http.WebHost.xml
+c:\users\gaurav\documents\visual studio 2010\Projects\DMP\DMP\bin\System.Web.Mvc.xml
+c:\users\gaurav\documents\visual studio 2010\Projects\DMP\DMP\bin\System.Web.Razor.xml
+c:\users\gaurav\documents\visual studio 2010\Projects\DMP\DMP\bin\System.Web.WebPages.xml
+c:\users\gaurav\documents\visual studio 2010\Projects\DMP\DMP\bin\System.Web.WebPages.Deployment.xml
+c:\users\gaurav\documents\visual studio 2010\Projects\DMP\DMP\bin\System.Web.WebPages.Razor.xml
+c:\users\gaurav\documents\visual studio 2010\Projects\DMP\DMP\bin\WebMatrix.Data.xml
+c:\users\gaurav\documents\visual studio 2010\Projects\DMP\DMP\bin\Microsoft.Web.WebPages.OAuth.xml
+c:\users\gaurav\documents\visual studio 2010\Projects\DMP\DMP\bin\WebMatrix.WebData.xml
+c:\users\gaurav\documents\visual studio 2010\Projects\DMP\DMP\bin\DotNetOpenAuth.AspNet.xml
+c:\users\gaurav\documents\visual studio 2010\Projects\DMP\DMP\bin\DotNetOpenAuth.Core.xml
+c:\users\gaurav\documents\visual studio 2010\Projects\DMP\DMP\bin\DotNetOpenAuth.OAuth.Consumer.xml
+c:\users\gaurav\documents\visual studio 2010\Projects\DMP\DMP\bin\DotNetOpenAuth.OAuth.xml
+c:\users\gaurav\documents\visual studio 2010\Projects\DMP\DMP\bin\DotNetOpenAuth.OpenId.xml
+c:\users\gaurav\documents\visual studio 2010\Projects\DMP\DMP\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
+c:\users\gaurav\documents\visual studio 2010\Projects\DMP\DMP\obj\Debug\ResolveAssemblyReference.cache
+c:\users\gaurav\documents\visual studio 2010\Projects\DMP\DMP\obj\Debug\DMP.dll
+c:\users\gaurav\documents\visual studio 2010\Projects\DMP\DMP\obj\Debug\DMP.pdb
+c:\users\gaurav\documents\visual studio 2010\Projects\DMP\DMP\bin\EcmaScript.NET.modified.dll
+c:\users\gaurav\documents\visual studio 2010\Projects\DMP\DMP\bin\Yahoo.Yui.Compressor.dll
+C:\Users\gaurav\Documents\Visual Studio 2010\Projects\DMP\DMP\bin\Ninject.dll
+C:\Users\gaurav\Documents\Visual Studio 2010\Projects\DMP\DMP\bin\Ninject.Web.Common.dll
+C:\Users\gaurav\Documents\Visual Studio 2010\Projects\DMP\DMP\bin\Ninject.Web.Mvc.dll
+C:\Users\gaurav\Documents\Visual Studio 2010\Projects\DMP\DMP\bin\WebActivator.dll
+C:\Users\gaurav\Documents\Visual Studio 2010\Projects\DMP\DMP\bin\Ninject.pdb
+C:\Users\gaurav\Documents\Visual Studio 2010\Projects\DMP\DMP\bin\Ninject.xml
+C:\Users\gaurav\Documents\Visual Studio 2010\Projects\DMP\DMP\bin\Ninject.Web.Common.pdb
+C:\Users\gaurav\Documents\Visual Studio 2010\Projects\DMP\DMP\bin\Ninject.Web.Common.xml
+C:\Users\gaurav\Documents\Visual Studio 2010\Projects\DMP\DMP\bin\Ninject.Web.Mvc.pdb
+C:\Users\gaurav\Documents\Visual Studio 2010\Projects\DMP\DMP\bin\Ninject.Web.Mvc.xml
+C:\Users\gaurav\Documents\Visual Studio 2010\Projects\DMP\DMP\bin\DMP.Services.dll
+C:\Users\gaurav\Documents\Visual Studio 2010\Projects\DMP\DMP\bin\DMP.Repository.dll
+C:\Users\gaurav\Documents\Visual Studio 2010\Projects\DMP\DMP\bin\DMP.Services.pdb
+C:\Users\gaurav\Documents\Visual Studio 2010\Projects\DMP\DMP\bin\DMP.Repository.pdb
+C:\Users\gaurav\Documents\Visual Studio 2010\Projects\DMP\DMP\bin\DMP.IOC.dll
+C:\Users\gaurav\Documents\Visual Studio 2010\Projects\DMP\DMP\bin\DMP.IOC.pdb
+D:\WORK\DMP\trunk\DMP\DMP\obj\Debug\ResolveAssemblyReference.cache
+D:\WORK\DMP\trunk\DMP\DMP\bin\DMP.dll
+D:\WORK\DMP\trunk\DMP\DMP\bin\DMP.pdb
+D:\WORK\DMP\trunk\DMP\DMP\bin\Antlr3.Runtime.dll
+D:\WORK\DMP\trunk\DMP\DMP\bin\DMP.IOC.dll
+D:\WORK\DMP\trunk\DMP\DMP\bin\DMP.Repository.dll
+D:\WORK\DMP\trunk\DMP\DMP\bin\DMP.Services.dll
+D:\WORK\DMP\trunk\DMP\DMP\bin\DotNetOpenAuth.AspNet.dll
+D:\WORK\DMP\trunk\DMP\DMP\bin\DotNetOpenAuth.Core.dll
+D:\WORK\DMP\trunk\DMP\DMP\bin\DotNetOpenAuth.OAuth.Consumer.dll
+D:\WORK\DMP\trunk\DMP\DMP\bin\DotNetOpenAuth.OAuth.dll
+D:\WORK\DMP\trunk\DMP\DMP\bin\DotNetOpenAuth.OpenId.dll
+D:\WORK\DMP\trunk\DMP\DMP\bin\DotNetOpenAuth.OpenId.RelyingParty.dll
+D:\WORK\DMP\trunk\DMP\DMP\bin\EcmaScript.NET.modified.dll
+D:\WORK\DMP\trunk\DMP\DMP\bin\EntityFramework.dll
+D:\WORK\DMP\trunk\DMP\DMP\bin\Microsoft.Web.Infrastructure.dll
+D:\WORK\DMP\trunk\DMP\DMP\bin\Microsoft.Web.WebPages.OAuth.dll
+D:\WORK\DMP\trunk\DMP\DMP\bin\Newtonsoft.Json.dll
+D:\WORK\DMP\trunk\DMP\DMP\bin\Ninject.dll
+D:\WORK\DMP\trunk\DMP\DMP\bin\Ninject.Web.Common.dll
+D:\WORK\DMP\trunk\DMP\DMP\bin\Ninject.Web.Mvc.dll
+D:\WORK\DMP\trunk\DMP\DMP\bin\System.Net.Http.dll
+D:\WORK\DMP\trunk\DMP\DMP\bin\System.Net.Http.Formatting.dll
+D:\WORK\DMP\trunk\DMP\DMP\bin\System.Net.Http.WebRequest.dll
+D:\WORK\DMP\trunk\DMP\DMP\bin\System.Web.Helpers.dll
+D:\WORK\DMP\trunk\DMP\DMP\bin\System.Web.Http.dll
+D:\WORK\DMP\trunk\DMP\DMP\bin\System.Web.Http.WebHost.dll
+D:\WORK\DMP\trunk\DMP\DMP\bin\System.Web.Mvc.dll
+D:\WORK\DMP\trunk\DMP\DMP\bin\System.Web.Optimization.dll
+D:\WORK\DMP\trunk\DMP\DMP\bin\System.Web.Razor.dll
+D:\WORK\DMP\trunk\DMP\DMP\bin\System.Web.WebPages.Deployment.dll
+D:\WORK\DMP\trunk\DMP\DMP\bin\System.Web.WebPages.dll
+D:\WORK\DMP\trunk\DMP\DMP\bin\System.Web.WebPages.Razor.dll
+D:\WORK\DMP\trunk\DMP\DMP\bin\WebActivator.dll
+D:\WORK\DMP\trunk\DMP\DMP\bin\WebGrease.dll
+D:\WORK\DMP\trunk\DMP\DMP\bin\WebMatrix.Data.dll
+D:\WORK\DMP\trunk\DMP\DMP\bin\WebMatrix.WebData.dll
+D:\WORK\DMP\trunk\DMP\DMP\bin\Yahoo.Yui.Compressor.dll
+D:\WORK\DMP\trunk\DMP\DMP\bin\DMP.IOC.pdb
+D:\WORK\DMP\trunk\DMP\DMP\bin\DMP.Repository.pdb
+D:\WORK\DMP\trunk\DMP\DMP\bin\DMP.Services.pdb
+D:\WORK\DMP\trunk\DMP\DMP\bin\Ninject.pdb
+D:\WORK\DMP\trunk\DMP\DMP\bin\Ninject.xml
+D:\WORK\DMP\trunk\DMP\DMP\bin\Ninject.Web.Common.pdb
+D:\WORK\DMP\trunk\DMP\DMP\bin\Ninject.Web.Common.xml
+D:\WORK\DMP\trunk\DMP\DMP\bin\Ninject.Web.Mvc.pdb
+D:\WORK\DMP\trunk\DMP\DMP\bin\Ninject.Web.Mvc.xml
+D:\WORK\DMP\trunk\DMP\DMP\bin\EntityFramework.xml
+D:\WORK\DMP\trunk\DMP\DMP\bin\Newtonsoft.Json.xml
+D:\WORK\DMP\trunk\DMP\DMP\bin\System.Net.Http.xml
+D:\WORK\DMP\trunk\DMP\DMP\bin\System.Net.Http.Formatting.xml
+D:\WORK\DMP\trunk\DMP\DMP\bin\System.Net.Http.WebRequest.xml
+D:\WORK\DMP\trunk\DMP\DMP\bin\System.Web.Helpers.xml
+D:\WORK\DMP\trunk\DMP\DMP\bin\System.Web.Http.xml
+D:\WORK\DMP\trunk\DMP\DMP\bin\System.Web.Http.WebHost.xml
+D:\WORK\DMP\trunk\DMP\DMP\bin\System.Web.Mvc.xml
+D:\WORK\DMP\trunk\DMP\DMP\bin\System.Web.Razor.xml
+D:\WORK\DMP\trunk\DMP\DMP\bin\System.Web.WebPages.xml
+D:\WORK\DMP\trunk\DMP\DMP\bin\System.Web.WebPages.Deployment.xml
+D:\WORK\DMP\trunk\DMP\DMP\bin\System.Web.WebPages.Razor.xml
+D:\WORK\DMP\trunk\DMP\DMP\bin\WebMatrix.Data.xml
+D:\WORK\DMP\trunk\DMP\DMP\bin\Microsoft.Web.WebPages.OAuth.xml
+D:\WORK\DMP\trunk\DMP\DMP\bin\WebMatrix.WebData.xml
+D:\WORK\DMP\trunk\DMP\DMP\bin\DotNetOpenAuth.AspNet.xml
+D:\WORK\DMP\trunk\DMP\DMP\bin\DotNetOpenAuth.Core.xml
+D:\WORK\DMP\trunk\DMP\DMP\bin\DotNetOpenAuth.OAuth.Consumer.xml
+D:\WORK\DMP\trunk\DMP\DMP\bin\DotNetOpenAuth.OAuth.xml
+D:\WORK\DMP\trunk\DMP\DMP\bin\DotNetOpenAuth.OpenId.xml
+D:\WORK\DMP\trunk\DMP\DMP\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
+D:\WORK\DMP\trunk\DMP\DMP\obj\Debug\DMP.dll
+D:\WORK\DMP\trunk\DMP\DMP\obj\Debug\DMP.pdb
+D:\WORK\DMP\trunk\DMP\DMP\bin\EPPlus.dll
+D:\WORK\DMP\trunk\DMP\DMP\bin\EPPlus.xml

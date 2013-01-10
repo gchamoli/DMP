@@ -1,0 +1,12 @@
+C:\Users\gaurav\Documents\Visual Studio 2010\Projects\DMP\DMP.Repository\bin\Debug\DMP.Repository.dll.config
+C:\Users\gaurav\Documents\Visual Studio 2010\Projects\DMP\DMP.Repository\bin\Debug\DMP.Repository.dll
+C:\Users\gaurav\Documents\Visual Studio 2010\Projects\DMP\DMP.Repository\bin\Debug\DMP.Repository.pdb
+C:\Users\gaurav\Documents\Visual Studio 2010\Projects\DMP\DMP.Repository\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\gaurav\Documents\Visual Studio 2010\Projects\DMP\DMP.Repository\obj\Debug\DMP.Repository.dll
+C:\Users\gaurav\Documents\Visual Studio 2010\Projects\DMP\DMP.Repository\obj\Debug\DMP.Repository.pdb
+D:\WORK\DMP\trunk\DMP\DMP.Repository\bin\Debug\DMP.Repository.dll.config
+D:\WORK\DMP\trunk\DMP\DMP.Repository\bin\Debug\DMP.Repository.dll
+D:\WORK\DMP\trunk\DMP\DMP.Repository\bin\Debug\DMP.Repository.pdb
+D:\WORK\DMP\trunk\DMP\DMP.Repository\obj\Debug\ResolveAssemblyReference.cache
+D:\WORK\DMP\trunk\DMP\DMP.Repository\obj\Debug\DMP.Repository.dll
+D:\WORK\DMP\trunk\DMP\DMP.Repository\obj\Debug\DMP.Repository.pdb

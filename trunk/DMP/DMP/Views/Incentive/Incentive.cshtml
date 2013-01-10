@@ -1,0 +1,147 @@
+﻿@model DMP.ModelsView.IncentiveViewModel
+@using DMP.Utils
+@{
+    ViewBag.Title = "Incentive";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style type="text/css">
+    .head1
+    {
+        background-color: #c21715;
+        color: white;
+        font-weight: bold;
+        font-size: 20px !important;
+    }
+    .head2
+    {
+        background-color: #aaaaaa;
+        text-align: center !important;
+        font-size: 17px !important;
+    }
+    .head3
+    {
+        background-color: #dddddd;
+        text-align: center !important;
+    }
+</style>
+<script type="text/javascript">
+    var Incentives = ko.mapping.fromJS(@Html.Raw(Html.ToJSON(Model.Incentives)));
+    var MonthId = ko.mapping.fromJS(@Html.Raw(Html.ToJSON(Model.MonthId)));
+</script>
+<script type="text/javascript">
+    var viewModel = {
+        Incentives: Incentives,
+        MonthId: MonthId
+    };
+
+    $(document).ready(function () {
+        ko.applyBindings(viewModel);
+
+        $('#incentiveForm').submit(function (e) {
+            if (!$(this).valid()) {
+                e.preventDefault();
+                return false;
+            }
+            $.ajax({
+                url: '/Incentive/SaveIncentives',
+                type: 'POST',
+                dataType: 'json',
+                data: JSON.stringify(ko.mapping.toJS(viewModel)),
+                contentType: 'application/json; charset=utf-8',
+                success: function (data) {
+                    if (data.success) {
+                        //                                            ko.mapping.updateFromJS(viewModel.Manpower, ko.mapping.toJS(data));
+                        //                                            viewModel.resetManpower();
+                    }
+                }
+            });
+            return false;
+        });
+    });
+</script>
+<script type="text/html" id="incentiveTemplate">
+    <tr>
+        <td><input type="hidden" data-bind="value: Id"/><input type="hidden" data-bind="value: DealerManpowerId"/><span data-bind="text: DealerManpower"/></td>
+        <td><input type="Text" data-bind="value: DealerIncentive"/></td>
+        <td><span data-bind="value: VolvoIncentive"/></td>
+        {{each(i,scheme) SpecialIncentives}}
+        <td><input type="hidden" data-bind="value: scheme.SpecialSchemeId"/><input type="Text" data-bind="value: scheme.SpecialIncentive"/></td>
+        {{/each}}
+    </tr>
+</script>
+<div class="row-fluid">
+    <div class="span10 offset1" style="text-align: center">
+        <h3>
+            @Model.MonthName
+        </h3>
+    </div>
+    <div class="span10 offset1">
+        @using (Html.BeginForm("SaveIncentives", "Incentive", FormMethod.Post, new { @id = "incentiveForm" })) {
+            @Html.HiddenFor(x => x.MonthId, new { data_bind = "value:MonthId" })
+            <table class="table table-bordered" id="tblIncentive">
+                <thead>
+                    @if (Model.SpecialSchemes.Any()) {
+                        <tr>
+                            <th colspan=@(Model.SpecialSchemes.Count() + 3) class="head1">
+                                Incentives
+                            </th>
+                        </tr>
+                        <tr>
+                            <th class="head2">
+                                DSE/DSM
+                            </th>
+                            <th class="head2">
+                                Dealer
+                            </th>
+                            <th class="head2">
+                                ETB
+                            </th>
+                            <th colspan=@(Model.SpecialSchemes.Count()) class="head2">
+                                Special Schemes
+                            </th>
+                        </tr> 
+                    } else {
+                        <tr>
+                            <th colspan="3" class="head1">
+                                Incentives
+                            </th>
+                        </tr>
+                        <tr>
+                            <th class="head2">
+                                DSE/DSM
+                            </th>
+                            <th class="head2">
+                                Dealer
+                            </th>
+                            <th class="head2">
+                                ETB
+                            </th>
+                        </tr>
+                    }
+                    <tr>
+                        <th class="head3">
+                        </th>
+                        <th class="head3">
+                        </th>
+                        <th class="head3">
+                        </th>
+                        @foreach (var scheme in Model.SpecialSchemes) {
+                            <th class="head3">@scheme
+                            </th>
+                        }
+                    </tr>
+                </thead>
+                <tbody data-bind='template :{name:"incentiveTemplate",foreach:Incentives}'>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td style="text-align: right" colspan=@(Model.SpecialSchemes.Count() + 4)>
+                            <input type="submit" value="Update" class="btn btn-primary" />
+                            <input type="reset" value="Cancel" class="btn btn-primary" />
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        }
+    </div>
+</div>

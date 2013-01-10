@@ -1,0 +1,74 @@
+﻿
+<script src="../../Assets/plugins/charts/js/highcharts.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var chart = new Highcharts.Chart({
+            chart: {
+                renderTo: 'dvReport',
+                type: 'column'
+            },
+            title: {
+                text: 'Month Wise Plan vs Actual'
+            },
+            subtitle: {
+                text: 'Eicher'
+            },
+            xAxis: {
+                categories: [
+                    'Jan',
+                    'Feb',
+                    'Mar',
+                    'Apr',
+                    'May',
+                    'Jun',
+                    'Jul',
+                    'Aug',
+                    'Sep',
+                    'Oct',
+                    'Nov',
+                    'Dec'
+                ]
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Targets'
+                }
+            },
+            legend: {
+                layout: 'vertical',
+                backgroundColor: '#FFFFFF',
+                align: 'left',
+                verticalAlign: 'top',
+                x: 100,
+                y: 70,
+                floating: true,
+                shadow: true
+            },
+            tooltip: {
+                formatter: function () {
+                    return '' +
+                        this.x + ': ' + this.y;
+                }
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: [{
+                name: 'Plan',
+                data: [10, 11, 12, 9, 8, 6, 4, 2, 9, 7, 5, 2]
+
+            }, {
+                name: 'Actual',
+                data: [1, 10, 2, 9, 3, 8, 4, 7, 5, 6, 6, 5]
+
+            }]
+        });
+    });
+</script>
+<div id="dvReport">
+    
+</div>

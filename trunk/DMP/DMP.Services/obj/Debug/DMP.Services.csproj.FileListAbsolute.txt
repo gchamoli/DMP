@@ -1,0 +1,14 @@
+C:\Users\gaurav\Documents\Visual Studio 2010\Projects\DMP\DMP.Services\bin\Debug\DMP.Services.dll
+C:\Users\gaurav\Documents\Visual Studio 2010\Projects\DMP\DMP.Services\bin\Debug\DMP.Services.pdb
+C:\Users\gaurav\Documents\Visual Studio 2010\Projects\DMP\DMP.Services\bin\Debug\DMP.Repository.dll
+C:\Users\gaurav\Documents\Visual Studio 2010\Projects\DMP\DMP.Services\bin\Debug\DMP.Repository.pdb
+C:\Users\gaurav\Documents\Visual Studio 2010\Projects\DMP\DMP.Services\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\gaurav\Documents\Visual Studio 2010\Projects\DMP\DMP.Services\obj\Debug\DMP.Services.dll
+C:\Users\gaurav\Documents\Visual Studio 2010\Projects\DMP\DMP.Services\obj\Debug\DMP.Services.pdb
+D:\WORK\DMP\trunk\DMP\DMP.Services\bin\Debug\DMP.Services.dll
+D:\WORK\DMP\trunk\DMP\DMP.Services\bin\Debug\DMP.Services.pdb
+D:\WORK\DMP\trunk\DMP\DMP.Services\bin\Debug\DMP.Repository.dll
+D:\WORK\DMP\trunk\DMP\DMP.Services\bin\Debug\DMP.Repository.pdb
+D:\WORK\DMP\trunk\DMP\DMP.Services\obj\Debug\ResolveAssemblyReference.cache
+D:\WORK\DMP\trunk\DMP\DMP.Services\obj\Debug\DMP.Services.dll
+D:\WORK\DMP\trunk\DMP\DMP.Services\obj\Debug\DMP.Services.pdb

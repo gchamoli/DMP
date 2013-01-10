@@ -1,0 +1,39 @@
+﻿@model DMP.ModelsView.CompetencyProfileViewModel
+<div>
+    @using (Ajax.BeginForm(new AjaxOptions { OnComplete = "closePopUp()" })) {
+        @Html.HiddenFor(x => x.ProfileId)
+        <div style="width: 100%">
+            <table class="twelve">
+                <tbody>
+                    @{
+        int i = 0;
+                    }
+                    @foreach (var competency in Model.Competencies) {
+                        <tr>
+                            <td>@Html.Label(competency.Competency)
+                            </td>
+                            <td>
+                                <input type="hidden" name=@string.Format("Competencies[{0}].Id", i) value="@competency.Id" />
+                                <input type="hidden" name=@string.Format("Competencies[{0}].ComptencyId", i) value="@competency.ComptencyId" />
+                                <input type="text" name=@string.Format("Competencies[{0}].Score", i) value="@competency.Score"/>
+                            </td>
+                        </tr>
+                    
+                        {
+                            i++;
+                        }
+                    }
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="2" style="text-align: right">
+                            <input type="submit" value="Save" class="btn btn-primary" />
+                            <input type="reset" value="Clear" class="btn btn-primary" />
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        
+    }
+</div>

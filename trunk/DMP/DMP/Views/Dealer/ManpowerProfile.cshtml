@@ -1,0 +1,222 @@
+﻿@model DMP.ModelsView.CsmDealerViewModel
+@using DMP.Utils
+@{
+    ViewBag.Title = "Profile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="/assets/plugins/fancybox/jquery.fancybox-1.3.4.css" rel="stylesheet"
+    type="text/css" />
+<script src="@Url.Content("~/Scripts/jquery-ui.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Assets/plugins/fancybox/jquery.mousewheel-3.0.4.pack.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Assets/plugins/fancybox/jquery.fancybox-1.3.4.pack.js")" type="text/javascript"></script>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        setFancyboxUrl();
+
+        $('.datetime').datepicker({
+            changeMonth: true,
+            changeYear: true,
+            dateFormat: "dd-MM-yy"
+        });
+
+        //        $('#manpowerForm').submit(function (e) {
+        //            //            if (!$(this).valid()) {
+        //            //                e.preventDefault();
+        //            //                return false;
+        //            //            }
+        //            $.ajax({
+        //                url: '/Dealer/SaveManpower',
+        //                type: 'POST',
+        //                dataType: 'json',
+        //                data: JSON.stringify(ko.mapping.toJS(viewModel)),
+        //                contentType: 'application/json; charset=utf-8',
+        //                success: function (data) {
+        //                    if (data.success && data.manpower != null) {
+        //                        //                        ko.mapping.updateFromJS(viewModel.Manpower, ko.mapping.toJS(data.manpower));
+        //                        //                        viewModel.resetManpower();
+        //                        var url = '/Dealer/DseProfile/' + Manpower.Id();
+        //                        window.location.href = url;
+        //                    }
+        //                    //                    viewModel.resetManpower();
+        //                }
+        //            });
+        //            return false;
+        //        });
+
+        $('#linkAddDse').bind('click', function () {
+            $('#dvManpowers').hide();
+            $('#dvManpowerForm').show();
+        });
+        $('#linkMnanageDse').bind('click', function () {
+            $('#dvManpowerForm').hide();
+            $('#dvManpowers').show();
+        });
+
+        function setFancyboxUrl() {
+            //            var id = viewModel.Manpower.Id();
+            //            if (id > 0) {
+            //                $('#linkCompetency').attr('href', '/Dealer/Competency/' + id);
+            //                $('#linkTraining').attr('href', '/Dealer/Training/' + id);
+            //                $('#linkAttrition').attr('href', '/Dealer/Attrition/' + id);
+            //            }
+        }
+        $('#linkTrainingDisplay').bind('click', function () {
+            if ($('#trainingDisplayRow').is(':visible')) {
+                $('#trainingDisplayRow').hide('slow');
+                $(this).text('Training +');
+            } else {
+                $('#trainingDisplayRow').show('slow');
+                $(this).text('Training -');
+            }
+        });
+        $('#linkCompetency').fancybox({
+            'padding': '25px',
+            'autoScale': true,
+            'scrolling': 'no',
+            'easingIn': 'swing',
+            'transitionIn': 'elastic',
+            'transitionOut': 'elastic',
+            'type': 'ajax',
+            'centerOnScroll': true,
+            'overlayShow': true,
+            'enableEscapeButton': false,
+            'hideOnOverlayClick': false,
+            'title': 'Competency',
+            'onClosed': function () {
+                //                getStatuses();
+            }
+        });
+        $('#linkTraining').fancybox({
+            'padding': '25px',
+            'autoScale': true,
+            'scrolling': 'no',
+            'easingIn': 'swing',
+            'transitionIn': 'elastic',
+            'transitionOut': 'elastic',
+            'type': 'ajax',
+            'centerOnScroll': true,
+            'overlayShow': true,
+            'enableEscapeButton': false,
+            'hideOnOverlayClick': false,
+            'title': 'Training',
+            'onClosed': function () {
+                //                getStatuses();
+            }
+        });
+        $('#linkAttrition').fancybox({
+            'padding': '25px',
+            'autoScale': true,
+            'scrolling': 'no',
+            'easingIn': 'swing',
+            'transitionIn': 'elastic',
+            'transitionOut': 'elastic',
+            'type': 'ajax',
+            'centerOnScroll': true,
+            'overlayShow': true,
+            'enableEscapeButton': false,
+            'hideOnOverlayClick': false,
+            'title': 'Attrition',
+            'onClosed': function () {
+                //                getStatuses();
+            }
+        });
+    });
+</script>
+<div class="row-fluid">
+    <div class="span10 offset1" id="dvEditProfile">
+        <legend>Profile Information</legend>
+        @using (Html.BeginForm("SaveManpower", "Dealer", FormMethod.Post, new { @id = "manpowerForm" })) {
+            @Html.HiddenFor(x => x.Manpower.Id)
+            @Html.HiddenFor(x => x.Manpower.UserId)
+            @Html.HiddenFor(x => x.Manpower.DealerId)
+            @Html.HiddenFor(x => x.Manpower.ProfileId)
+            <div class="span3">
+                @Html.LabelFor(x => x.Manpower.Name)
+                @Html.TextBoxFor(x => x.Manpower.Name, new { @id = "txtManpowerName" })
+            </div>
+            <div class="span3">
+                @Html.LabelFor(x => x.Manpower.Type)
+                @Html.DropDownListFor(x => x.Manpower.Type, new SelectList(Model.Designations, "Value", "Value"))
+            </div>
+            <div class="span3">
+                @Html.LabelFor(x => x.Manpower.DOBString)
+                @Html.TextBoxFor(x => x.Manpower.DOBString, new { @class = "datetime" })
+            </div>
+            <div class="span3">
+                @Html.LabelFor(x => x.Manpower.ContactNumber)
+                @Html.TextBoxFor(x => x.Manpower.ContactNumber, new { @id = "txtManpowerPhone" })
+            </div>
+            <div class="span3">
+                @Html.LabelFor(x => x.Manpower.Email)
+                @Html.TextBoxFor(x => x.Manpower.Email, new { @id = "txtManpowerEmail" })
+            </div>
+            <div class="span3">
+                @Html.LabelFor(x => x.Manpower.Address)
+                @Html.TextBoxFor(x => x.Manpower.Address, new { @id = "txtManpowerAddress" })
+            </div>
+            <div class="span3">
+                @Html.LabelFor(x => x.Manpower.PANNumber)
+                @Html.TextBoxFor(x => x.Manpower.PANNumber, new { @id = "txtManpowerPan" })
+            </div>
+            <div class="span3">
+                @Html.LabelFor(x => x.Manpower.ProductId)
+                @Html.DropDownListFor(x => x.Manpower.ProductId, new SelectList(Model.Products, "Key", "Value"))
+            </div>
+            <div class="span3">
+                @Html.LabelFor(x => x.Manpower.SAPId)
+                @Html.TextBoxFor(x => x.Manpower.SAPId, new { @id = "txtSapId" })
+            </div>
+            
+            <div class="span3">
+                @Html.LabelFor(x => x.Manpower.DOJString)
+                @Html.TextBoxFor(x => x.Manpower.DOJString, new { @class = "datetime" })
+            </div>
+            <div class="span3">
+                @Html.LabelFor(x => x.Manpower.TotalWorkExperience)
+                @Html.TextBoxFor(x => x.Manpower.TotalWorkExperience, new { @id = "txtManpowerTotalWorkExperience" })
+            </div>
+            <div class="span3">
+                @Html.LabelFor(x => x.Manpower.ExperienceWithVE)
+                @Html.TextBoxFor(x => x.Manpower.ExperienceWithVE, new { @id = "txtManpowerExperienceWithVE" })
+            </div>
+            <div class="span3">
+                @Html.LabelFor(x => x.Manpower.TrainingLevel)
+                @Html.DropDownListFor(x => x.Manpower.TrainingLevel, new SelectList(Model.TrainingLevels, "Value", "Value"))
+            </div>
+            <div class="span3">
+                @Html.LabelFor(x => x.Manpower.TIVRepresenting)
+                @Html.TextBoxFor(x => x.Manpower.TIVRepresenting, new { @id = "txtManpowerTIVRepresenting" })
+            </div>
+            <div class="span3">
+                @Html.LabelFor(x => x.Manpower.AreaRepresenting)
+                @Html.TextBoxFor(x => x.Manpower.AreaRepresenting, new { @id = "txtManpowerAreaRepresenting" })
+            </div>
+            <div class="span3">
+                @Html.LabelFor(x => x.Manpower.PreviousCompany)
+                @Html.TextBoxFor(x => x.Manpower.PreviousCompany, new { @id = "txtManpowerPreviousCompany" })
+            </div>
+            <div class="span3">
+                @Html.LabelFor(x => x.Manpower.PreviousJobProfile)
+                @Html.TextBoxFor(x => x.Manpower.PreviousJobProfile, new { @id = "txtManpowerPreviousJobProfile" })
+            </div>
+            <div class="row">
+            </div>
+            if (Model.Manpower.Id > 0) {
+            <div class="span3">
+                <a href="#" id="linkCompetency">Competency</a>
+            </div>
+            <div class="span3">
+                <a href="#" id="linkTraining">Training</a>
+            </div>
+            <div class="span3">
+                <a href="#" id="linkAttrition">Remove DSE/DSM</a>
+            </div>
+            }
+            <div class="span6">
+                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="reset" value="Cancel" class="btn btn-primary" />
+            </div>
+        }
+    </div>
+</div>

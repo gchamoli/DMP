@@ -1,0 +1,48 @@
+﻿@model DMP.ModelsView.HqUserViewModel
+<style type="text/css">
+    .row1
+    {
+        background-color: #f6f6f6 !important;
+    }
+    .head1
+    {
+        background-color: #c21715;
+        color: white;
+        font-weight: bold;
+    }
+    .img1
+    {
+        padding-left: 10px !important;
+    }
+</style>
+<div class="row-fluid">
+    <div class="span3">
+        @Html.Partial("ReportMenuPartial")
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th class="head1">
+                        <img src="../../Images/tools.png" />
+                        Tools
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="row1">
+                        <img src="../../Images/file_upload.png" class="img1" />
+                        <a href="/Dealer/UploadFile" id="linkFileUpload">Upload File</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="span9">
+        <div>
+            @Html.Partial("ReportManpowerPartial", Model.ReportManpower)
+        </div>
+        <div>
+            @Html.Partial("ProductStatPartial", Model.ProductStatistics)
+        </div>
+    </div>
+</div>

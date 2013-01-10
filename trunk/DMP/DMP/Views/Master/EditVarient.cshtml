@@ -1,0 +1,25 @@
+﻿@model DMP.ModelsView.ProductVarientViewModel
+@using DMP.Utils
+<script src = "@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src = "@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+<div class="span4">
+    @using (Ajax.BeginForm(new AjaxOptions { OnComplete = "closePopUp()", OnSuccess = "reLoad('/Master/Varients')" })) {
+        @Html.HiddenFor(x => x.ProductVarient.Id)
+        <div>
+            @Html.LabelFor(x => x.ProductVarient.Name)
+            @Html.TextBoxFor(x => x.ProductVarient.Name)
+        </div>
+        <div>
+            @Html.LabelFor(x => x.ProductVarient.ProductId)
+            @Html.DropDownListFor(x => x.ProductVarient.ProductId, new SelectList(Model.Products, "Key", "Value"))
+        </div>
+        <div>
+            @Html.LabelFor(x => x.ProductVarient.Description)
+            @Html.TextAreaFor(x => x.ProductVarient.Description)
+        </div>
+        <div>
+            <input type="submit" value="Save" class="btn btn-primary" />
+            <input type="reset" value="Cancel" class="btn btn-primary" />
+        </div>
+    }
+</div>

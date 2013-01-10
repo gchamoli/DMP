@@ -1,0 +1,57 @@
+﻿@model DMP.ModelsView.DealerViewModel
+@using DMP.Utils
+@{
+    ViewBag.Title = "Dealers";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script type="text/javascript">
+    var Dealers = ko.mapping.fromJS(@Html.Raw(Html.ToJSON(Model.Dealers)));
+</script>
+<script type="text/javascript">
+    var viewModel = {
+        Dealers: Dealers
+    };
+    viewModel.showDetails = function (data) {
+        var id = data.Id();
+        window.location.href = "/Dealer/Dealer/" + id;
+    };
+    viewModel.deleteDealer = function (data) {
+        if (confirm('This Dealer will be permanently DELETED and cannot be recovered. Are you sure?')) {
+            $.post('/Master/DeleteDealer', { id: data.Id }, function (res) {
+                if (res.success) {
+                    viewModel.Dealers.remove(data);
+                    $('#dealerList').trigger('update');
+                }
+            });
+        }
+    };
+
+    $(document).ready(function () {
+        ko.applyBindings(viewModel);
+    });
+</script>
+<script type="text/html" id="dealersRowTemplate">
+    <tr data-bind="click: function() { viewModel.showDetails($data) }">
+        <td><span data-bind="text: Name"/></td>
+        <td><span data-bind="text: Description"/></td>
+        <td style="text-align: center"><a href="#" class="delete" title="click here to delete ' ${Name} '" data-bind="click: function()                                 { viewModel.deleteDealer($data) }"></a></td>
+    </tr>
+</script>
+<div class="row">
+    <table id="dealerList" style="cursor: pointer" class="twelve">
+        <thead>
+            <tr>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Description
+                </th>
+                <th>
+                </th>
+            </tr>
+        </thead>
+        <tbody data-bind='template :{name:"dealersRowTemplate",foreach:Dealers}'>
+        </tbody>
+    </table>
+</div>

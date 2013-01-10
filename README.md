@@ -1,4 +1,4 @@
 DMP
 ===
 
-Dealer Mnagement Portal
+Dealer Management Portal

@@ -1,0 +1,8 @@
+﻿@model IEnumerable<DMP.Models.BreadcrumbModel>
+@if (Model != null && Model.Any()) {
+    <div>
+        @for (var link = 1; link < Model.Count(); link++) {
+            <span><a href=@Model.ElementAt(link - 1).Url>@Model.ElementAt(link - 1).UrlName</a> |</span>
+        }
+    </div>
+}

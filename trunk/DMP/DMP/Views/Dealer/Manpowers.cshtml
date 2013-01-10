@@ -1,0 +1,208 @@
+﻿@model DMP.ModelsView.DealerManpowerViewModel
+@using DMP.Utils
+@{
+    ViewBag.Title = "Manpowers";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="@Url.Content("~/Scripts/jquery-ui.js")" type="text/javascript"></script>
+<script type="text/javascript">
+    var Manpowers = ko.mapping.fromJS(@Html.Raw(Html.ToJSON(Model.Manpowers)));
+    var Manpower = ko.mapping.fromJS(@Html.Raw(Html.ToJSON(Model.Manpower)));
+    var BlankManpower = ko.mapping.fromJS(@Html.Raw(Html.ToJSON(Model.Manpower)));
+</script>
+<script type="text/javascript">
+    var viewModel = {
+        Manpowers: Manpowers,
+        Manpower: Manpower
+    };
+    viewModel.showDetails = function (data) {
+        ko.mapping.updateFromJS(viewModel.Manpower, ko.mapping.toJS(data));
+    };
+    viewModel.deleteManpower = function (data) {
+        if (confirm('This Manpower will be permanently DELETED and cannot be recovered. Are you sure?')) {
+            $.post('/Dealer/DeleteManpower', { id: data.Id }, function (res) {
+                if (res.success) {
+                    viewModel.Manpowers.remove(data);
+                    $('#manpowerList').trigger('update');
+                    viewModel.resetManpower();
+                }
+            });
+        }
+    };
+    viewModel.resetManpower = function (data) {
+        ko.mapping.updateFromJS(viewModel.Manpower, ko.mapping.toJS(BlankManpower));
+    };
+
+    $(document).ready(function () {
+        ko.applyBindings(viewModel);
+
+        $('.datetime').datepicker({
+            changeMonth: true,
+            changeYear: true,
+            dateFormat: "dd-MM-yy"
+        });
+
+        $('#manpowerForm').submit(function (e) {
+            //            if (!$(this).valid()) {
+            //                e.preventDefault();
+            //                return false;
+            //            }
+            $.ajax({
+                url: '/Dealer/SaveManpower',
+                type: 'POST',
+                dataType: 'json',
+                data: JSON.stringify(ko.mapping.toJS(viewModel.Manpower)),
+                contentType: 'application/json; charset=utf-8',
+                success: function (data) {
+                    if (data.success && data.manpower != null) {
+                        for (var i = 0; i < viewModel.Manpowers().length; i++) {
+                            if (viewModel.Manpowers()[i].Id() == data.manpower.Id) {
+                                var item = viewModel.Manpowers()[i];
+                                viewModel.Manpowers.remove(item);
+                                viewModel.Manpowers.splice(i, 0, ko.mapping.fromJS(data.manpower));
+                                viewModel.resetManpower();
+                                $('#manpowerList').trigger('update');
+                                return;
+                            }
+                        }
+                        viewModel.Manpowers.push(ko.mapping.fromJS(data.manpower));
+                        viewModel.resetManpower();
+                        $('#manpowerList').trigger('update');
+                    }
+                }
+            });
+            return false;
+        });
+    });
+</script>
+<script type="text/html" id="manpowersRowTemplate">
+    <tr data-bind="click: function() { viewModel.showDetails($data) }">
+        <td><span data-bind="text: Name"/></td>
+        <td><span data-bind="text: Type"/></td>
+        <td><span data-bind="text: Dealer"/></td>
+        <td><span data-bind="text: ContactNumber"/></td>
+        <td><span data-bind="text: User"/></td>
+        <td style="text-align: center"><a href="#" class="delete" title="click here to delete ' ${Name} '" data-bind="click: function()                                 { viewModel.deleteManpower($data) }"></a></td>
+    </tr>
+</script>
+<div class="row">
+    <div class="eight columns">
+        <div class="row">
+            <div class="eight columns">
+                <h4 class="subheader">
+                    Manpowers</h4>
+            </div>
+            <div class="four columns">
+                <h6 class="subheader">
+                    <a href="#" id="linkCreate" data-bind="click: resetManpower" style="float: right">Create
+                        Manpower</a></h6>
+            </div>
+        </div>
+        <table id="manpowerList" style="cursor: pointer" class="twelve">
+            <thead>
+                <tr>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        Tyype
+                    </th>
+                    <th>
+                        Dealer
+                    </th>
+                    <th>
+                        Phone
+                    </th>
+                    <th>
+                        CSM
+                    </th>
+                    <th>
+                    </th>
+                </tr>
+            </thead>
+            <tbody data-bind='template :{name:"manpowersRowTemplate",foreach:Manpowers}'>
+            </tbody>
+        </table>
+    </div>
+    <div class="four columns">
+        <h4 class="subheader">
+            <span data-bind="text: Manpower.Id() > 0 ? 'Update Manpower' : 'Add New Manpower' " />
+        </h4>
+        @using (Html.BeginForm("SaveManpower", "Dealer", FormMethod.Post, new { @id = "manpowerForm" })) {
+            <div class="panel">
+                @Html.HiddenFor(x => x.Manpower.Id, new { data_bind = "value:Manpower.Id" })
+                @Html.HiddenFor(x => x.Manpower.ProfileId, new { data_bind = "value:Manpower.ProfileId" })
+                <div>
+                    @Html.LabelFor(x => x.Manpower.Name)
+                    @Html.TextBoxFor(x => x.Manpower.Name, new { @id = "txtManpowerName", data_bind = "value:Manpower.Name" })
+                </div>
+                <div>
+                    @Html.LabelFor(x => x.Manpower.Type)
+                    @Html.DropDownListFor(x => x.Manpower.Type, new SelectList(Model.Designations, "Value", "Value"), new { data_bind = "value:Manpower.Type", @class = "custom dropdown", @style = "margin-bottom:10px" })
+                </div>
+                <div>
+                    @Html.LabelFor(x => x.Manpower.DealerId)
+                    @Html.DropDownListFor(x => x.Manpower.DealerId, new SelectList(Model.Dealers, "Key", "Value"), new { data_bind = "value:Manpower.DealerId", @class = "custom dropdown", @style = "margin-bottom:10px" })
+                </div>
+                <div>
+                    @Html.LabelFor(x => x.Manpower.UserId)
+                    @Html.DropDownListFor(x => x.Manpower.UserId, new SelectList(Model.Users, "Key", "Value"), new { data_bind = "value:Manpower.UserId", @class = "custom dropdown", @style = "margin-bottom:10px" })
+                </div>
+                <div>
+                    @Html.LabelFor(x => x.Manpower.ContactNumber)
+                    @Html.TextBoxFor(x => x.Manpower.ContactNumber, new { @id = "txtManpowerPhone", data_bind = "value:Manpower.ContactNumber" })
+                </div>
+                <div>
+                    @Html.LabelFor(x => x.Manpower.Address)
+                    @Html.TextAreaFor(x => x.Manpower.Address, new { @id = "txtManpowerAddress", data_bind = "value:Manpower.Address" })
+                </div>
+                <div>
+                    @Html.LabelFor(x => x.Manpower.Email)
+                    @Html.TextBoxFor(x => x.Manpower.Email, new { @id = "txtManpowerEmail", data_bind = "value:Manpower.Email" })
+                </div>
+                <div>
+                    @Html.LabelFor(x => x.Manpower.PANNumber)
+                    @Html.TextBoxFor(x => x.Manpower.PANNumber, new { @id = "txtManpowerPan", data_bind = "value:Manpower.PANNumbaer" })
+                </div>
+                <div>
+                    @Html.LabelFor(x => x.Manpower.PreviousCompany)
+                    @Html.TextBoxFor(x => x.Manpower.PreviousCompany, new { @id = "txtManpowerPreviousCompany", data_bind = "value:Manpower.PreviousCompany" })
+                </div>
+                <div>
+                    @Html.LabelFor(x => x.Manpower.PreviousJobProfile)
+                    @Html.TextBoxFor(x => x.Manpower.PreviousJobProfile, new { @id = "txtManpowerPreviousJobProfile", data_bind = "value:Manpower.PreviousJobProfile" })
+                </div>
+                <div>
+                    @Html.LabelFor(x => x.Manpower.TotalWorkExperience)
+                    @Html.TextBoxFor(x => x.Manpower.TotalWorkExperience, new { @id = "txtManpowerTotalWorkExperience", data_bind = "value:Manpower.TotalWorkExperience" })
+                </div>
+                <div>
+                    @Html.LabelFor(x => x.Manpower.ExperienceWithVE)
+                    @Html.TextBoxFor(x => x.Manpower.ExperienceWithVE, new { @id = "txtManpowerExperienceWithVE", data_bind = "value:Manpower.ExperienceWithVE" })
+                </div>
+                <div>
+                    @Html.LabelFor(x => x.Manpower.TIVRepresenting)
+                    @Html.TextBoxFor(x => x.Manpower.TIVRepresenting, new { @id = "txtManpowerTIVRepresenting", data_bind = "value:Manpower.TIVRepresenting" })
+                </div>
+                <div>
+                    @Html.LabelFor(x => x.Manpower.DOJString)
+                    @Html.TextBoxFor(x => x.Manpower.DOJString, new { @class = "datetime", data_bind = "value:Manpower.DOJString" })
+                </div>
+                <div>
+                    @Html.LabelFor(x => x.Manpower.DateOfLeaving)
+                    @Html.TextBoxFor(x => x.Manpower.DateOfLeaving, new { @class = "datetime", data_bind = "value:Manpower.DateOfLeaving" })
+                </div>
+                <div>
+                    @Html.LabelFor(x => x.Manpower.Description)
+                    @Html.TextAreaFor(x => x.Manpower.Description, new { @id = "txtManpowerDescription", data_bind = "value:Manpower.Description" })
+                </div>
+                <div>
+                    <input type="submit" data-bind="value: Manpower.Id() > 0 ? 'Update' : 'Create'" value="Create"
+                        style="display: inline-block" class="radius button" />
+                    <input type="reset" value="Clear" data-bind="click: resetManpower" style="display: inline-block"
+                        class="radius button" />
+                </div>
+            </div>
+        }
+    </div>
+</div>

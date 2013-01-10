@@ -1,0 +1,148 @@
+﻿@model DMP.ModelsView.ManpowerTargetViewModel
+@using DMP.Utils
+@{
+    ViewBag.Title = "Manpower";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script type="text/javascript">
+    var TargetPlans = ko.mapping.fromJS(@Html.Raw(Html.ToJSON(Model.TargetPlans)));
+    var Products = ko.mapping.fromJS(@Html.Raw(Html.ToJSON(Model.Products)));
+    var CsmId = ko.mapping.fromJS(@Html.Raw(Html.ToJSON(Model.CsmId)));
+    var MonthId = ko.mapping.fromJS(@Html.Raw(Html.ToJSON(Model.MonthId)));
+    var MonthName = ko.mapping.fromJS(@Html.Raw(Html.ToJSON(Model.MonthName)));
+</script>
+<script type="text/javascript">
+    var viewModel = {
+        TargetPlans: TargetPlans,
+        Products: Products,
+        CsmId: CsmId,
+        MonthId: MonthId,
+        MonthName: MonthName
+    };
+
+    viewModel.resetTarget = function (data) {
+        $('#linkTarget').show();
+        $('.editInput').each(function () {
+            $(this).hide();
+        });
+        $('.display').each(function () {
+            $(this).show();
+        });
+    };
+
+    $(document).ready(function () {
+        ko.applyBindings(viewModel);
+
+        $('#targetForm').submit(function (e) {
+            //            if (!$(this).valid()) {
+            //                e.preventDefault();
+            //                return false;
+            //            }
+            $.ajax({
+                url: '/Dealer/SaveMnpowerTargets',
+                type: 'POST',
+                dataType: 'json',
+                data: JSON.stringify(ko.mapping.toJS(viewModel)),
+                contentType: 'application/json; charset=utf-8',
+                success: function (data) {
+                    if (data.success) {
+                        //                                            ko.mapping.updateFromJS(viewModel.Manpower, ko.mapping.toJS(data));
+                        //                                            viewModel.resetManpower();
+                    }
+                    viewModel.resetTarget();
+                }
+            });
+            return false;
+        });
+
+        $('#ddlMonth').bind('change', function () {
+            loadTargets();
+        });
+        $('#ddlCsm').bind('change', function () {
+            loadTargets();
+        });
+
+        function loadTargets() {
+            var monthId = $('#ddlMonth').val();
+            var csmId = $('#ddlCsm').val();
+            if (monthId > 0 && csmId > 0) {
+                $.post("/Dealer/GetManpowerTargets", { monthId: monthId, csmId: csmId }, function (res) {
+                    if (res.success && res.targetPlan != null) {
+                        ko.mapping.updateFromJS(viewModel.TargetPlans, ko.mapping.toJS(res.targetPlan));
+                        ko.mapping.updateFromJS(viewModel.MonthName, ko.mapping.toJS(res.monthName));
+                        $('#tblTargetPlan').trigger('update');
+                        $('#linkMonthName').trigger('update');
+                        viewModel.resetTarget();
+                    }
+                });
+            }
+        }
+
+        $('#linkTarget').bind('click', function () {
+            $('.display').each(function () {
+                $(this).hide();
+            });
+            $('.editInput').each(function () {
+                $(this).show();
+            });
+            $(this).hide();
+        });
+    });
+</script>
+<script type="text/html" id="manpowerTargetTemplate">
+    <tr>
+        <td><input type="hidden" data-bind="value: DealerId"/><span data-bind="text: Dealer"/></td>
+        {{each(i,target) Targets}}
+        <td><input type="hidden" data-bind="value: target.Id"/><input type="hidden" data-bind="value: target.ProductId"/><span class="display" data-bind="text: target.Planned"/><input style="display:none" class="editInput input-micro-mini" type="Text" data-bind="value: target.Planned"/></td>
+        {{/each}}
+    </tr>
+</script>
+<div class="row-fluid">
+    <div class="span8 offset3" style="text-align: center">
+        <h3 data-bind="text: MonthName">
+        </h3>
+        <hr />
+    </div>
+    @using (Html.BeginForm("SaveMnpowerTargets", "Dealer", FormMethod.Post, new { @id = "targetForm" })) {
+        <div class="span8 offset2">
+            <div class="span5">
+                Month
+                @Html.DropDownListFor(x => x.MonthId, new SelectList(Model.Months, "Key", "Value"), "Select Month", new { @id = "ddlMonth", data_bind = "value:MonthId" })
+            </div>
+            <div class="span5">
+                CSM
+                @Html.DropDownListFor(x => x.CsmId, new SelectList(Model.Users, "Key", "Value"), "Select Csm", new { @id = "ddlCsm", data_bind = "value:CsmId" })
+            </div>
+            <div class="span2" style="text-align: right">
+                <a href="#" id="linkTarget" class="btn">Edit</a>
+            </div>
+        </div>
+       
+        <div class="span8 offset2">
+            <table class="table table-bordered" id="tblTargetPlan">
+                <thead>
+                    <tr>
+                        <th colspan=@(Model.Products.Count() + 1) class="head1">
+                            Manpower Targets
+                        </th>
+                    </tr>
+                    <tr>
+                        <th class="head2">
+                            Dealers
+                        </th>
+                        @foreach (var product in Model.Products) {
+                            <th class="head2">@product.Value
+                            </th>
+                        }
+                    </tr>
+                </thead>
+                <tbody data-bind='template :{name:"manpowerTargetTemplate",foreach:TargetPlans}'>
+                </tbody>
+            </table>
+            <div class="editInput" style="text-align: right">
+                <input type="submit" value="Update" class="btn btn-primary" />
+                <input type="reset" value="Cancel" data-bind="click: resetTarget" class="btn btn-primary" />
+            </div>
+        </div>  
+    }
+</div>

@@ -1,0 +1,74 @@
+﻿@model DMP.ModelsView.SpecialSchemeViewModel
+@using DMP.Utils
+<script src = "@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src = "@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        setDefault();
+
+        $('#ddlRegion').bind('change', function () {
+            var regionId = $('#ddlRegion option:selected').val();
+            $.post("/Master/GetStateFromRegion", { regionId: regionId }, function (res) {
+                if (res.success) {
+                    var str = '<option vlaue="0">All</option>';
+                    for (var i = 0; i < res.states.length; i++) {
+                        var item = res.states[i];
+                        str += '<option value="' + item.Key + '">' + item.Value + '</option>';
+                    }
+                    $('#ddlState').html(str).trigger('update');
+                }
+            });
+        });
+
+        $('#ddlState').bind('change', function () {
+            var stateId = $('#ddlState option:selected').val();
+            $.post("/Master/GetDealerFromState", { stateId: stateId }, function (res) {
+                if (res.success) {
+                    var str = '<option vlaue="0">All</option>';
+                    for (var i = 0; i < res.dealers.length; i++) {
+                        var item = res.dealers[i];
+                        str += '<option value="' + item.Key + '">' + item.Value + '</option>';
+                    }
+                    $('#ddlDealer').html(str).trigger('update');
+                }
+            });
+        });
+
+        function setDefault() {
+        }
+    });
+</script>
+<div class="span6">
+    @using (Ajax.BeginForm(new AjaxOptions { OnComplete = "closePopUp()", OnSuccess = "reLoad('/Master/SpecialSchemes')" })) {
+        @Html.HiddenFor(x => x.SpecialScheme.Id)
+        @Html.HiddenFor(x => x.SpecialScheme.MonthId)
+        <div>
+            @Html.LabelFor(x => x.SpecialScheme.Name)
+            @Html.TextBoxFor(x => x.SpecialScheme.Name, new { @id = "txtSchemeName" })
+        </div>
+        <div>
+            @Html.LabelFor(x => x.SpecialScheme.DisplayMonthId)
+            @Html.DropDownListFor(x => x.SpecialScheme.DisplayMonthId, new SelectList(Model.Months, "Key", "Value"), new { @id = "ddlMonth" })
+        </div>
+        <div id="dvRegion">
+            @Html.LabelFor(x => x.SpecialScheme.RegionId)
+            @Html.DropDownListFor(x => x.SpecialScheme.RegionId, new SelectList(Model.Regions, "Key", "Value"), "All", new { @id = "ddlRegion" })
+        </div>
+        <div id="dvState">
+            @Html.LabelFor(x => x.SpecialScheme.StateId)
+            @Html.DropDownListFor(x => x.SpecialScheme.StateId, new SelectList(Model.States, "Key", "Value"), "All", new { @id = "ddlState" })
+        </div>
+        <div id="dvDealer">
+            @Html.LabelFor(x => x.SpecialScheme.DealerId)
+            @Html.DropDownListFor(x => x.SpecialScheme.DealerId, new SelectList(Model.Dealers, "Key", "Value"), "All", new { @id = "ddlDealer" })
+        </div>
+        <div>
+            @Html.LabelFor(x => x.SpecialScheme.Description)
+            @Html.TextAreaFor(x => x.SpecialScheme.Description, new { @id = "txtSchemeDescription" })
+        </div>
+        <div>
+            <input type="submit" value="Save" class="btn btn-primary" />
+            <input type="reset" value="Cancel" class="btn btn-primary" />
+        </div>
+    }
+</div>

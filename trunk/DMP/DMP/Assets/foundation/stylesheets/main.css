@@ -1,0 +1,550 @@
+﻿body
+{
+    font-family: 'Droid Sans' , arial, serif;
+    font-size: 13px;
+    line-height: 1.3em;
+}
+
+a:hover.ui-button
+{
+    color: #fff;
+}
+
+a, a:visited
+{
+    color: #FF0084;
+    text-decoration: none;
+}
+
+a img
+{
+    border: none;
+}
+
+a:hover
+{
+    color: #FF0084;
+    text-decoration: underline;
+}
+
+p
+{
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+hr
+{
+    color: #cecece;
+    background-color: #cecece;
+    height: 1px;
+    border: 0px;
+}
+
+.textAreaWidth
+{
+    width: 500px;
+    height: 400px;
+}
+
+/******** Menu Navigation ************/
+ul.nav
+{
+    background-color: #0073ea;
+    border-radius: 2px;
+    -moz-border-radius: 2px; /*padding: 5px 5px 5px 0px;*/
+}
+
+ul.nav li
+{
+    display: inline-block;
+    background-color: #0073ea;
+    color: #fff;
+    padding: 5px 15px;
+}
+
+ul.nav li a, ul.nav li a:visited, ul.nav li a:hover
+{
+    color: #fff;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+ul.nav li:hover
+{
+    background: #2d91f9;
+    cursor: pointer;
+}
+
+.first
+{
+    border-radius: 2px;
+    -moz-border-radius: 2px;
+}
+
+/********* Login **************/
+
+span.login
+{
+    display: block;
+    float: right;
+    margin-top: 10px;
+}
+
+/*****  End of login ***********/
+
+/*********** Data table formatting *********/
+
+table.data
+{
+    width: 100%; /* border: 1px solid #cecece;     border-right: 0px;     border-bottom: 0px;*/
+    border-top: 1px solid #cecece;
+}
+
+.data thead tr th
+{
+    font-weight: bold;
+    padding: 3px 2px;
+    border-bottom: 1px solid #cecece;
+    text-align: left;
+}
+
+.data tbody tr td
+{
+    padding: 3px 2px;
+    border-bottom: 1px solid #cecece;
+}
+
+/********* End of Datatable **************/
+
+
+/************ Ajax Notifier         */
+
+#loader
+{
+    -moz-border-radius: 0 0 3px 3px;
+    border-radius: 0 0 3px 3px;
+    background-color: #FF0084;
+    color: white;
+    font-size: 90%;
+    font-weight: bold;
+    display: none;
+    height: 20px;
+    padding-top: 5px;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    top: 0;
+    width: 100px;
+}
+
+/********* end of ajax notifier **/
+
+/******************** Message Panel Styles ***************/
+
+#message
+{
+    display: none;
+    height: 25px;
+    padding: 5px 10px 0px 10px;
+    position: absolute;
+    right: 0;
+    cursor: pointer;
+    text-align: center;
+    top: 0;
+    opacity: 0.9;
+    width: 100%;
+}
+
+#message.success
+{
+    background-color: #abeea6;
+    color: #1b7015;
+    font-size: 90%;
+    font-weight: bold;
+}
+
+#message.error
+{
+    background-color: #faa;
+    color: #f11;
+    font-size: 90%;
+    font-weight: bold;
+}
+
+#message.info
+{
+    background-color: #bcccfa;
+    color: #0f43dc;
+    font-size: 90%;
+    font-weight: bold;
+}
+
+#message img
+{
+    vertical-align: middle;
+    margin-right: 5px;
+}
+
+
+/********* End of Message Panel Styles ******************/
+
+
+/******* Form elements and Validation ************/
+
+
+input, option, textarea, select
+{
+    padding: 2px 3px;
+    font-family: 'Droid Sans' , arial, serif;
+    font-size: 13px;
+}
+
+input, select, textarea
+{
+    border: 1px solid #cecece;
+}
+
+textarea
+{
+    width: 300px;
+    height: 100px;
+}
+
+textarea.long
+{
+    width: 500px;
+    height: 150px;
+}
+
+textarea.short
+{
+    width: 150px;
+    height: 75px;
+}
+
+
+select
+{
+    min-width: 150px;
+    max-width: 190px;
+    height: 22px;
+}
+
+label
+{
+    font-weight: 700;
+}
+
+fieldset
+{
+    border: 1px solid #cecece;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+}
+
+/* Styles for validation helpers
+-----------------------------------------------------------*/
+.field-validation-error
+{
+    color: #ff0000;
+}
+
+.field-validation-valid
+{
+    display: none;
+}
+
+.input-validation-error
+{
+    border: 1px solid #ff0000;
+    background-color: #ffeeee;
+}
+
+.validation-summary-errors
+{
+    font-weight: bold;
+    color: #ff0000;
+}
+
+.validation-summary-valid
+{
+    display: none;
+}
+
+.editor-field
+{
+    margin-bottom: 10px;
+}
+
+.editor-label
+{
+    margin-top: 5px;
+}
+
+input[type=submit]
+{
+    width: 100px;
+}
+
+
+/*********** End of Elements and validations section ************/
+
+/********** Footer ***********/
+
+#footer
+{
+    margin-top: 15px;
+    font-size: smaller;
+    margin-bottom: 15px;
+}
+
+/********* Right section **************/
+.right
+{
+    padding-top: 15px;
+}
+
+/********** Jquery UI Custom CSS ***********/
+
+/*select.ui-datepicker-month, select.ui-datepicker-month
+{
+    min-width: 10px;
+    /*width: auto;
+}*/
+
+/********************** End of Custom JUI ***********/
+
+.input-required
+{
+    background-color: #ffeef7;
+}
+
+.dob
+{
+    background-position: left;
+    padding-left: 20px;
+    background-image: url('../Images/calendar.png');
+    background-repeat: no-repeat;
+}
+.phoneno
+{
+    background-image: url('../Images/telephone.png');
+    background-repeat: no-repeat;
+    background-position: left;
+    padding-left: 20px;
+}
+.mobileno
+{
+    background-image: url('../Images/phone.png');
+    background-repeat: no-repeat;
+    background-position: left;
+    padding-left: 20px;
+}
+
+.address
+{
+    background-image: url('../Images/house.png');
+    background-repeat: no-repeat;
+    background-position: left;
+    padding-left: 20px;
+}
+
+.admission
+{
+    background-image: url('../Images/info.png');
+    background-repeat: no-repeat;
+    background-position: left;
+    padding-left: 20px;
+}
+.view
+{
+    background-image: url('../Images/user_suit.png');
+    background-repeat: no-repeat;
+    background-position: left;
+    padding-left: 20px;
+}
+.edit
+{
+    background-image: url('../Images/user_edit.png');
+    background-repeat: no-repeat;
+    background-position: left;
+    padding-left: 20px;
+}
+.sms
+{
+    background-image: url('../Images/phone.png');
+    background-repeat: no-repeat;
+    background-position: left;
+    padding-left: 20px;
+}
+.editexam
+{
+    background-image: url('../Images/application_form_edit.png');
+    background-repeat: no-repeat;
+    background-position: left;
+    padding-left: 20px;
+}
+.padtop
+{
+    padding-top: 10px;
+}
+h4
+{
+    text-transform: uppercase;
+    margin: 0px;
+    margin-bottom: 5px;
+    margin-top: 10px;
+    background-color: #F2F2F2;
+    border-bottom: none;
+    border-top: 1px solid #E2E2E2;
+    padding: 4px 5px 5px;
+    color: #333;
+}
+.profiletitle
+{
+    font-weight: bold;
+    color: #555;
+}
+
+.helptext
+{
+    font-size: 12px;
+}
+
+#title
+{
+    margin-bottom: 10px;
+}
+
+/******************For Home Page Icons**************************/
+
+section.icons
+{
+    text-align: center;
+}
+.icons ul
+{
+    margin-top: 20px;
+}
+element.style
+{
+}
+.icons ul li
+{
+    width: 80px;
+    margin: 0 20px 20px 0;
+    display: -moz-inline-stack;
+    display: inline-block;
+    vertical-align: top;
+    zoom: 1;
+}
+
+.icons ul li a:hover
+{
+    border: 1px solid #AAA;
+}
+
+.icons ul li a
+{
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    -webkit-box-shadow: inset 0 0 15px #F4F4F4;
+    border-top-left-radius: 5px 5px;
+    border-top-left-radius: 5px 5px;
+    border-top-right-radius: 5px 5px;
+    -moz-box-shadow: inset 0 0 15px #F4F4F4;
+    box-shadow: inset 0 0 15px #F4F4F4;
+    border-top-left-radius: 5px 5px;
+    border-top-right-radius: 5px 5px;
+    border-bottom-right-radius: 5px 5px;
+    border-bottom-left-radius: 5px 5px;
+}
+
+.icons ul li a
+{
+    display: block;
+    padding: 5px;
+    border: 1px solid #F1F1F1;
+}
+
+.icons a:hover
+{
+    text-decoration: none;
+}
+
+.clearedcheque
+{
+    color: Green;
+}
+
+.bouncedcheque
+{
+    color: Red;
+}
+
+
+.textrightalign
+{
+    text-align: right;
+}
+
+
+.txtboxwidth130
+{
+    width: 130px;
+}
+
+.bg_green
+{
+    background-color: #ecfcea /*ecfcea;*/;
+}
+
+.bg_yellow
+{
+    background-color: #fdfbc5;
+}
+
+.bg_green_act
+{
+    background-color: #d1f8cc;
+    padding: 7px 0px 4px;
+}
+
+.bg_yellow_act
+{
+    background-color: #FCFAB5;
+    padding: 7px 0px 4px;
+}
+
+.alignRight, .data thead tr th.alignRight
+{
+    text-align: right;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.width-100 {
+    
+    width: 100px;
+}
+
+.width-75 {
+   
+    width: 75px;
+}
+
+.width-125 {
+    width: 125px;
+}
+
+.width-110 {
+    width: 110px;
+}
+
+.no-border, td.no-border {
+    border: 0px;
+}

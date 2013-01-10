@@ -1,0 +1,54 @@
+﻿@model IEnumerable<DMP.Models.ProductVarients>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>title</title>
+</head>
+<body>
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    @foreach (var pr in Model) {
+                        <th style="text-align: center" colspan=@(pr.Varients.Count * 3)>@pr.Product
+                        </th>
+                    }
+                    <th style="text-align: center" colspan="3">
+                    </th>
+                </tr>
+                <tr>
+                    @foreach (var vart in Model.SelectMany(pr => pr.Varients)) {
+                        <th style="text-align: center" colspan="3">@vart
+                        </th>
+                    }
+                    <th style="text-align: center" colspan="3">
+                        Incentive
+                    </th>
+                </tr>
+                <tr>
+                    @foreach (var pr in from pr in Model from vart in pr.Varients select pr) {
+                        <th>
+                            Planed
+                        </th>
+                        <th>
+                            Actual
+                        </th>
+                        <th>
+                            Planed
+                        </th>
+                    }
+                    <th>
+                        Dealer
+                    </th>
+                    <th>
+                        ETB
+                    </th>
+                    <th>
+                        Special
+                    </th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</body>
+</html>
