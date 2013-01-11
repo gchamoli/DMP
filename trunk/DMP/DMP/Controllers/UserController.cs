@@ -61,7 +61,7 @@ namespace DMP.Controllers {
                     });
                 }
                 reportList.Add(new ReportManpowerModel {
-                    User = rm.UserRegionMaps.First().Region.Name,
+                    User = string.Format("{0} ({1})", rm.UserRegionMaps.First().Region.Name, rm.Name),
                     UserUrl = string.Format("/User/RmUser/{0}", rm.Id),
                     Manpowers = targetList,
                     TrainingLevels = trainingLevelList

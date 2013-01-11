@@ -408,6 +408,11 @@ namespace DMP.Services.Service {
             return 0;
         }
 
+        public string GetMonthName(int index) {
+            var months = new[] { "January", "February", "March", "April", "May", "June", "July", "August", "Sepetember", "October", "November", "December" };
+            return months[index - 1];
+        }
+
         private DateTime? FindDate(string month, int year) {
             var index = GetMonthIndex(month);
             if (index > 0) {
@@ -440,6 +445,16 @@ namespace DMP.Services.Service {
             monthRepo.Add(month);
             monthRepo.SaveChanges();
             return month;
+        }
+
+        public IEnumerable<Month> GetAllFinancialMonths(string month, int year) {
+            var list = new List<Month>();
+            var index = GetMonthIndex(month);
+            for (var i = 1; i <= 12; i++) {
+                var tempYear = index >= 4 ? (i < 4 ? year + 1 : year) : (i < 4 ? year : year - 1);
+                list.Add(FindAndCreateMonth(GetMonthName(i), tempYear));
+            }
+            return list.OrderBy(x => x.Year);
         }
 
         public void UpdateTotalEmployee(int monthId, int employeeCount) {

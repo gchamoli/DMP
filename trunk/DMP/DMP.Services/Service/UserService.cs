@@ -31,6 +31,7 @@ namespace DMP.Services.Service {
             var toUpdate = GetUser(user.Id);
             toUpdate.Name = user.Name;
             toUpdate.Role = user.Role;
+            toUpdate.Description = user.Description;
             userRepo.SaveChanges();
         }
 

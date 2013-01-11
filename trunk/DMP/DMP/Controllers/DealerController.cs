@@ -26,8 +26,9 @@ namespace DMP.Controllers {
         private readonly ITargetService targetService;
         private readonly IIncentiveService incentiveService;
         private readonly IManpowerSalaryService salaryService;
+        private readonly IDealerManpowerService dealerManpowerService;
 
-        public DealerController(IDealerManpowerService manpowerService, IUserService userService, IProfileService profileService, IMasterService masterService, ICompetencyProfileMapService competencyProfileMapService, ITrainingProfileMapService trainingProfileMapService, IAttritionProfileMapService attritionProfileMapService, IDealerManpowerTargetService manpowerTargetService, IUserDealerMapService userDealerMapServiceService, ITargetService targetService, IIncentiveService incentiveService, IManpowerSalaryService salaryService) {
+        public DealerController(IDealerManpowerService manpowerService, IUserService userService, IProfileService profileService, IMasterService masterService, ICompetencyProfileMapService competencyProfileMapService, ITrainingProfileMapService trainingProfileMapService, IAttritionProfileMapService attritionProfileMapService, IDealerManpowerTargetService manpowerTargetService, IUserDealerMapService userDealerMapServiceService, ITargetService targetService, IIncentiveService incentiveService, IManpowerSalaryService salaryService, IDealerManpowerService dealerManpowerService) {
             this.manpowerService = manpowerService;
             this.userService = userService;
             this.profileService = profileService;
@@ -40,6 +41,7 @@ namespace DMP.Controllers {
             this.targetService = targetService;
             this.incentiveService = incentiveService;
             this.salaryService = salaryService;
+            this.dealerManpowerService = dealerManpowerService;
             if (System.Web.HttpContext.Current.Session["BreadcrumbList"] == null) {
                 System.Web.HttpContext.Current.Session["BreadcrumbList"] = new List<BreadcrumbModel>();
             }
@@ -53,8 +55,7 @@ namespace DMP.Controllers {
             var currentDate = DateTime.Now.Date;
             var month = masterService.FindAndCreateMonth(currentDate.ToString("MMMM"), currentDate.Year);
             var products = masterService.GetAllProducts().OrderBy(x => x.Id);
-            var months = masterService.FindMonths(x => x.ObjectInfo.DeletedDate == null && x.Year <= month.Year);
-            var monthList = (from mnth in months let tempdate = new DateTime(mnth.Year, masterService.GetMonthIndex(mnth.Name), 1) where tempdate <= currentDate select new KeyValuePair<int, string>(mnth.Id, string.Format("{0}-{1}", mnth.Name, mnth.Year))).ToList();
+            var monthList = masterService.GetAllFinancialMonths(currentDate.ToString("MMMM"), currentDate.Year).Select(x => new KeyValuePair<int, string>(x.Id, string.Format("{0}-{1}", x.Name, x.Year))).ToList();
             var model = new ManpowerTargetViewModel {
                 MonthId = month.Id,
                 MonthName = string.Format("{0} - {1}", month.Name, month.Year),
@@ -91,7 +92,22 @@ namespace DMP.Controllers {
         [Authorize(Roles = "HQ")]
         public ActionResult GetManpowerTargets(int monthId, int csmId) {
             var month = masterService.GetMonth(monthId);
-            var products = masterService.GetAllProducts().OrderBy(x => x.Name);
+            var currentDate = DateTime.Now;
+            var currentMonth = masterService.FindAndCreateMonth(currentDate.ToString("MMMM"), currentDate.Year);
+            var selectedDate = new DateTime(month.Year, masterService.GetMonthIndex(month.Name), 1);
+            if (currentDate.Date < selectedDate.Date) {
+                var futureTargets = manpowerTargetService.FindDealerManpowerTargets(x => x.MonthId == month.Id);
+                if (!futureTargets.Any()) {
+                    var targets = manpowerTargetService.FindDealerManpowerTargets(x => x.MonthId == currentMonth.Id);
+                    if (targets.Any()) {
+                        foreach (var target in targets) {
+                            target.MonthId = month.Id;
+                        }
+                        manpowerTargetService.AddDealerManpowerTarget(targets);
+                    }
+                }
+            }
+            var products = masterService.GetAllProducts().OrderBy(x => x.Id);
             var dealers = userDealerMapServiceService.FindUserDealerMaps(x => x.UserId == csmId).Select(x => x.Dealer);
             var data = manpowerTargetService.FindDealerManpowerTargets(x => x.UserId == csmId && x.MonthId == month.Id).ToList();
             var list = new List<ManpowerTargetPlanModel>();
@@ -168,6 +184,7 @@ namespace DMP.Controllers {
 
             if (profile.Id > 0) {
                 profileService.UpdateProfile(profile);
+                dealerManpowerService.UpdateDealerManpower(manpower);
             } else {
                 profileService.AddProfile(new[] { profile });
             }

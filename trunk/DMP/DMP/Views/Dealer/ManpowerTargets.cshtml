@@ -21,17 +21,40 @@
     };
 
     viewModel.resetTarget = function (data) {
-        $('#linkTarget').show();
-        $('.editInput').each(function () {
-            $(this).hide();
-        });
-        $('.display').each(function () {
-            $(this).show();
-        });
+        var monthId = $('#ddlMonth').val();
+        if (monthId == viewModel.MonthId()) {
+            $('.display').each(function () {
+                $(this).hide();
+            });
+            $('.editInput').each(function () {
+                $(this).show();
+            });
+            $('#dvSubmit').show();
+        } else {
+            $('.editInput').each(function () {
+                $(this).hide();
+            });
+            $('.display').each(function () {
+                $(this).show();
+            });
+            $('#dvSubmit').hide();
+            $('#dvEdit').hide();
+        }
     };
 
     $(document).ready(function () {
         ko.applyBindings(viewModel);
+
+        $('#linkEdit').bind('click', function () {
+            $('.display').each(function () {
+                $(this).hide();
+            });
+            $('.editInput').each(function () {
+                $(this).show();
+            });
+            $('#dvSubmit').show();
+            $('#dvEdit').hide();
+        });
 
         $('#targetForm').submit(function (e) {
             //            if (!$(this).valid()) {
@@ -46,10 +69,15 @@
                 contentType: 'application/json; charset=utf-8',
                 success: function (data) {
                     if (data.success) {
-                        //                                            ko.mapping.updateFromJS(viewModel.Manpower, ko.mapping.toJS(data));
-                        //                                            viewModel.resetManpower();
+                        $('.editInput').each(function () {
+                            $(this).hide();
+                        });
+                        $('.display').each(function () {
+                            $(this).show();
+                        });
+                        $('#dvSubmit').hide();
+                        $('#dvEdit').show();
                     }
-                    viewModel.resetTarget();
                 }
             });
             return false;
@@ -77,16 +105,6 @@
                 });
             }
         }
-
-        $('#linkTarget').bind('click', function () {
-            $('.display').each(function () {
-                $(this).hide();
-            });
-            $('.editInput').each(function () {
-                $(this).show();
-            });
-            $(this).hide();
-        });
     });
 </script>
 <script type="text/html" id="manpowerTargetTemplate">
@@ -105,16 +123,16 @@
     </div>
     @using (Html.BeginForm("SaveMnpowerTargets", "Dealer", FormMethod.Post, new { @id = "targetForm" })) {
         <div class="span8 offset2">
-            <div class="span5">
+            <div class="span3">
                 Month
-                @Html.DropDownListFor(x => x.MonthId, new SelectList(Model.Months, "Key", "Value"), "Select Month", new { @id = "ddlMonth", data_bind = "value:MonthId" })
+                @Html.DropDownListFor(x => x.MonthId, new SelectList(Model.Months, "Key", "Value"), "Select Month", new { @id = "ddlMonth" })
             </div>
-            <div class="span5">
+            <div class="span3">
                 CSM
                 @Html.DropDownListFor(x => x.CsmId, new SelectList(Model.Users, "Key", "Value"), "Select Csm", new { @id = "ddlCsm", data_bind = "value:CsmId" })
             </div>
-            <div class="span2" style="text-align: right">
-                <a href="#" id="linkTarget" class="btn">Edit</a>
+            <div id="dvEdit" class="span3" style="display: none">
+                <a href="#" id="linkEdit" class="btn">Edit</a>
             </div>
         </div>
        
@@ -139,7 +157,7 @@
                 <tbody data-bind='template :{name:"manpowerTargetTemplate",foreach:TargetPlans}'>
                 </tbody>
             </table>
-            <div class="editInput" style="text-align: right">
+            <div id="dvSubmit" style="text-align: right">
                 <input type="submit" value="Update" class="btn btn-primary" />
                 <input type="reset" value="Cancel" data-bind="click: resetTarget" class="btn btn-primary" />
             </div>

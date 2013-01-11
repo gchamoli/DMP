@@ -68,6 +68,8 @@
                     @Html.LabelFor(x => x.User.ConfirmPassword)
                     @Html.TextBoxFor(x => x.User.ConfirmPassword, new { @id = "txtUserCnfPwd" })
                 </div>
+            } else {
+                @Html.HiddenFor(x => x.User.Email)
             }
             <div>
                 @Html.LabelFor(x => x.User.Description)

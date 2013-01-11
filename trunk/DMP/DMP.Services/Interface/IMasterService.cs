@@ -171,6 +171,10 @@ namespace DMP.Services.Interface {
 
         int GetMonthIndex(string month);
 
+        string GetMonthName(int index);
+
+        IEnumerable<Month> GetAllFinancialMonths(string month, int year);
+
         #endregion
 
         #region SpecialScheme

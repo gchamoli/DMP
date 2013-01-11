@@ -30,6 +30,7 @@ namespace DMP.Services.Service {
             oldManpower.Description = manpower.Description;
             oldManpower.DealerId = manpower.DealerId;
             oldManpower.UserId = manpower.UserId;
+            oldManpower.ProductId = manpower.ProductId;
             manpowerRepo.SaveChanges();
         }
 
