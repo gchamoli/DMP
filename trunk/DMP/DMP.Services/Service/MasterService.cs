@@ -62,11 +62,11 @@ namespace DMP.Services.Service {
         }
 
         public IEnumerable<Region> GetAllRegions() {
-            return regionRepo.GetAll();
+            return regionRepo.GetAll().Where(x => x.ObjectInfo.DeletedDate == null);
         }
 
         public IEnumerable<Region> FindRegions(Func<Region, bool> predicate) {
-            return regionRepo.Find(predicate);
+            return regionRepo.Find(predicate).Where(x => x.ObjectInfo.DeletedDate == null);
         }
 
         #endregion
@@ -99,11 +99,11 @@ namespace DMP.Services.Service {
         }
 
         public IEnumerable<State> GetAllStates() {
-            return stateRepo.GetAll();
+            return stateRepo.GetAll().Where(x => x.ObjectInfo.DeletedDate == null);
         }
 
         public IEnumerable<State> FindStates(Func<State, bool> predicate) {
-            return stateRepo.Find(predicate);
+            return stateRepo.Find(predicate).Where(x => x.ObjectInfo.DeletedDate == null);
         }
 
         #endregion
@@ -135,11 +135,11 @@ namespace DMP.Services.Service {
         }
 
         public IEnumerable<ProductCategory> GetAllCategories() {
-            return categoryRepo.GetAll();
+            return categoryRepo.GetAll().Where(x => x.ObjectInfo.DeletedDate == null);
         }
 
         public IEnumerable<ProductCategory> FindCategory(Func<ProductCategory, bool> predicate) {
-            return categoryRepo.Find(predicate);
+            return categoryRepo.Find(predicate).Where(x => x.ObjectInfo.DeletedDate == null);
         }
 
         #endregion
@@ -172,11 +172,11 @@ namespace DMP.Services.Service {
         }
 
         public IEnumerable<Product> GetAllProducts() {
-            return productRepo.GetAll();
+            return productRepo.GetAll().Where(x => x.ObjectInfo.DeletedDate == null);
         }
 
         public IEnumerable<Product> FindProducts(Func<Product, bool> predicate) {
-            return productRepo.Find(predicate);
+            return productRepo.Find(predicate).Where(x => x.ObjectInfo.DeletedDate == null);
         }
 
         #endregion
@@ -209,11 +209,11 @@ namespace DMP.Services.Service {
         }
 
         public IEnumerable<ProductVarient> GetAllProductVarients() {
-            return varientRepo.GetAll();
+            return varientRepo.GetAll().Where(x => x.ObjectInfo.DeletedDate == null);
         }
 
         public IEnumerable<ProductVarient> FindProductVarient(Func<ProductVarient, bool> predicate) {
-            return varientRepo.Find(predicate);
+            return varientRepo.Find(predicate).Where(x => x.ObjectInfo.DeletedDate == null);
         }
 
         #endregion
@@ -246,11 +246,11 @@ namespace DMP.Services.Service {
         }
 
         public IEnumerable<Training> GetAllTrainings() {
-            return trainingRepo.GetAll();
+            return trainingRepo.GetAll().Where(x => x.ObjectInfo.DeletedDate == null);
         }
 
         public IEnumerable<Training> FindTraining(Func<Training, bool> predicate) {
-            return trainingRepo.Find(predicate);
+            return trainingRepo.Find(predicate).Where(x => x.ObjectInfo.DeletedDate == null);
         }
 
         #endregion
@@ -283,11 +283,11 @@ namespace DMP.Services.Service {
         }
 
         public IEnumerable<Dealer> GetAllDealers() {
-            return dealerRepo.GetAll();
+            return dealerRepo.GetAll().Where(x => x.ObjectInfo.DeletedDate == null);
         }
 
         public IEnumerable<Dealer> FindDealers(Func<Dealer, bool> predicate) {
-            return dealerRepo.Find(predicate);
+            return dealerRepo.Find(predicate).Where(x => x.ObjectInfo.DeletedDate == null);
         }
 
         #endregion
@@ -319,11 +319,11 @@ namespace DMP.Services.Service {
         }
 
         public IEnumerable<Attrition> GetAllAttritions() {
-            return attritionRepo.GetAll();
+            return attritionRepo.GetAll().Where(x => x.ObjectInfo.DeletedDate == null);
         }
 
         public IEnumerable<Attrition> FindAttritions(Func<Attrition, bool> predicate) {
-            return attritionRepo.Find(predicate);
+            return attritionRepo.Find(predicate).Where(x => x.ObjectInfo.DeletedDate == null);
         }
 
         #endregion
@@ -355,11 +355,11 @@ namespace DMP.Services.Service {
         }
 
         public IEnumerable<Competency> GetAllCompetencies() {
-            return competencyRepo.GetAll();
+            return competencyRepo.GetAll().Where(x => x.ObjectInfo.DeletedDate == null);
         }
 
         public IEnumerable<Competency> FindCompetencies(Func<Competency, bool> predicate) {
-            return competencyRepo.Find(predicate);
+            return competencyRepo.Find(predicate).Where(x => x.ObjectInfo.DeletedDate == null);
         }
 
         #endregion
@@ -392,11 +392,11 @@ namespace DMP.Services.Service {
         }
 
         public IEnumerable<Month> GetAllMonths() {
-            return monthRepo.GetAll();
+            return monthRepo.GetAll().Where(x => x.ObjectInfo.DeletedDate == null);
         }
 
         public IEnumerable<Month> FindMonths(Func<Month, bool> predicate) {
-            return monthRepo.Find(predicate);
+            return monthRepo.Find(predicate).Where(x => x.ObjectInfo.DeletedDate == null);
         }
 
         public int GetMonthIndex(string month) {
@@ -517,11 +517,11 @@ namespace DMP.Services.Service {
         }
 
         public IEnumerable<SpecialScheme> GetSpecialSchemes() {
-            return specialSchemeRepo.GetAll();
+            return specialSchemeRepo.GetAll().Where(x => x.ObjectInfo.DeletedDate == null);
         }
 
         public IEnumerable<SpecialScheme> FindSpecialSchemes(Func<SpecialScheme, bool> predicate) {
-            return specialSchemeRepo.Find(predicate);
+            return specialSchemeRepo.Find(predicate).Where(x => x.ObjectInfo.DeletedDate == null);
         }
 
         #endregion
@@ -554,11 +554,11 @@ namespace DMP.Services.Service {
         }
 
         public IEnumerable<UserRegionMap> GetAllUserRegionMaps() {
-            return userRegionMapRepo.GetAll();
+            return userRegionMapRepo.GetAll().Where(x => x.ObjectInfo.DeletedDate == null);
         }
 
         public IEnumerable<UserRegionMap> FindUserRegionMaps(Func<UserRegionMap, bool> predicate) {
-            return userRegionMapRepo.Find(predicate);
+            return userRegionMapRepo.Find(predicate).Where(x => x.ObjectInfo.DeletedDate == null);
         }
 
         #endregion

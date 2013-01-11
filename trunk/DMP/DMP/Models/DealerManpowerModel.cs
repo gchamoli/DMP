@@ -96,6 +96,8 @@ namespace DMP.Models {
 
         public double Competency { get; set; }
 
+        public double Productivity { get; set; }
+
         public double Salary { get; set; }
 
         [Display(Name = "SAP Code")]
@@ -170,7 +172,8 @@ namespace DMP.Models {
                 SAPId = manpower.Profile.SAPCode,
                 DOLString = manpower.AttritionProfileMap != null ? (manpower.AttritionProfileMap.DateOfLeaving.HasValue ? manpower.AttritionProfileMap.DateOfLeaving.Value.ToString("dd-MMMM-yyyy") : string.Empty) : string.Empty,
                 Competency = manpower.CompetencyProfileMaps != null && manpower.CompetencyProfileMaps.Any() ? manpower.CompetencyProfileMaps.Average(x => x.Score) : 0,
-                Salary = manpower.ManpowerSalaries != null && manpower.ManpowerSalaries.Any() ? manpower.ManpowerSalaries.OrderByDescending(x => x.ObjectInfo.CreatedDate).First().Salary : 0
+                Salary = manpower.ManpowerSalaries != null && manpower.ManpowerSalaries.Any() ? manpower.ManpowerSalaries.OrderByDescending(x => x.ObjectInfo.CreatedDate).First().Salary : 0,
+                Productivity = 0
             };
             return model;
         }

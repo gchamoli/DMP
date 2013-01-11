@@ -9,6 +9,8 @@ using DMP.Services;
 using DMP.Services.Interface;
 
 namespace DMP.Controllers {
+
+    [Authorize]
     public class UserController : Controller {
         private readonly IUserService userService;
         private readonly IUserDealerMapService userDealerMapService;
@@ -29,6 +31,7 @@ namespace DMP.Controllers {
             }
         }
 
+        [Authorize(Roles = "HQ,HQR")]
         public ActionResult HqUser(int id) {
             if (User.IsInRole("HQ")) {
                 Session["BreadcrumbList"] = Utils.HtmlExtensions.SetBreadcrumbs((List<BreadcrumbModel>)Session["BreadcrumbList"], string.Format("/User/HqUser/{0}", id), "Home");
@@ -36,7 +39,7 @@ namespace DMP.Controllers {
             var currentDate = DateTime.Now;
             var currentMonth = masterService.FindAndCreateMonth(currentDate.ToString("MMMM"), currentDate.Year);
             var rmUsers = userService.FindUsers(x => x.ParentId == id).ToList();
-            var products = masterService.FindProducts(x => x.ObjectInfo.DeletedDate == null).OrderBy(x => x.Id);
+            var products = masterService.GetAllProducts().OrderBy(x => x.Id);
             var trainingLevels = Enumeration.GetAll<TrainingLevel>();
             var reportList = new List<ReportManpowerModel>();
 
@@ -100,6 +103,7 @@ namespace DMP.Controllers {
             return View(model);
         }
 
+        [Authorize(Roles = "HQ,HQR,RM")]
         public ActionResult RmUser(int id) {
             if (User.IsInRole("RM")) {
                 Session["BreadcrumbList"] = Utils.HtmlExtensions.SetBreadcrumbs((List<BreadcrumbModel>)Session["BreadcrumbList"], string.Format("/User/RmUser/{0}", id), "Home");
@@ -111,7 +115,7 @@ namespace DMP.Controllers {
             var currentDate = DateTime.Now;
             var currentMonth = masterService.FindAndCreateMonth(currentDate.ToString("MMMM"), currentDate.Year);
             var rsmUsers = userService.FindUsers(x => x.ParentId == id);
-            var products = masterService.FindProducts(x => x.ObjectInfo.DeletedDate == null).OrderBy(x => x.Id);
+            var products = masterService.GetAllProducts().OrderBy(x => x.Id);
             var trainingLevels = Enumeration.GetAll<TrainingLevel>();
             var reportList = new List<ReportManpowerModel>();
             foreach (var rsm in rsmUsers) {
@@ -172,6 +176,7 @@ namespace DMP.Controllers {
             return View(model);
         }
 
+        [Authorize(Roles = "HQ,HQR,RM,RSM")]
         public ActionResult RsmUser(int id) {
             if (User.IsInRole("RSM")) {
                 Session["BreadcrumbList"] = Utils.HtmlExtensions.SetBreadcrumbs((List<BreadcrumbModel>)Session["BreadcrumbList"], string.Format("/User/RsmUser/{0}", id), "Home");
@@ -182,7 +187,7 @@ namespace DMP.Controllers {
             var currentDate = DateTime.Now;
             var currentMonth = masterService.FindAndCreateMonth(currentDate.ToString("MMMM"), currentDate.Year);
             var csmUsers = userService.FindUsers(x => x.ParentId == id);
-            var products = masterService.FindProducts(x => x.ObjectInfo.DeletedDate == null).OrderBy(x => x.Id);
+            var products = masterService.GetAllProducts().OrderBy(x => x.Id);
             var trainingLevels = Enumeration.GetAll<TrainingLevel>();
             var reportList = new List<ReportManpowerModel>();
             foreach (var csm in csmUsers) {
@@ -241,6 +246,7 @@ namespace DMP.Controllers {
             return View(model);
         }
 
+        [Authorize(Roles = "HQ,HQR,RM,RSM,CSM")]
         public ActionResult CsmUser(int id) {
             if (User.IsInRole("CSM")) {
                 Session["BreadcrumbList"] = Utils.HtmlExtensions.SetBreadcrumbs((List<BreadcrumbModel>)Session["BreadcrumbList"], string.Format("/User/CsmUser/{0}", id), "Home");
@@ -251,7 +257,7 @@ namespace DMP.Controllers {
             var currentDate = DateTime.Now;
             var currentMonth = masterService.FindAndCreateMonth(currentDate.ToString("MMMM"), currentDate.Year);
             var dealers = userDealerMapService.FindUserDealerMaps(x => x.UserId == id).Select(x => x.Dealer);
-            var products = masterService.FindProducts(x => x.ObjectInfo.DeletedDate == null).OrderBy(x => x.Id);
+            var products = masterService.GetAllProducts().OrderBy(x => x.Id);
             var trainingLevels = Enumeration.GetAll<TrainingLevel>();
             var reportList = new List<ReportManpowerModel>();
             foreach (var dealer in dealers) {

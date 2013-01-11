@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using DMP.Repository;
 using DMP.Services.Interface;
 
@@ -37,11 +38,11 @@ namespace DMP.Services.Service {
         }
 
         public IEnumerable<ManpowerSalary> GetAllManpowerSalaries() {
-            return salaryRepo.GetAll();
+            return salaryRepo.GetAll().Where(x => x.ObjectInfo.DeletedDate == null);
         }
 
         public IEnumerable<ManpowerSalary> FindManpowerSalaries(Func<ManpowerSalary, bool> predicate) {
-            return salaryRepo.Find(predicate);
+            return salaryRepo.Find(predicate).Where(x => x.ObjectInfo.DeletedDate == null);
         }
     }
 }

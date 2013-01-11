@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using DMP.Repository;
 using DMP.Services.Interface;
 
@@ -41,11 +42,12 @@ namespace DMP.Services.Service {
         }
 
         public IEnumerable<DealerManpowerTargets> GetAllDealerManpowerTargets() {
-            return manpowerTargetRepo.GetAll();
+            return manpowerTargetRepo.GetAll().Where(x => x.ObjectInfo.DeletedDate == null);
         }
 
         public IEnumerable<DealerManpowerTargets> FindDealerManpowerTargets(Func<DealerManpowerTargets, bool> predicate) {
-            return manpowerTargetRepo.Find(predicate);
+            var data = manpowerTargetRepo.Find(predicate).Where(x => x.ObjectInfo.DeletedDate == null);
+            return data;
         }
     }
 }

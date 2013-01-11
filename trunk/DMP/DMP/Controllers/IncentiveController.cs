@@ -9,6 +9,7 @@ using DMP.Repository;
 using DMP.Services.Interface;
 
 namespace DMP.Controllers {
+    [Authorize]
     public class IncentiveController : Controller {
 
         private readonly IMasterService masterService;
@@ -24,6 +25,7 @@ namespace DMP.Controllers {
             }
         }
 
+        [Authorize(Roles = "CSM")]
         public ActionResult Incentive(int id) {
             Session["BreadcrumbList"] = Utils.HtmlExtensions.SetBreadcrumbs((List<BreadcrumbModel>)Session["BreadcrumbList"], string.Format("/Incentive/Incentive/{0}", id), "Incentive");
             var month = masterService.FindAndCreateMonth(DateTime.Now.ToString("MMMM"), DateTime.Now.Year);
@@ -53,6 +55,7 @@ namespace DMP.Controllers {
             return View(model);
         }
 
+        [Authorize(Roles = "CSM")]
         public ActionResult SaveIncentives(IncentiveViewModel model) {
             var monthId = model.MonthId;
             foreach (var incentiveModel in model.Incentives) {

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using DMP.Repository;
 using DMP.Services.Interface;
 
@@ -37,11 +38,11 @@ namespace DMP.Services.Service {
         }
 
         public IEnumerable<AttritionProfileMap> GetAllAttritionProfileMaps() {
-            return mapRepo.GetAll();
+            return mapRepo.GetAll().Where(x => x.ObjectInfo.DeletedDate == null);
         }
 
         public IEnumerable<AttritionProfileMap> FindAttritionProfileMaps(Func<AttritionProfileMap, bool> predicate) {
-            return mapRepo.Find(predicate);
+            return mapRepo.Find(predicate).Where(x => x.ObjectInfo.DeletedDate == null);
         }
     }
 }

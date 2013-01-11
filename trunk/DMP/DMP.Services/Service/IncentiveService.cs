@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using DMP.Repository;
 using DMP.Services.Interface;
 
@@ -74,11 +75,11 @@ namespace DMP.Services.Service {
         }
 
         public IEnumerable<SpecialSchemeIncentive> GetAllSpecialIncentives() {
-            return specialIncentiveRepo.GetAll();
+            return specialIncentiveRepo.GetAll().Where(x => x.ObjectInfo.DeletedDate == null);
         }
 
         public IEnumerable<SpecialSchemeIncentive> FindSpecialIncentives(Func<SpecialSchemeIncentive, bool> predicate) {
-            return specialIncentiveRepo.Find(predicate);
+            return specialIncentiveRepo.Find(predicate).Where(x => x.ObjectInfo.DeletedDate == null);
         }
     }
 }

@@ -184,7 +184,6 @@
     <Compile Include="Controllers\DealerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IncentiveController.cs" />
-    <Compile Include="Controllers\List.cs" />
     <Compile Include="Controllers\MasterController.cs" />
     <Compile Include="Controllers\ReportingController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -224,6 +223,7 @@
     <Content Include="Assets\bootstrap\img\Edit.png" />
     <Content Include="Assets\bootstrap\img\glyphicons-halflings-white.png" />
     <Content Include="Assets\bootstrap\img\glyphicons-halflings.png" />
+    <Content Include="Assets\bootstrap\img\reset_pwd.png" />
     <Content Include="Assets\bootstrap\js\bootstrap.js" />
     <Content Include="Assets\bootstrap\js\bootstrap.min.js" />
     <Content Include="Assets\bootstrap\img\delete.png" />

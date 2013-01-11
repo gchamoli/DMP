@@ -42,12 +42,12 @@ namespace DMP.Services.Service {
         }
 
         public IEnumerable<User> GetUsers() {
-            var data = userRepo.GetAll();
+            var data = userRepo.GetAll().Where(x => x.ObjectInfo.DeletedDate == null);
             return data;
         }
 
         public IEnumerable<User> FindUsers(Func<User, bool> predicate) {
-            var data = userRepo.Find(predicate);
+            var data = userRepo.Find(predicate).Where(x => x.ObjectInfo.DeletedDate == null);
             return data;
         }
 

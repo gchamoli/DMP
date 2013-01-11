@@ -11,6 +11,7 @@ using DMP.Services;
 using DMP.Services.Interface;
 
 namespace DMP.Controllers {
+
     public class HomeController : Controller {
 
         private readonly IMasterService masterService;

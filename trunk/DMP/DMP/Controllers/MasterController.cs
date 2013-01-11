@@ -139,11 +139,6 @@ namespace DMP.Controllers {
 
         public ActionResult Products() {
             var products = masterService.GetAllProducts().Select(ProductModel.FromDomainModel).ToList();
-            //var model = new ProductViewModel {
-            //    Products = masterService.GetAllProducts().Select(ProductModel.FromDomainModel).ToList(),
-            //    Product = new ProductModel(),
-            //    Categories = masterService.GetAllCategories().Select(x => new KeyValuePair<int, string>(x.Id, x.Name))
-            //};
             return View(products);
         }
 
@@ -237,7 +232,7 @@ namespace DMP.Controllers {
                 masterService.AddTraining(new[] { training });
                 //Add New Training to TrainingProfileMap
                 var manpowerIds =
-                    dealerManpowerService.FindDealerManpowers(x => x.ObjectInfo.DeletedDate == null).Select(x => x.Id);
+                    dealerManpowerService.GetAllDealerManpowers().Select(x => x.Id);
                 var list = manpowerIds.Select(id => new TrainingProfileMap() { Id = 0, TrainingId = training.Id, DealerManpowerId = id }).ToList();
                 trainingProfileMapService.AddTrainingProfileMap(list);
             }
@@ -367,7 +362,7 @@ namespace DMP.Controllers {
                 masterService.AddCompetencies(new[] { competency });
                 //Add New Competency to CompetencyProfileMap
                 var manpowerIds =
-                    dealerManpowerService.FindDealerManpowers(x => x.ObjectInfo.DeletedDate == null).Select(x => x.Id);
+                    dealerManpowerService.GetAllDealerManpowers().Select(x => x.Id);
                 var list = manpowerIds.Select(id => new CompetencyProfileMap { Id = 0, CompetencyId = competency.Id, DealerManpowerId = id, Score = 0 }).ToList();
                 competencyProfileMapService.AddCompetencyProfileMap(list);
             }
@@ -427,7 +422,7 @@ namespace DMP.Controllers {
                         dealerIds = masterService.FindDealers(x => stateIds.Contains(x.StateId)).Select(x => x.Id).ToList();
                     }
                 } else {
-                    regionIds = masterService.FindRegions(x => x.ObjectInfo.DeletedDate == null).Select(x => x.Id).ToList();
+                    regionIds = masterService.GetAllRegions().Select(x => x.Id).ToList();
                     stateIds = masterService.FindStates(x => regionIds.Contains(x.RegionId)).Select(x => x.Id).ToList();
                     dealerIds = masterService.FindDealers(x => stateIds.Contains(x.StateId)).Select(x => x.Id).ToList();
                 }
@@ -446,7 +441,7 @@ namespace DMP.Controllers {
             int.TryParse(regionId, out id);
             var states = id > 0
                            ? masterService.FindStates(x => x.RegionId == id)
-                           : masterService.FindStates(x => x.ObjectInfo.DeletedDate == null);
+                           : masterService.GetAllStates();
 
             var statesList = states.Select(x => new KeyValuePair<int, string>(x.Id, x.Name));
             return Json(new { success = true, states = statesList }, JsonRequestBehavior.AllowGet);
@@ -457,7 +452,7 @@ namespace DMP.Controllers {
             int.TryParse(stateId, out id);
             var dealers = id > 0
                            ? masterService.FindDealers(x => x.StateId == id)
-                           : masterService.FindDealers(x => x.ObjectInfo.DeletedDate == null);
+                           : masterService.GetAllDealers();
 
             var dealerList = dealers.Select(x => new KeyValuePair<int, string>(x.Id, x.Name));
             return Json(new { success = true, dealers = dealerList }, JsonRequestBehavior.AllowGet);

@@ -38,7 +38,7 @@
                 $(this).show();
             });
             $('#dvSubmit').hide();
-            $('#dvEdit').hide();
+            $('#linkEdit').hide();
         }
     };
 
@@ -53,7 +53,7 @@
                 $(this).show();
             });
             $('#dvSubmit').show();
-            $('#dvEdit').hide();
+            $('#linkEdit').hide();
         });
 
         $('#targetForm').submit(function (e) {
@@ -76,7 +76,7 @@
                             $(this).show();
                         });
                         $('#dvSubmit').hide();
-                        $('#dvEdit').show();
+                        $('#linkEdit').show();
                     }
                 }
             });
@@ -116,32 +116,35 @@
     </tr>
 </script>
 <div class="row-fluid">
-    <div class="span8 offset3" style="text-align: center">
+    <div class="span9 offset2" style="text-align: center !important;">
         <h3 data-bind="text: MonthName">
         </h3>
         <hr />
     </div>
+</div>
+<div class="row-fluid">
     @using (Html.BeginForm("SaveMnpowerTargets", "Dealer", FormMethod.Post, new { @id = "targetForm" })) {
-        <div class="span8 offset2">
-            <div class="span3">
+        <div class="span8 offset3 text-align-right">
+            <div style="display: inline-block">
                 Month
                 @Html.DropDownListFor(x => x.MonthId, new SelectList(Model.Months, "Key", "Value"), "Select Month", new { @id = "ddlMonth" })
             </div>
-            <div class="span3">
+            <div style="display: inline-block">
                 CSM
                 @Html.DropDownListFor(x => x.CsmId, new SelectList(Model.Users, "Key", "Value"), "Select Csm", new { @id = "ddlCsm", data_bind = "value:CsmId" })
             </div>
-            <div id="dvEdit" class="span3" style="display: none">
-                <a href="#" id="linkEdit" class="btn">Edit</a>
-            </div>
         </div>
        
-        <div class="span8 offset2">
+        <div class="span9 offset2">
             <table class="table table-bordered" id="tblTargetPlan">
                 <thead>
                     <tr>
-                        <th colspan=@(Model.Products.Count() + 1) class="head1">
+                        <th colspan=@(Model.Products.Count()) class="head1">
                             Manpower Targets
+                        </th>
+                        <th class="head1 text-align-right">
+                            <a href="#" id="linkEdit" class="edit" style="display: none" title="click here to edit current month target">
+                            </a>
                         </th>
                     </tr>
                     <tr>
@@ -157,7 +160,7 @@
                 <tbody data-bind='template :{name:"manpowerTargetTemplate",foreach:TargetPlans}'>
                 </tbody>
             </table>
-            <div id="dvSubmit" style="text-align: right">
+            <div id="dvSubmit" class="text-align-right">
                 <input type="submit" value="Update" class="btn btn-primary" />
                 <input type="reset" value="Cancel" data-bind="click: resetTarget" class="btn btn-primary" />
             </div>

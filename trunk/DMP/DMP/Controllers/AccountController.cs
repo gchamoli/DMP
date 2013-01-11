@@ -49,9 +49,12 @@ namespace DMP.Controllers {
         [ValidateAntiForgeryToken]
         public ActionResult Login(LoginModel model, string returnUrl) {
             if (ModelState.IsValid && membershipService.ValidateUser(model.UserName, model.Password)) {
-                formsService.SignIn(model.UserName, model.RememberMe);
-                Session.Add("BreadcrumbList", new List<BreadcrumbModel>());
-                return Url.IsLocalUrl(returnUrl) ? (ActionResult)Redirect(returnUrl) : RedirectToAction("Index", "Home");
+                var user = userService.GetUserByUserName(model.UserName);
+                if (user != null && user.ObjectInfo.DeletedDate == null) {
+                    formsService.SignIn(model.UserName, model.RememberMe);
+                    Session.Add("BreadcrumbList", new List<BreadcrumbModel>());
+                    return Url.IsLocalUrl(returnUrl) ? (ActionResult)Redirect(returnUrl) : RedirectToAction("Index", "Home");
+                }
             }
 
             // If we got this far, something failed, redisplay form
@@ -77,17 +80,9 @@ namespace DMP.Controllers {
         //
         // GET: /Account/Register
 
-        [Authorize(Roles = "HQ")]
+        [Authorize(Roles = "HQ,HQR")]
         public ActionResult Users() {
             var users = userService.FindUsers(x => x.Role != "HQ").Select(UserModel.FromDomainModel).ToList();
-            //var roles = Roles.GetAllRoles().Select(x => new KeyValuePair<string, string>(x, x)).ToList();
-            //var model = new UserViewModel {
-            //    Users = userService.FindUsers(x => x.Role != "HQ").Select(UserModel.FromDomainModel).ToList(),
-            //    User = new UserModel(),
-            //    Roles = roles,
-            //    ParentUsers = userService.GetUsers().Select(x => new KeyValuePair<int, string>(x.Id, x.Name)),
-            //    ResetPassword = new ResetPasswordModel()
-            //};
             return View(users);
         }
 

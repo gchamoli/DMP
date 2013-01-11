@@ -6,10 +6,14 @@
 }
 <script type="text/javascript">
     var Targets = ko.mapping.fromJS(@Html.Raw(Html.ToJSON(Model.Targets)));
+    var CsmId = ko.mapping.fromJS(@Html.Raw(Html.ToJSON(Model.CsmId)));
+    var MonthId = ko.mapping.fromJS(@Html.Raw(Html.ToJSON(Model.MonthId)));
+    var DealerId = ko.mapping.fromJS(@Html.Raw(Html.ToJSON(Model.DealerId)));
 </script>
 <script type="text/javascript">
     var viewModel = {
-        Targets: Targets
+        Targets: Targets,
+        CsmId: CsmId, MonthId: MonthId, DealerId: DealerId
     };
 
     viewModel.resetTarget = function (data) {

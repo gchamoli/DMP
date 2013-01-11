@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using DMP.Repository;
 using DMP.Services.Interface;
 
@@ -52,11 +53,11 @@ namespace DMP.Services.Service {
         }
 
         public IEnumerable<Profile> GetAllProfiles() {
-            return profileRepo.GetAll();
+            return profileRepo.GetAll().Where(x => x.ObjectInfo.DeletedDate == null);
         }
 
         public IEnumerable<Profile> FindProfiles(Func<Profile, bool> predicate) {
-            return profileRepo.Find(predicate);
+            return profileRepo.Find(predicate).Where(x => x.ObjectInfo.DeletedDate == null);
         }
     }
 }

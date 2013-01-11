@@ -5,7 +5,7 @@
 </style>
 <script type="text/javascript">
     $(document).ready(function () {
-
+        setDefault();
         $('#ddlRole').bind('change', function () {
             var role = $('#ddlRole option:selected').text();
             if (role == "RM") {
@@ -29,6 +29,15 @@
                 $('#dvParent').hide();
             }
         });
+        
+        function setDefault() {
+            var role = $('#ddlRole option:selected').text();
+            if(@(Model.User.RegionId) > 0 || role == "RM") {
+                $('#dvRegion').show();
+            }else {
+                $('#dvRegion').hide();
+            }
+        }
     });
 </script>
 <div class="span6">
@@ -45,8 +54,8 @@
                     @Html.DropDownListFor(x => x.User.ParentId, new SelectList(Model.ParentUsers, "Key", "Value"), new { @id = "ddlParent" })
                 </div>
             }
-            @if (Model.User.RegionId > 0) {
-                <div id="dvRegion">
+            @if (Model.Regions.Any()) {
+                <div id="dvRegion" style="display: none">
                     @Html.LabelFor(x => x.User.RegionId)
                     @Html.DropDownListFor(x => x.User.RegionId, new SelectList(Model.Regions, "Key", "Value"), new { @id = "ddlRegion" })
                 </div>
@@ -77,7 +86,7 @@
             </div>
             <div>
                 <input type="submit" value="Save" class="btn btn-primary" />
-                <input type="reset" value="Cancel" class="btn btn-primary" />
+                <input type="reset" value="Reset" class="btn btn-primary" />
             </div>
         </div>
     }

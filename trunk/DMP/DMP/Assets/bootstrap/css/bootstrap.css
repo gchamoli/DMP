@@ -5512,6 +5512,14 @@ a.thumbnail:hover {
         width:20px;
         vertical-align:middle;
     }
+    .resetPwd
+    {
+        background: url(../Img/reset_pwd.png) no-repeat center;
+        display:inline-block;
+        height: 20px;
+        width:20px;
+        vertical-align:middle;
+    }
     .add {
         background: url(../Img/add.png) no-repeat center;
         display:inline-block;
@@ -5560,5 +5568,8 @@ a.thumbnail:hover {
     .foot1 {
         text-align: center !important;
          font-weight: bold !important;
+    }
+    .text-align-right {
+        text-align: right !important;
     }
     

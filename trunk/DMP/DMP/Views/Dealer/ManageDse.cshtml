@@ -7,7 +7,16 @@
 <script type="text/javascript">
 
     $(document).ready(function () {
-
+        $('.delete').bind('click', function () {
+            if (confirm('This DSE will be permanently DELETED and cannot be recovered. Are you sure?')) {
+                var id = $(this).data('id');
+                $.post('/Dealer/DeleteManpower', { id: id }, function (res) {
+                    if (res.success) {
+                        window.location.reload();
+                    }
+                });
+            }
+        });
     });
 </script>
 <div class="row-fluid">
