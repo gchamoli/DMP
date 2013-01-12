@@ -23,6 +23,7 @@ namespace DMP.ModelsView {
         public DealerManpowerModel Manpower { get; set; }
         public IEnumerable<TrainingProfileModel> Trainings { get; set; }
         public IEnumerable<string> Months { get; set; }
+        public IEnumerable<string> Varients { get; set; }
     }
 
     public class ManageDseViewModel {
