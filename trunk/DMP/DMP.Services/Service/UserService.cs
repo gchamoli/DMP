@@ -37,7 +37,7 @@ namespace DMP.Services.Service {
 
         public void DeleteUser(int id) {
             var user = GetUser(id);
-            userRepo.Delete(user);
+            user.ObjectInfo.DeletedDate = DateTime.Now;
             userRepo.SaveChanges();
         }
 

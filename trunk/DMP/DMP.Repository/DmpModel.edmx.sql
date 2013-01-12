@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, and Azure
 -- --------------------------------------------------
--- Date Created: 01/10/2013 11:04:52
--- Generated from EDMX file: D:\WORK\DMP\trunk\DMP\DMP.Repository\DmpModel.edmx
+-- Date Created: 01/12/2013 16:33:57
+-- Generated from EDMX file: D:\WORK\Work\DMP\trunk\DMP\DMP.Repository\DmpModel.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -355,7 +355,8 @@ CREATE TABLE [dbo].[Trainings] (
     [Description] nvarchar(max)  NULL,
     [ObjectInfo_CreatedDate] datetime  NOT NULL,
     [ObjectInfo_ModifiedDate] datetime  NOT NULL,
-    [ObjectInfo_DeletedDate] datetime  NULL
+    [ObjectInfo_DeletedDate] datetime  NULL,
+    [Designation] nvarchar(max)  NOT NULL
 );
 GO
 
@@ -394,7 +395,8 @@ CREATE TABLE [dbo].[Competencies] (
     [ObjectInfo_CreatedDate] datetime  NOT NULL,
     [ObjectInfo_ModifiedDate] datetime  NOT NULL,
     [ObjectInfo_DeletedDate] datetime  NULL,
-    [Description] nvarchar(max)  NULL
+    [Description] nvarchar(max)  NULL,
+    [Designation] nvarchar(max)  NOT NULL
 );
 GO
 
@@ -446,7 +448,8 @@ CREATE TABLE [dbo].[Attritions] (
     [ObjectInfo_CreatedDate] datetime  NOT NULL,
     [ObjectInfo_ModifiedDate] datetime  NOT NULL,
     [ObjectInfo_DeletedDate] datetime  NULL,
-    [Description] nvarchar(max)  NULL
+    [Description] nvarchar(max)  NULL,
+    [Designation] nvarchar(max)  NOT NULL
 );
 GO
 

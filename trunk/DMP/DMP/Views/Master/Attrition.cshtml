@@ -1,4 +1,4 @@
-﻿@model DMP.ModelsView.AttritionViewModel
+﻿@model IEnumerable<DMP.Models.AttritionModel>
 @using DMP.Utils
 @{
     ViewBag.Title = "Attritions";
@@ -47,7 +47,7 @@
         <table class="table table-bordered">
             <thead>
                 <tr>
-                    <th colspan="2" class="head1">
+                    <th colspan="3" class="head1">
                         Attritions
                     </th>
                     @if (User.IsInRole("HQ")) {
@@ -62,6 +62,9 @@
                         Name
                     </th>
                     <th class="head2">
+                        Designation
+                    </th>
+                    <th class="head2">
                         Description
                     </th>
                     @if (User.IsInRole("HQ")) {
@@ -73,9 +76,11 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var attrition in Model.Attritions) {
+                @foreach (var attrition in Model) {
                     <tr>
                         <td>@attrition.Name
+                        </td>
+                        <td>@attrition.Designation
                         </td>
                         <td>@attrition.Description
                         </td>

@@ -173,6 +173,9 @@ namespace DMP.Models {
         [Required]
         public string Code { get; set; }
 
+        [Required]
+        public string Designation { get; set; }
+
         public string Description { get; set; }
 
         public static Training ToDomainModel(TrainingModel model) {
@@ -180,6 +183,7 @@ namespace DMP.Models {
                 Id = model.Id,
                 Name = model.Name,
                 Description = model.Description,
+                Designation = model.Designation,
                 Code = model.Code
             };
         }
@@ -189,7 +193,8 @@ namespace DMP.Models {
                 Id = training.Id,
                 Name = training.Name,
                 Description = training.Description,
-                Code = training.Code
+                Code = training.Code,
+                Designation = training.Designation
             };
         }
     }
@@ -295,13 +300,17 @@ namespace DMP.Models {
         [Required]
         public string Name { get; set; }
 
+        [Required]
+        public string Designation { get; set; }
+
         public string Description { get; set; }
 
         public static Attrition ToDomainModel(AttritionModel model) {
             return new Attrition {
                 Id = model.Id,
                 Name = model.Name,
-                Description = model.Description
+                Description = model.Description,
+                Designation = model.Designation
             };
         }
 
@@ -309,7 +318,8 @@ namespace DMP.Models {
             return new AttritionModel {
                 Id = attrition.Id,
                 Name = attrition.Name,
-                Description = attrition.Description
+                Description = attrition.Description,
+                Designation = attrition.Designation
             };
         }
     }
@@ -322,13 +332,17 @@ namespace DMP.Models {
         [Required]
         public string Name { get; set; }
 
+        [Required]
+        public string Designation { get; set; }
+
         public string Description { get; set; }
 
         public static Competency ToDomainModel(CompetencyModel model) {
             return new Competency {
                 Id = model.Id,
                 Name = model.Name,
-                Description = model.Description
+                Description = model.Description,
+                Designation = model.Designation
             };
         }
 
@@ -336,7 +350,8 @@ namespace DMP.Models {
             return new CompetencyModel {
                 Id = competency.Id,
                 Name = competency.Name,
-                Description = competency.Description
+                Description = competency.Description,
+                Designation = competency.Designation
             };
         }
     }

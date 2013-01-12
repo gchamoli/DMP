@@ -30,7 +30,8 @@ namespace DMP.ModelsView {
     }
 
     public class TrainingViewModel {
-        public IEnumerable<TrainingModel> Trainings { get; set; }
+        public TrainingModel Training { get; set; }
+        public IEnumerable<KeyValuePair<int, string>> Designations { get; set; }
     }
 
     public class DealerViewModel {
@@ -49,11 +50,13 @@ namespace DMP.ModelsView {
     }
 
     public class AttritionViewModel {
-        public IEnumerable<AttritionModel> Attritions { get; set; }
+        public AttritionModel Attrition { get; set; }
+        public IEnumerable<KeyValuePair<int, string>> Designations { get; set; }
     }
 
     public class CompetencyViewModel {
-        public IEnumerable<CompetencyModel> Competencies { get; set; }
+        public CompetencyModel Competency { get; set; }
+        public IEnumerable<KeyValuePair<int, string>> Designations { get; set; }
     }
 
     public class SpecialSchemeViewModel {

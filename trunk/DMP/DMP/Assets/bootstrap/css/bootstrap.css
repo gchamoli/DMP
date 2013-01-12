@@ -5572,4 +5572,7 @@ a.thumbnail:hover {
     .text-align-right {
         text-align: right !important;
     }
+    .inputError {
+        border-color: red !important;
+    }
     

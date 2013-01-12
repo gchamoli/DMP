@@ -101,20 +101,20 @@ namespace DMP.Controllers {
             // Add Attrition
             var attriions = new List<Attrition>
                               {
-                                  new Attrition {Id=0, Name="Attrition1", Description="attrition"},
-                                  new Attrition {Id=0, Name="Attrition2", Description="attrition"},
-                                  new Attrition {Id=0, Name="Attrition3", Description="attrition"},
-                                  new Attrition {Id=0, Name="Attrition4", Description="attrition"}
+                                  new Attrition {Id=0, Name="Attrition1", Description="attrition",Designation = "Dsm"},
+                                  new Attrition {Id=0, Name="Attrition2", Description="attrition",Designation = "Dsm"},
+                                  new Attrition {Id=0, Name="Attrition3", Description="attrition",Designation = "Dse"},
+                                  new Attrition {Id=0, Name="Attrition4", Description="attrition",Designation = "Dse"}
                               };
             masterService.AddAttritions(attriions);
 
             // Add Competency
             var competency = new List<Competency>
                               {
-                                  new Competency {Id=0, Name="Competency1", Description="competency"},
-                                  new Competency {Id=0, Name="Competency2", Description="competency"},
-                                  new Competency {Id=0, Name="Competency3", Description="competency"},
-                                  new Competency {Id=0, Name="Competency4", Description="competency"}
+                                  new Competency {Id=0, Name="Competency1", Description="competency",Designation = "Dsm"},
+                                  new Competency {Id=0, Name="Competency2", Description="competency",Designation = "Dsm"},
+                                  new Competency {Id=0, Name="Competency3", Description="competency",Designation = "Dse"},
+                                  new Competency {Id=0, Name="Competency4", Description="competency",Designation = "Dse"}
                               };
             masterService.AddCompetencies(competency);
 
@@ -154,9 +154,10 @@ namespace DMP.Controllers {
             // Add Training
             var trainings = new List<Training>
                               {
-                                  new Training {Id=0, Name="Training1", Description="training",Code="T1"},
-                                  new Training {Id=0, Name="Training2", Description="training",Code="T2"},
-                                  new Training {Id=0, Name="Training3", Description="training",Code="T3"}
+                                  new Training {Id=0, Name="Training1", Description="training",Code="T1",Designation = "DSM"},
+                                  new Training {Id=0, Name="Training2", Description="training",Code="T2",Designation = "DSM"},
+                                  new Training {Id=0, Name="Training3", Description="training",Code="T3",Designation = "DSE"},
+                                  new Training {Id=0, Name="Training4", Description="training",Code="T4",Designation = "DSE"}
                               };
             masterService.AddTraining(trainings);
 

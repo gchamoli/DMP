@@ -200,6 +200,7 @@
             <ScalarProperty Name="ModifiedDate" ColumnName="ObjectInfo_ModifiedDate" />
             <ScalarProperty Name="DeletedDate" ColumnName="ObjectInfo_DeletedDate" />
           </ComplexProperty>
+          <ScalarProperty Name="Designation" ColumnName="Designation" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -248,6 +249,7 @@
             <ScalarProperty Name="DeletedDate" ColumnName="ObjectInfo_DeletedDate" />
           </ComplexProperty>
           <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Designation" ColumnName="Designation" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -312,6 +314,7 @@
             <ScalarProperty Name="DeletedDate" ColumnName="ObjectInfo_DeletedDate" />
           </ComplexProperty>
           <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Designation" ColumnName="Designation" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

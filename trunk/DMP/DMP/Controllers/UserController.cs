@@ -80,12 +80,13 @@ namespace DMP.Controllers {
                 var exitMnapowers = manpowers.Count(x => x.Profile.DateOfLeaving != null);
                 var averageEmployee = masterService.FindAverageEmployee(currentDate.AddMonths(-1));
                 var manpowerIds = manpowers.Select(x => x.Id);
+                var actualManpowers = manpowers.Any() ? manpowers.Where(x => x.CompetencyProfileMaps.Any()) : null;
                 var targets =
                     targetService.FindTargets(
                         x => x.MonthId == currentMonth.Id && productVarientIds.Contains(x.ProductVarientId) && manpowerIds.Contains(x.DealerManpowerId));
                 productStatList.Add(new ProductStatModel {
                     Product = product.Name,
-                    Competency = manpowers.Any() ? Math.Round(manpowers.Where(x => x.CompetencyProfileMaps.Any()).Average(x => x.CompetencyProfileMaps.Average(y => y.Score)), 2) : 0,
+                    Competency = actualManpowers != null && actualManpowers.Any() ? Math.Round(actualManpowers.Average(x => x.CompetencyProfileMaps.Average(y => y.Score)), 2) : 0,
                     Productivity = targets.Any() ? Math.Round(targets.Average(x => x.Actual), 2) : 0,
                     Attrition = exitMnapowers / (averageEmployee > 0 ? averageEmployee : 1)
                 });
@@ -153,12 +154,13 @@ namespace DMP.Controllers {
                 var exitMnapowers = manpowers.Count(x => x.Profile.DateOfLeaving != null);
                 var averageEmployee = masterService.FindAverageEmployee(currentDate.AddMonths(-1));
                 var manpowerIds = manpowers.Select(x => x.Id);
+                var actualManpowers = manpowers.Any() ? manpowers.Where(x => x.CompetencyProfileMaps.Any()) : null;
                 var targets =
                     targetService.FindTargets(
                         x => x.MonthId == currentMonth.Id && productVarientIds.Contains(x.ProductVarientId) && manpowerIds.Contains(x.DealerManpowerId));
                 productStatList.Add(new ProductStatModel {
                     Product = product.Name,
-                    Competency = manpowers.Any() ? Math.Round(manpowers.Where(x => x.CompetencyProfileMaps.Any()).Average(x => x.CompetencyProfileMaps.Average(y => y.Score)), 2) : 0,
+                    Competency = actualManpowers != null && actualManpowers.Any() ? Math.Round(actualManpowers.Average(x => x.CompetencyProfileMaps.Average(y => y.Score)), 2) : 0,
                     Productivity = targets.Any() ? Math.Round(targets.Average(x => x.Actual), 2) : 0,
                     Attrition = exitMnapowers / (averageEmployee > 0 ? averageEmployee : 1)
                 });
@@ -223,12 +225,13 @@ namespace DMP.Controllers {
                 var exitMnapowers = manpowers.Count(x => x.Profile.DateOfLeaving != null);
                 var averageEmployee = masterService.FindAverageEmployee(currentDate.AddMonths(-1));
                 var manpowerIds = manpowers.Select(x => x.Id);
+                var actualManpowers = manpowers.Any() ? manpowers.Where(x => x.CompetencyProfileMaps.Any()) : null;
                 var targets =
                     targetService.FindTargets(
                         x => x.MonthId == currentMonth.Id && productVarientIds.Contains(x.ProductVarientId) && manpowerIds.Contains(x.DealerManpowerId));
                 productStatList.Add(new ProductStatModel {
                     Product = product.Name,
-                    Competency = manpowers.Any() ? Math.Round(manpowers.Where(x => x.CompetencyProfileMaps.Any()).Average(x => x.CompetencyProfileMaps.Average(y => y.Score)), 2) : 0,
+                    Competency = actualManpowers != null && actualManpowers.Any() ? Math.Round(actualManpowers.Average(x => x.CompetencyProfileMaps.Average(y => y.Score)), 2) : 0,
                     Productivity = targets.Any() ? Math.Round(targets.Average(x => x.Actual), 2) : 0,
                     Attrition = exitMnapowers / (averageEmployee > 0 ? averageEmployee : 1)
                 });
@@ -291,12 +294,13 @@ namespace DMP.Controllers {
                 var exitMnapowers = manpowers.Count(x => x.Profile.DateOfLeaving != null);
                 var averageEmployee = masterService.FindAverageEmployee(currentDate.AddMonths(-1));
                 var manpowerIds = manpowers.Select(x => x.Id);
+                var actualManpowers = manpowers.Any() ? manpowers.Where(x => x.CompetencyProfileMaps.Any()) : null;
                 var targets =
                     targetService.FindTargets(
                         x => x.MonthId == currentMonth.Id && productVarientIds.Contains(x.ProductVarientId) && manpowerIds.Contains(x.DealerManpowerId));
                 productStatList.Add(new ProductStatModel {
                     Product = product.Name,
-                    Competency = manpowers.Any() ? Math.Round(manpowers.Where(x => x.CompetencyProfileMaps.Any()).Where(x => x.CompetencyProfileMaps.Any()).Average(x => x.CompetencyProfileMaps.Average(y => y.Score)), 2) : 0,
+                    Competency = actualManpowers != null && actualManpowers.Any() ? Math.Round(actualManpowers.Average(x => x.CompetencyProfileMaps.Average(y => y.Score)), 2) : 0,
                     Productivity = targets.Any() ? Math.Round(targets.Average(x => x.Actual), 2) : 0,
                     Attrition = exitMnapowers / (averageEmployee > 0 ? averageEmployee : 1)
                 });

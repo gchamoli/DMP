@@ -236,6 +236,7 @@ namespace DMP.Services.Service {
             oldTraining.Name = training.Name;
             oldTraining.Code = training.Code;
             oldTraining.Description = training.Description;
+            oldTraining.Designation = training.Designation;
             trainingRepo.SaveChanges();
         }
 
@@ -309,6 +310,7 @@ namespace DMP.Services.Service {
             var oldAttrition = GetAttrition(attrition.Id);
             oldAttrition.Name = attrition.Name;
             oldAttrition.Description = attrition.Description;
+            oldAttrition.Designation = attrition.Designation;
             attritionRepo.SaveChanges();
         }
 
@@ -345,6 +347,7 @@ namespace DMP.Services.Service {
             var oldCompetency = GetCompetency(competency.Id);
             oldCompetency.Name = competency.Name;
             oldCompetency.Description = competency.Description;
+            oldCompetency.Designation = competency.Designation;
             competencyRepo.SaveChanges();
         }
 

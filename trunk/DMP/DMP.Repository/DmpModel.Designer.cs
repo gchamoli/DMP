@@ -703,12 +703,14 @@ namespace DMP.Repository
         /// <param name="id">Initial value of the Id property.</param>
         /// <param name="name">Initial value of the Name property.</param>
         /// <param name="objectInfo">Initial value of the ObjectInfo property.</param>
-        public static Attrition CreateAttrition(global::System.Int32 id, global::System.String name, ObjectInfo objectInfo)
+        /// <param name="designation">Initial value of the Designation property.</param>
+        public static Attrition CreateAttrition(global::System.Int32 id, global::System.String name, ObjectInfo objectInfo, global::System.String designation)
         {
             Attrition attrition = new Attrition();
             attrition.Id = id;
             attrition.Name = name;
             attrition.ObjectInfo = StructuralObject.VerifyComplexObjectIsNotNull(objectInfo, "ObjectInfo");
+            attrition.Designation = designation;
             return attrition;
         }
 
@@ -789,6 +791,30 @@ namespace DMP.Repository
         private global::System.String _Description;
         partial void OnDescriptionChanging(global::System.String value);
         partial void OnDescriptionChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Designation
+        {
+            get
+            {
+                return _Designation;
+            }
+            set
+            {
+                OnDesignationChanging(value);
+                ReportPropertyChanging("Designation");
+                _Designation = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Designation");
+                OnDesignationChanged();
+            }
+        }
+        private global::System.String _Designation;
+        partial void OnDesignationChanging(global::System.String value);
+        partial void OnDesignationChanged();
 
         #endregion
         #region Complex Properties
@@ -1113,12 +1139,14 @@ namespace DMP.Repository
         /// <param name="id">Initial value of the Id property.</param>
         /// <param name="name">Initial value of the Name property.</param>
         /// <param name="objectInfo">Initial value of the ObjectInfo property.</param>
-        public static Competency CreateCompetency(global::System.Int32 id, global::System.String name, ObjectInfo objectInfo)
+        /// <param name="designation">Initial value of the Designation property.</param>
+        public static Competency CreateCompetency(global::System.Int32 id, global::System.String name, ObjectInfo objectInfo, global::System.String designation)
         {
             Competency competency = new Competency();
             competency.Id = id;
             competency.Name = name;
             competency.ObjectInfo = StructuralObject.VerifyComplexObjectIsNotNull(objectInfo, "ObjectInfo");
+            competency.Designation = designation;
             return competency;
         }
 
@@ -1199,6 +1227,30 @@ namespace DMP.Repository
         private global::System.String _Description;
         partial void OnDescriptionChanging(global::System.String value);
         partial void OnDescriptionChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Designation
+        {
+            get
+            {
+                return _Designation;
+            }
+            set
+            {
+                OnDesignationChanging(value);
+                ReportPropertyChanging("Designation");
+                _Designation = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Designation");
+                OnDesignationChanged();
+            }
+        }
+        private global::System.String _Designation;
+        partial void OnDesignationChanging(global::System.String value);
+        partial void OnDesignationChanged();
 
         #endregion
         #region Complex Properties
@@ -6164,13 +6216,15 @@ namespace DMP.Repository
         /// <param name="name">Initial value of the Name property.</param>
         /// <param name="code">Initial value of the Code property.</param>
         /// <param name="objectInfo">Initial value of the ObjectInfo property.</param>
-        public static Training CreateTraining(global::System.Int32 id, global::System.String name, global::System.String code, ObjectInfo objectInfo)
+        /// <param name="designation">Initial value of the Designation property.</param>
+        public static Training CreateTraining(global::System.Int32 id, global::System.String name, global::System.String code, ObjectInfo objectInfo, global::System.String designation)
         {
             Training training = new Training();
             training.Id = id;
             training.Name = name;
             training.Code = code;
             training.ObjectInfo = StructuralObject.VerifyComplexObjectIsNotNull(objectInfo, "ObjectInfo");
+            training.Designation = designation;
             return training;
         }
 
@@ -6275,6 +6329,30 @@ namespace DMP.Repository
         private global::System.String _Description;
         partial void OnDescriptionChanging(global::System.String value);
         partial void OnDescriptionChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Designation
+        {
+            get
+            {
+                return _Designation;
+            }
+            set
+            {
+                OnDesignationChanging(value);
+                ReportPropertyChanging("Designation");
+                _Designation = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Designation");
+                OnDesignationChanged();
+            }
+        }
+        private global::System.String _Designation;
+        partial void OnDesignationChanging(global::System.String value);
+        partial void OnDesignationChanged();
 
         #endregion
         #region Complex Properties

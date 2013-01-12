@@ -1,17 +1,21 @@
-﻿@model DMP.Models.AttritionModel
+﻿@model DMP.ModelsView.AttritionViewModel
 @using DMP.Utils
 <script src = "@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
 <script src = "@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
 <div class="span4">
     @using (Ajax.BeginForm(new AjaxOptions { OnComplete = "closePopUp()", OnSuccess = "reLoad('/Master/Attrition')" })) {
-        @Html.HiddenFor(x => x.Id)
+        @Html.HiddenFor(x => x.Attrition.Id)
         <div>
-            @Html.LabelFor(x => x.Name)
-            @Html.TextBoxFor(x => x.Name)
+            @Html.LabelFor(x => x.Attrition.Name)
+            @Html.TextBoxFor(x => x.Attrition.Name)
         </div>
         <div>
-            @Html.LabelFor(x => x.Description)
-            @Html.TextAreaFor(x => x.Description)
+            @Html.LabelFor(x => x.Attrition.Designation)
+            @Html.DropDownListFor(x => x.Attrition.Designation, new SelectList(Model.Designations, "Value", "Value"))
+        </div>
+        <div>
+            @Html.LabelFor(x => x.Attrition.Description)
+            @Html.TextAreaFor(x => x.Attrition.Description)
         </div>
         <div>
             <input type="submit" value="Save" class="btn btn-primary" />

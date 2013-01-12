@@ -45,7 +45,7 @@
             //                return false;
             //            }
             $.ajax({
-                url: '/Dealer/SaveTargets',
+                url: '/Dealer/SaveDsmMapping',
                 type: 'POST',
                 dataType: 'json',
                 data: JSON.stringify(ko.mapping.toJS(viewModel)),

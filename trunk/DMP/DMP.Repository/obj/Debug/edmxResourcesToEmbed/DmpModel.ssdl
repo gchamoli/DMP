@@ -316,6 +316,7 @@
     <Property Name="ObjectInfo_CreatedDate" Type="datetime" Nullable="false" />
     <Property Name="ObjectInfo_ModifiedDate" Type="datetime" Nullable="false" />
     <Property Name="ObjectInfo_DeletedDate" Type="datetime" Nullable="true" />
+    <Property Name="Designation" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="DealerManpowerTargets">
     <Key>
@@ -355,6 +356,7 @@
     <Property Name="ObjectInfo_ModifiedDate" Type="datetime" Nullable="false" />
     <Property Name="ObjectInfo_DeletedDate" Type="datetime" Nullable="true" />
     <Property Name="Description" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Designation" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="CompetencyProfileMaps">
     <Key>
@@ -407,6 +409,7 @@
     <Property Name="ObjectInfo_ModifiedDate" Type="datetime" Nullable="false" />
     <Property Name="ObjectInfo_DeletedDate" Type="datetime" Nullable="true" />
     <Property Name="Description" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Designation" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="AttritionProfileMaps">
     <Key>

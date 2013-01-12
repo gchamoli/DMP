@@ -1,21 +1,25 @@
-﻿@model DMP.Models.TrainingModel
+﻿@model DMP.ModelsView.TrainingViewModel
 @using DMP.Utils
 <script src = "@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
 <script src = "@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
 <div class="span4">
     @using (Ajax.BeginForm(new AjaxOptions { OnComplete = "closePopUp()", OnSuccess = "reLoad('/Master/Trainings')" })) {
-        @Html.HiddenFor(x => x.Id)
+        @Html.HiddenFor(x => x.Training.Id)
         <div>
-            @Html.LabelFor(x => x.Name)
-            @Html.TextBoxFor(x => x.Name)
+            @Html.LabelFor(x => x.Training.Name)
+            @Html.TextBoxFor(x => x.Training.Name)
         </div>
         <div>
-            @Html.LabelFor(x => x.Code)
-            @Html.TextBoxFor(x => x.Code)
+            @Html.LabelFor(x => x.Training.Code)
+            @Html.TextBoxFor(x => x.Training.Code)
         </div>
         <div>
-            @Html.LabelFor(x => x.Description)
-            @Html.TextAreaFor(x => x.Description)
+            @Html.LabelFor(x => x.Training.Designation)
+            @Html.DropDownListFor(x => x.Training.Designation, new SelectList(Model.Designations, "Value", "Value"))
+        </div>
+        <div>
+            @Html.LabelFor(x => x.Training.Description)
+            @Html.TextAreaFor(x => x.Training.Description)
         </div>
         <div>
             <input type="submit" value="Save" class="btn btn-primary" />

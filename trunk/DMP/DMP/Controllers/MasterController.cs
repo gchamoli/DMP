@@ -209,23 +209,24 @@ namespace DMP.Controllers {
         #region Training
 
         public ActionResult Trainings() {
-            var model = new TrainingViewModel {
-                Trainings = masterService.GetAllTrainings().Select(TrainingModel.FromDomainModel).ToList()
-            };
-            return View(model);
+            var trainings = masterService.GetAllTrainings().Select(TrainingModel.FromDomainModel).ToList();
+            return View(trainings);
         }
 
         public ActionResult EditTraining(int id) {
-            var model = id > 0 ? TrainingModel.FromDomainModel(masterService.GetTraining(id)) : new TrainingModel();
+            var model = new TrainingViewModel {
+                Designations = Enumeration.GetAll<Designation>(),
+                Training = id > 0 ? TrainingModel.FromDomainModel(masterService.GetTraining(id)) : new TrainingModel()
+            };
             return PartialView("EditTraining", model);
         }
 
         [HttpPost]
-        public void EditTraining(TrainingModel model) {
+        public void EditTraining(TrainingViewModel model) {
             if (!ModelState.IsValid) {
                 return;
             }
-            var training = TrainingModel.ToDomainModel(model);
+            var training = TrainingModel.ToDomainModel(model.Training);
             if (training.Id > 0) {
                 masterService.UpdateTraining(training);
             } else {
@@ -271,11 +272,15 @@ namespace DMP.Controllers {
                 masterService.UpdateDealer(dealer);
             } else {
                 masterService.AddDealer(new[] { dealer });
-                //Add Dealer-User Map
-                var maps = userDealerMapService.FindUserDealerMaps(x => x.UserId == model.Dealer.UserId && x.DealerId == dealer.Id);
-                if (!maps.Any()) {
-                    userDealerMapService.AddUserDealerMap(new[] { new UserDealerMap { Id = 0, DealerId = dealer.Id, UserId = model.Dealer.UserId } });
-                }
+            }
+            //Add-Update Dealer-User Map
+            var maps = userDealerMapService.FindUserDealerMaps(x => x.UserId == model.Dealer.UserId && x.DealerId == dealer.Id);
+            if (maps.Any()) {
+                var map = maps.First();
+                map.UserId = model.Dealer.UserId;
+                userDealerMapService.UpdateUserDealerMap(map);
+            } else {
+                userDealerMapService.AddUserDealerMap(new[] { new UserDealerMap { Id = 0, DealerId = dealer.Id, UserId = model.Dealer.UserId } });
             }
         }
 
@@ -311,20 +316,21 @@ namespace DMP.Controllers {
         #region Attrition
 
         public ActionResult Attrition() {
-            var model = new AttritionViewModel() {
-                Attritions = masterService.GetAllAttritions().Select(AttritionModel.FromDomainModel).ToList()
-            };
-            return View(model);
+            var attritions = masterService.GetAllAttritions().Select(AttritionModel.FromDomainModel).ToList();
+            return View(attritions);
         }
 
         public ActionResult EditAttrition(int id) {
-            var model = id > 0 ? AttritionModel.FromDomainModel(masterService.GetAttrition(id)) : new AttritionModel();
+            var model = new AttritionViewModel {
+                Attrition = id > 0 ? AttritionModel.FromDomainModel(masterService.GetAttrition(id)) : new AttritionModel(),
+                Designations = Enumeration.GetAll<Designation>(),
+            };
             return PartialView("EditAttrition", model);
         }
 
         [HttpPost]
-        public void EditAttrition(AttritionModel model) {
-            var attrition = AttritionModel.ToDomainModel(model);
+        public void EditAttrition(AttritionViewModel model) {
+            var attrition = AttritionModel.ToDomainModel(model.Attrition);
             if (attrition.Id > 0) {
                 masterService.UpdateAttrition(attrition);
             } else {
@@ -342,20 +348,21 @@ namespace DMP.Controllers {
         #region Competency
 
         public ActionResult Competency() {
-            var model = new CompetencyViewModel() {
-                Competencies = masterService.GetAllCompetencies().Select(CompetencyModel.FromDomainModel).ToList()
-            };
-            return View(model);
+            var competencies = masterService.GetAllCompetencies().Select(CompetencyModel.FromDomainModel).ToList();
+            return View(competencies);
         }
 
         public ActionResult EditCompetency(int id) {
-            var model = id > 0 ? CompetencyModel.FromDomainModel(masterService.GetCompetency(id)) : new CompetencyModel();
+            var model = new CompetencyViewModel {
+                Competency = id > 0 ? CompetencyModel.FromDomainModel(masterService.GetCompetency(id)) : new CompetencyModel(),
+                Designations = Enumeration.GetAll<Designation>()
+            };
             return PartialView("EditCompetency", model);
         }
 
         [HttpPost]
-        public void EditCompetency(CompetencyModel model) {
-            var competency = CompetencyModel.ToDomainModel(model);
+        public void EditCompetency(CompetencyViewModel model) {
+            var competency = CompetencyModel.ToDomainModel(model.Competency);
             if (competency.Id > 0) {
                 masterService.UpdateCompetency(competency);
             } else {

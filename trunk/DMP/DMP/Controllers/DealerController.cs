@@ -160,7 +160,6 @@ namespace DMP.Controllers {
 
         [HttpPost]
         public ActionResult SaveManpower(CsmDealerViewModel model) {
-
             var profile = DealerManpowerModel.ToProfileDomain(model.Manpower);
             var manpower = DealerManpowerModel.ToManpowerDomain(model.Manpower);
             profile.DealerManpower = manpower;
@@ -173,11 +172,11 @@ namespace DMP.Controllers {
             }
 
             //Add/Update Competency
-            var competencies = masterService.GetAllCompetencies();
-            var competencyList = competencies.Select(comp => new CompetencyProfileMap {
-                Id = 0, DealerManpowerId = manpower.Id, CompetencyId = comp.Id, Score = 0
-            }).ToList();
-            competencyProfileMapService.AddCompetencyProfileMap(competencyList);
+            //var competencies = masterService.GetAllCompetencies();
+            //var competencyList = competencies.Select(comp => new CompetencyProfileMap {
+            //    Id = 0, DealerManpowerId = manpower.Id, CompetencyId = comp.Id, Score = 0
+            //}).ToList();
+            //competencyProfileMapService.AddCompetencyProfileMap(competencyList);
 
             //Add Salary
             if (model.Manpower.Salary > 0) {
@@ -196,15 +195,6 @@ namespace DMP.Controllers {
             return Json(new { success = true }, JsonRequestBehavior.AllowGet);
         }
 
-        public PartialViewResult Competency(int id) {
-            var competencies = competencyProfileMapService.FindCompetencyProfileMaps(x => x.DealerManpowerId == id);
-            var model = new CompetencyProfileViewModel {
-                Competencies = competencies.Any() ? competencyProfileMapService.FindCompetencyProfileMaps(x => x.DealerManpowerId == id).Select(x => new CompetencyProfileModel { Id = x.Id, Competency = x.Competency.Name, ComptencyId = x.CompetencyId, Score = x.Score }) : masterService.GetAllCompetencies().Select(x => new CompetencyProfileModel { Id = 0, Competency = x.Name, ComptencyId = x.Id, Score = 0 }),
-                ProfileId = id
-            };
-            return PartialView("CompetencyPartial", model);
-        }
-
         public ActionResult DseProfile(int id) {
             Session["BreadcrumbList"] = Utils.HtmlExtensions.SetBreadcrumbs((List<BreadcrumbModel>)Session["BreadcrumbList"], string.Format("/Dealer/DseProfile?id={0}", id), "Profile");
             var trainings = trainingProfileMapService.FindTrainingProfileMaps(x => x.DealerManpowerId == id).GroupBy(
@@ -220,9 +210,19 @@ namespace DMP.Controllers {
                              }).ToList(),
                 Months = new[] { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" }
             };
-            model.Manpower.Productivity = manpower.Targets.Any() ? manpower.Targets.Average(x => x.Actual) : 0;
+            model.Manpower.Productivity = manpower.Targets.Any() ? Math.Round(manpower.Targets.Average(x => x.Actual), 2) : 0;
             ViewBag.List = Session["BreadcrumbList"];
             return View("Profile", model);
+        }
+
+        public PartialViewResult Competency(int id) {
+            var manpower = manpowerService.GetDealerManpower(id);
+            var competencies = competencyProfileMapService.FindCompetencyProfileMaps(x => x.DealerManpowerId == manpower.Id);
+            var model = new CompetencyProfileViewModel {
+                Competencies = competencies.Any() ? competencyProfileMapService.FindCompetencyProfileMaps(x => x.DealerManpowerId == id).Select(x => new CompetencyProfileModel { Id = x.Id, Competency = x.Competency.Name, ComptencyId = x.CompetencyId, Score = x.Score }) : masterService.FindCompetencies(x => x.Designation.ToLower() == manpower.Type.ToLower()).Select(x => new CompetencyProfileModel { Id = 0, Competency = x.Name, ComptencyId = x.Id, Score = 0 }),
+                ProfileId = id
+            };
+            return PartialView("CompetencyPartial", model);
         }
 
         [HttpPost]
@@ -244,7 +244,7 @@ namespace DMP.Controllers {
         public PartialViewResult Attrition(int id) {
             var manpower = manpowerService.GetDealerManpower(id);
             var model = new AttritionProfileViewModel {
-                Attritions = masterService.GetAllAttritions().Select(x => new KeyValuePair<int, string>(x.Id, x.Name)).ToList(),
+                Attritions = masterService.FindAttritions(x => x.Designation.ToLower() == manpower.Type.ToLower()).Select(x => new KeyValuePair<int, string>(x.Id, x.Name)).ToList(),
                 ProfileId = id,
                 Attrition = manpower.AttritionProfileMap != null ? AttritionProfileModel.FromDomainModel(manpower.AttritionProfileMap) : new AttritionProfileModel()
             };
@@ -265,8 +265,9 @@ namespace DMP.Controllers {
         }
 
         public PartialViewResult Training(int id) {
+            var manpower = manpowerService.GetDealerManpower(id);
             var model = new TrainingProfileViewModel {
-                Trainings = masterService.GetAllTrainings().Select(x => new KeyValuePair<int, string>(x.Id, x.Name)),
+                Trainings = masterService.FindTraining(x => x.Designation.ToLower() == manpower.Type.ToLower()).Select(x => new KeyValuePair<int, string>(x.Id, x.Name)),
                 ProfileId = id,
                 Training = new TrainingProfileModel()
             };
@@ -329,12 +330,13 @@ namespace DMP.Controllers {
                 var exitMnapowers = manpowers.Count(x => x.Profile.DateOfLeaving != null);
                 var averageEmployee = masterService.FindAverageEmployee(currentDate.AddMonths(-1));
                 var manpowerIds = manpowers.Select(x => x.Id);
+                var actualManpowers = manpowers.Any() ? manpowers.Where(x => x.CompetencyProfileMaps.Any()) : null;
                 var dealerTargets =
                     targetService.FindTargets(
                         x => x.MonthId == currentMonth.Id && productVarientIds.Contains(x.ProductVarientId) && manpowerIds.Contains(x.DealerManpowerId));
                 productStatList.Add(new ProductStatModel {
                     Product = product.Name,
-                    Competency = manpowers.Any() ? Math.Round(manpowers.Where(x => x.CompetencyProfileMaps.Any()).Average(x => x.CompetencyProfileMaps.Average(y => y.Score)), 2) : 0,
+                    Competency = actualManpowers != null && actualManpowers.Any() ? Math.Round(actualManpowers.Average(x => x.CompetencyProfileMaps.Average(y => y.Score)), 2) : 0,
                     Productivity = dealerTargets.Any() ? Math.Round(dealerTargets.Average(x => x.Actual), 2) : 0,
                     Attrition = exitMnapowers / (averageEmployee > 0 ? averageEmployee : 1)
                 });
@@ -471,7 +473,43 @@ namespace DMP.Controllers {
 
         #endregion
 
+        #region DSM-DSE Mapping
 
+        [Authorize(Roles = "CSM")]
+        public ActionResult DsmMapping() {
+            var csm = userService.GetUserByUserName(User.Identity.Name);
+            var model = new DsmDseMapViewModel {
+                DsmList = dealerManpowerService.FindDealerManpowers(x => x.UserId == csm.Id && x.Type.ToLower() == "dsm").Select(x => new KeyValuePair<int, string>(x.Id, x.Name)),
+                DseList = dealerManpowerService.FindDealerManpowers(x => x.UserId == csm.Id && x.Type.ToLower() == "dse").Select(x => new KeyValuePair<int, string>(x.Id, x.Name))
+            };
+            return View(model);
+        }
 
+        public ActionResult SaveDsmMapping(int dsmId, int[] dseIds) {
+            var currentDate = DateTime.Now;
+            var currentMonth = masterService.FindAndCreateMonth(currentDate.ToString("MMMM"), currentDate.Year);
+            var targets = targetService.FindTargets(x => x.MonthId == currentMonth.Id && dseIds.Contains(x.Id));
+            if (targets.Any()) {
+                var tempdata = targets.GroupBy(x => x.ProductVarientId);
+                foreach (var target in tempdata) {
+                    var dsm =
+                        targetService.FindTargets(
+                            x =>
+                            x.MonthId == currentMonth.Id && x.DealerManpowerId == dsmId && x.ProductVarientId == target.Key);
+                    var dsmTarget = dsm.Any() ? dsm.First() : new Target();
+                    dsmTarget.Actual = target.Sum(x => x.Actual);
+                    dsmTarget.Target1 = target.Sum(x => x.Target1);
+                    dsmTarget.Target2 = target.Sum(x => x.Target2);
+                    if (dsmTarget.Id > 0) {
+                        targetService.UpdateTarget(dsmTarget);
+                    } else {
+                        targetService.AddTarget(new[] { dsmTarget });
+                    }
+                }
+            }
+            return Json(new { success = true }, JsonRequestBehavior.AllowGet);
+        }
+
+        #endregion
     }
 }

@@ -2,13 +2,33 @@
 <div class="row-fluid">
     <div class="span12">
         @if (ViewBag.UserName != null) {
-            <h3 style="text-align: center;font-weight: bold;color: red;background-color: #aaaaaa">@ViewBag.UserName</h3>
+            <h3 style="text-align: center; font-weight: bold; color: red; background-color: #aaaaaa">@ViewBag.UserName</h3>
         }
     </div>
 </div>
 <div class="row-fluid">
     <div class="span3">
         @Html.Partial("ReportMenuPartial")
+        @if (User.IsInRole("CSM")) {
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th class="head1">
+                            <img src="../../Images/tools.png" />
+                            Tools
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="row1">
+                            <img src="../../Images/mapping.png" class="img1" />
+                            <a href="/Dealer/DsmMapping" id="linkFileUpload">DSM-DSE Map</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        }
     </div>
     <div class="span9">
         <div>

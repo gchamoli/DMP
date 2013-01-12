@@ -330,6 +330,7 @@
     <Property Type="String" Name="Description" Nullable="true" />
     <Property Name="ObjectInfo" Type="DmpModel.ObjectInfo" Nullable="false" />
     <NavigationProperty Name="TrainingProfileMaps" Relationship="DmpModel.TrainingTrainingProfileMap" FromRole="Training" ToRole="TrainingProfileMap" />
+    <Property Type="String" Name="Designation" Nullable="false" />
   </EntityType>
   <EntityType Name="DealerManpowerTargets">
     <Key>
@@ -523,6 +524,7 @@
     <Property Name="ObjectInfo" Type="DmpModel.ObjectInfo" Nullable="false" />
     <NavigationProperty Name="CompetencyProfileMaps" Relationship="DmpModel.CompetencyCompetencyProfileMap" FromRole="Competency" ToRole="CompetencyProfileMap" />
     <Property Type="String" Name="Description" Nullable="true" />
+    <Property Type="String" Name="Designation" Nullable="false" />
   </EntityType>
   <EntityType Name="CompetencyProfileMap">
     <Key>
@@ -659,6 +661,7 @@
     <Property Name="ObjectInfo" Type="DmpModel.ObjectInfo" Nullable="false" />
     <Property Type="String" Name="Description" Nullable="true" />
     <NavigationProperty Name="AttritionProfileMaps" Relationship="DmpModel.AttritionAttritionProfileMap" FromRole="Attrition" ToRole="AttritionProfileMap" />
+    <Property Type="String" Name="Designation" Nullable="false" />
   </EntityType>
   <EntityType Name="AttritionProfileMap">
     <Key>

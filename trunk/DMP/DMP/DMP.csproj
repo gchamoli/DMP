@@ -197,6 +197,7 @@
     <Compile Include="ModelsView\CsmViewModel.cs" />
     <Compile Include="ModelsView\DealerManpowerViewModel.cs" />
     <Compile Include="ModelsView\CsmDealerViewModel.cs" />
+    <Compile Include="ModelsView\DsmDseMapViewModel.cs" />
     <Compile Include="ModelsView\IncentiveViewModel.cs" />
     <Compile Include="ModelsView\ManpowerTargetViewModel.cs" />
     <Compile Include="ModelsView\MastersViewModel.cs" />
@@ -264,6 +265,10 @@
     <Content Include="Assets\plugins\charts\js\highcharts-more.src.js" />
     <Content Include="Assets\plugins\charts\js\highcharts.js" />
     <Content Include="Assets\plugins\charts\js\highcharts.src.js" />
+    <Content Include="Assets\plugins\chosen\chosen-sprite.png" />
+    <Content Include="Assets\plugins\chosen\chosen.css" />
+    <Content Include="Assets\plugins\chosen\chosen.jquery.js" />
+    <Content Include="Assets\plugins\chosen\chosen.jquery.min.js" />
     <Content Include="Assets\plugins\fancybox\blank.gif" />
     <Content Include="Assets\plugins\fancybox\fancybox-x.png" />
     <Content Include="Assets\plugins\fancybox\fancybox-y.png" />
@@ -355,6 +360,7 @@
     <Content Include="Images\ETB_logo.jpg" />
     <Content Include="Images\logo.png" />
     <Content Include="Images\logo1.png" />
+    <Content Include="Images\mapping.png" />
     <Content Include="Images\productivity.png" />
     <Content Include="Images\Reports.png" />
     <Content Include="Images\target.png" />
@@ -597,6 +603,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Reporting\MonthWisePlanAndActual.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Dealer\DsmMapping.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
