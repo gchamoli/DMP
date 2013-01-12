@@ -483,6 +483,7 @@ namespace DMP.Controllers
 
         public ActionResult SaveTargets(TargetViewModel model)
         {
+
             foreach (var targetModel in model.Targets)
             {
                 var manpowerId = targetModel.ManpowerId;
@@ -500,7 +501,14 @@ namespace DMP.Controllers
                     {
                         targetService.AddTarget(new[] { targetPlan });
                     }
+
                 }
+            }
+            var dseList = model.Targets.Where(x => x.Designation == "DSE").Select(x => new DsmDseTargetMap { UserId = model.CsmId, MonthId = model.MonthId, DseId = x.ManpowerId });
+            var dsmDseMapList = dsmDseTargetMapService.GetDsmDseTargetMap(dseList);
+            foreach (var dsmDseTargetMap in dsmDseMapList)
+            {
+                targetService.UpdateDsmTarget(dsmDseTargetMap.DsmId, dsmDseTargetMap.UserId, dsmDseTargetMap.MonthId);
             }
             return Json(new { success = true }, JsonRequestBehavior.AllowGet);
         }
@@ -604,7 +612,7 @@ namespace DMP.Controllers
                 var user = userService.GetUserByUserName(User.Identity.Name);
                 var dsmDseTargetMaps = model.DseIds.Select(x => new DsmDseTargetMap { MonthId = currentMonth.Id, DseId = x, DsmId = model.DsmId, UserId = user.Id });
                 dsmDseTargetMapService.AddDsmDseTargetMap(dsmDseTargetMaps);
-                targetService.UpdateDsmTarget(model.DsmId,user.Id,currentMonth.Id);
+                targetService.UpdateDsmTarget(model.DsmId, user.Id, currentMonth.Id);
 
             }
             if (targets.Any())

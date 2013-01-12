@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using DMP.Models;
 using DMP.ModelsView;
+using DMP.Repository;
 using DMP.Services;
 using DMP.Services.Interface;
 
@@ -44,10 +45,10 @@ namespace DMP.Controllers {
             var reportList = new List<ReportManpowerModel>();
 
             foreach (var rm in rmUsers) {
-                var rsmIds = userService.FindUsers(x => x.ParentId == rm.Id).Select(x => x.Id);
-                var csmIds = userService.FindUsers(x => rsmIds.Contains(x.ParentId)).Select(x => x.Id);
-                var dealerIds = userDealerMapService.FindUserDealerMaps(x => csmIds.Contains(x.UserId)).Select(x => x.DealerId);
-                var targets = manpowerTargetService.FindDealerManpowerTargets(x => dealerIds.Contains(x.DealerId) && csmIds.Contains(x.UserId) && x.MonthId == currentMonth.Id);
+                var rsmIds = userService.FindUsers(x => x.ParentId == rm.Id).Select(x => x.Id).ToList();
+                var csmIds = userService.FindUsers(x => rsmIds.Contains(x.ParentId)).Select(x => x.Id).ToList();
+                var dealerIds = userDealerMapService.FindUserDealerMaps(x => csmIds.Contains(x.UserId)).Select(x => x.DealerId).ToList();
+                var targets = manpowerTargetService.FindDealerManpowerTargets(x => dealerIds.Contains(x.DealerId) && csmIds.Contains(x.UserId) && x.MonthId == currentMonth.Id).ToList();
                 var manpowers = manpowerService.FindDealerManpowers(x => csmIds.Contains(x.UserId) && dealerIds.Contains(x.DealerId)).ToList();
                 var targetList = new List<TotalManpower>();
                 foreach (var product in products) {
@@ -72,18 +73,18 @@ namespace DMP.Controllers {
             }
             var productStatList = new List<ProductStatModel>();
             foreach (var product in products) {
-                var productVarientIds = masterService.FindProductVarient(x => x.ProductId == product.Id).Select(x => x.Id);
-                var rmIds = rmUsers.Select(x => x.Id);
-                var rsmIds = userService.FindUsers(x => rmIds.Contains(x.ParentId)).Select(x => x.Id);
-                var csmIds = userService.FindUsers(x => rsmIds.Contains(x.ParentId)).Select(x => x.Id);
-                var manpowers = manpowerService.FindDealerManpowers(x => csmIds.Contains(x.UserId) && x.ProductId == product.Id);
-                var exitMnapowers = manpowers.Count(x => x.Profile.DateOfLeaving != null);
+                var productVarientIds = masterService.FindProductVarient(x => x.ProductId == product.Id).Select(x => x.Id).ToList();
+                var rmIds = rmUsers.Select(x => x.Id).ToList();
+                var rsmIds = userService.FindUsers(x => rmIds.Contains(x.ParentId)).Select(x => x.Id).ToList();
+                var csmIds = userService.FindUsers(x => rsmIds.Contains(x.ParentId)).Select(x => x.Id).ToList();
+                var manpowers = manpowerService.FindDealerManpowers(x => csmIds.Contains(x.UserId) && x.ProductId == product.Id).ToList();
+                var exitMnapowers = manpowers.Any() ? manpowers.Count(x => x.Profile.DateOfLeaving != null) : 0;
                 var averageEmployee = masterService.FindAverageEmployee(currentDate.AddMonths(-1));
-                var manpowerIds = manpowers.Select(x => x.Id);
-                var actualManpowers = manpowers.Any() ? manpowers.Where(x => x.CompetencyProfileMaps.Any()) : null;
+                var manpowerIds = manpowers.Select(x => x.Id).ToList();
+                var actualManpowers = manpowers.Any() ? manpowers.Where(x => x.CompetencyProfileMaps.Any()).ToList() : null;
                 var targets =
                     targetService.FindTargets(
-                        x => x.MonthId == currentMonth.Id && productVarientIds.Contains(x.ProductVarientId) && manpowerIds.Contains(x.DealerManpowerId));
+                        x => x.MonthId == currentMonth.Id && productVarientIds.Contains(x.ProductVarientId) && manpowerIds.Contains(x.DealerManpowerId)).ToList();
                 productStatList.Add(new ProductStatModel {
                     Product = product.Name,
                     Competency = actualManpowers != null && actualManpowers.Any() ? Math.Round(actualManpowers.Average(x => x.CompetencyProfileMaps.Average(y => y.Score)), 2) : 0,
@@ -115,14 +116,14 @@ namespace DMP.Controllers {
             }
             var currentDate = DateTime.Now;
             var currentMonth = masterService.FindAndCreateMonth(currentDate.ToString("MMMM"), currentDate.Year);
-            var rsmUsers = userService.FindUsers(x => x.ParentId == id );
-            var products = masterService.GetAllProducts().OrderBy(x => x.Id);
+            var rsmUsers = userService.FindUsers(x => x.ParentId == id).ToList();
+            var products = masterService.GetAllProducts().OrderBy(x => x.Id).ToList();
             var trainingLevels = Enumeration.GetAll<TrainingLevel>();
             var reportList = new List<ReportManpowerModel>();
             foreach (var rsm in rsmUsers) {
-                var csmIds = userService.FindUsers(x => x.ParentId == rsm.Id).Select(x => x.Id);
-                var dealerIds = userDealerMapService.FindUserDealerMaps(x => csmIds.Contains(x.UserId)).Select(x => x.DealerId);
-                var targets = manpowerTargetService.FindDealerManpowerTargets(x => dealerIds.Contains(x.DealerId) && csmIds.Contains(x.UserId) && x.MonthId == currentMonth.Id);
+                var csmIds = userService.FindUsers(x => x.ParentId == rsm.Id).Select(x => x.Id).ToList();
+                var dealerIds = userDealerMapService.FindUserDealerMaps(x => csmIds.Contains(x.UserId)).Select(x => x.DealerId).ToList();
+                var targets = manpowerTargetService.FindDealerManpowerTargets(x => dealerIds.Contains(x.DealerId) && csmIds.Contains(x.UserId) && x.MonthId == currentMonth.Id).ToList();
                 var manpowers = manpowerService.FindDealerManpowers(x => csmIds.Contains(x.UserId) && dealerIds.Contains(x.DealerId)).ToList();
                 var targetList = new List<TotalManpower>();
                 foreach (var product in products) {
@@ -148,9 +149,9 @@ namespace DMP.Controllers {
             var productStatList = new List<ProductStatModel>();
             foreach (var product in products) {
                 var productVarientIds = masterService.FindProductVarient(x => x.ProductId == product.Id).Select(x => x.Id);
-                var rsmIds = userService.FindUsers(x => x.ParentId == id).Select(x => x.Id);
-                var csmIds = userService.FindUsers(x => rsmIds.Contains(x.ParentId)).Select(x => x.Id);
-                var manpowers = manpowerService.FindDealerManpowers(x => csmIds.Contains(x.UserId) && x.ProductId == product.Id);
+                var rsmIds = userService.FindUsers(x => x.ParentId == id).Select(x => x.Id).ToList();
+                var csmIds = userService.FindUsers(x => rsmIds.Contains(x.ParentId)).Select(x => x.Id).ToList();
+                var manpowers = manpowerService.FindDealerManpowers(x => csmIds.Contains(x.UserId) && x.ProductId == product.Id).ToList();
                 var exitMnapowers = manpowers.Count(x => x.Profile.DateOfLeaving != null);
                 var averageEmployee = masterService.FindAverageEmployee(currentDate.AddMonths(-1));
                 var manpowerIds = manpowers.Select(x => x.Id);
@@ -188,7 +189,7 @@ namespace DMP.Controllers {
             }
             var currentDate = DateTime.Now;
             var currentMonth = masterService.FindAndCreateMonth(currentDate.ToString("MMMM"), currentDate.Year);
-            var csmUsers = userService.FindUsers(x => x.ParentId == id );
+            var csmUsers = userService.FindUsers(x => x.ParentId == id);
             var products = masterService.GetAllProducts().OrderBy(x => x.Id);
             var trainingLevels = Enumeration.GetAll<TrainingLevel>();
             var reportList = new List<ReportManpowerModel>();
