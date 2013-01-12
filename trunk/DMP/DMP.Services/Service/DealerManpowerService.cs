@@ -48,5 +48,7 @@ namespace DMP.Services.Service {
         public IEnumerable<DealerManpower> FindDealerManpowers(Func<DealerManpower, bool> predicate) {
             return manpowerRepo.Find(predicate).Where(x => x.ObjectInfo.DeletedDate == null);
         }
+
+        
     }
 }

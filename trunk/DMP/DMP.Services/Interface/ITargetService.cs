@@ -20,5 +20,5 @@ namespace DMP.Services.Interface
 
         IEnumerable<Target> FindTargets(Func<Target, bool> predicate);
         void UpdateDsmTarget(int dsmId, int userId, int monthId);
-    }
+        }
 }

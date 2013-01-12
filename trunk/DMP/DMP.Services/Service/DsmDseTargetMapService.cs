@@ -30,8 +30,8 @@ namespace DMP.Services.Service
                         x =>
                         x.DsmId == dsmDseTargetMap.DsmId && x.DseId == dsmDseTargetMap.DseId &&
                         x.UserId == dsmDseTargetMap.UserId && x.MonthId == dsmDseTargetMap.MonthId);
-                if(map==null)
-                mapRepo.Add(dsmDseTargetMap);
+                if (map == null)
+                    mapRepo.Add(dsmDseTargetMap);
             }
             mapRepo.SaveChanges();
         }
@@ -64,6 +64,17 @@ namespace DMP.Services.Service
             return mapRepo.Find(predicate).Where(x => x.ObjectInfo.DeletedDate == null);
         }
 
+        public IEnumerable<DsmDseTargetMap> GetDsmDseTargetMap(IEnumerable<DsmDseTargetMap> dseList)
+        {
+            var dseTargetMaps = new List<DsmDseTargetMap>();
+            foreach (var dse in dseList)
+            {
+                var map = mapRepo.Single(x => x.DseId == dse.DseId && x.MonthId == dse.MonthId && x.UserId == dse.UserId);
+                dseTargetMaps.Add(map);
+            }
+            return dseTargetMaps.GroupBy(x => x.DsmId).Select(x => x.ElementAt(0)).ToList();
 
+
+        }
     }
 }
