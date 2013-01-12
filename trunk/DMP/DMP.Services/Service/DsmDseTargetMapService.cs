@@ -4,27 +4,36 @@ using DMP.Repository;
 using DMP.Services.Interface;
 using System.Linq;
 
-namespace DMP.Services.Service {
-    public class DsmDseTargetMapService : IDsmDseTargetMapService {
+namespace DMP.Services.Service
+{
+    public class DsmDseTargetMapService : IDsmDseTargetMapService
+    {
 
         private readonly IRepository<DsmDseTargetMap> mapRepo;
+        private IMasterService _masterService;
 
-        public DsmDseTargetMapService(IRepository<DsmDseTargetMap> mapRepo) {
+        public DsmDseTargetMapService(IRepository<DsmDseTargetMap> mapRepo, IMasterService masterService)
+        {
             this.mapRepo = mapRepo;
+            _masterService = masterService;
         }
 
-        public DsmDseTargetMap GetDsmDseTargetMap(int id) {
+        public DsmDseTargetMap GetDsmDseTargetMap(int id)
+        {
             return mapRepo.Single(x => x.Id == id);
         }
 
-        public void AddDsmDseTargetMap(IEnumerable<DsmDseTargetMap> maps) {
-            foreach (var dsmDseTargetMap in maps) {
+        public void AddDsmDseTargetMap(IEnumerable<DsmDseTargetMap> maps)
+        {
+            foreach (var dsmDseTargetMap in maps)
+            {
                 mapRepo.Add(dsmDseTargetMap);
             }
             mapRepo.SaveChanges();
         }
 
-        public void UpdateDsmDseTargetMap(DsmDseTargetMap map) {
+        public void UpdateDsmDseTargetMap(DsmDseTargetMap map)
+        {
             var oldMap = GetDsmDseTargetMap(map.Id);
             oldMap.DsmId = map.DsmId;
             oldMap.DseId = map.DseId;
@@ -34,18 +43,23 @@ namespace DMP.Services.Service {
             mapRepo.SaveChanges();
         }
 
-        public void DeleteDsmDseTargetMap(int id) {
+        public void DeleteDsmDseTargetMap(int id)
+        {
             var map = GetDsmDseTargetMap(id);
             map.ObjectInfo.DeletedDate = DateTime.Now;
             mapRepo.SaveChanges();
         }
 
-        public IEnumerable<DsmDseTargetMap> GetAllDsmDseTargetMaps() {
+        public IEnumerable<DsmDseTargetMap> GetAllDsmDseTargetMaps()
+        {
             return mapRepo.GetAll().Where(x => x.ObjectInfo.DeletedDate == null);
         }
 
-        public IEnumerable<DsmDseTargetMap> FindDsmDseTargetMaps(Func<DsmDseTargetMap, bool> predicate) {
+        public IEnumerable<DsmDseTargetMap> FindDsmDseTargetMaps(Func<DsmDseTargetMap, bool> predicate)
+        {
             return mapRepo.Find(predicate).Where(x => x.ObjectInfo.DeletedDate == null);
         }
+
+
     }
 }

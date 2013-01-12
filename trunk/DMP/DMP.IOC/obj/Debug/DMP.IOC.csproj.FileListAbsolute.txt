@@ -28,3 +28,12 @@ D:\WORK\Work\DMP\trunk\DMP\DMP.IOC\bin\Debug\DMP.Services.pdb
 D:\WORK\Work\DMP\trunk\DMP\DMP.IOC\obj\Debug\ResolveAssemblyReference.cache
 D:\WORK\Work\DMP\trunk\DMP\DMP.IOC\obj\Debug\DMP.IOC.dll
 D:\WORK\Work\DMP\trunk\DMP\DMP.IOC\obj\Debug\DMP.IOC.pdb
+E:\code\dmp\DMP\trunk\DMP\DMP.IOC\bin\Debug\DMP.IOC.dll
+E:\code\dmp\DMP\trunk\DMP\DMP.IOC\bin\Debug\DMP.IOC.pdb
+E:\code\dmp\DMP\trunk\DMP\DMP.IOC\bin\Debug\DMP.Repository.dll
+E:\code\dmp\DMP\trunk\DMP\DMP.IOC\bin\Debug\DMP.Services.dll
+E:\code\dmp\DMP\trunk\DMP\DMP.IOC\bin\Debug\DMP.Repository.pdb
+E:\code\dmp\DMP\trunk\DMP\DMP.IOC\bin\Debug\DMP.Services.pdb
+E:\code\dmp\DMP\trunk\DMP\DMP.IOC\obj\Debug\DMP.IOC.csprojResolveAssemblyReference.cache
+E:\code\dmp\DMP\trunk\DMP\DMP.IOC\obj\Debug\DMP.IOC.dll
+E:\code\dmp\DMP\trunk\DMP\DMP.IOC\obj\Debug\DMP.IOC.pdb

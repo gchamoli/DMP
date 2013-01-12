@@ -14,6 +14,7 @@ namespace DMP.Services.Interface {
 
         IEnumerable<DsmDseTargetMap> GetAllDsmDseTargetMaps();
 
-        IEnumerable<DsmDseTargetMap> FindDsmDseTargetMaps(Func<DsmDseTargetMap, bool> predicate);  
+        IEnumerable<DsmDseTargetMap> FindDsmDseTargetMaps(Func<DsmDseTargetMap, bool> predicate);
+        
     }
 }
