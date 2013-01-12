@@ -16,3 +16,9 @@ D:\WORK\Work\DMP\trunk\DMP\DMP.Repository\bin\Debug\DMP.Repository.pdb
 D:\WORK\Work\DMP\trunk\DMP\DMP.Repository\obj\Debug\ResolveAssemblyReference.cache
 D:\WORK\Work\DMP\trunk\DMP\DMP.Repository\obj\Debug\DMP.Repository.dll
 D:\WORK\Work\DMP\trunk\DMP\DMP.Repository\obj\Debug\DMP.Repository.pdb
+E:\code\dmp\DMP\trunk\DMP\DMP.Repository\bin\Debug\DMP.Repository.dll.config
+E:\code\dmp\DMP\trunk\DMP\DMP.Repository\bin\Debug\DMP.Repository.dll
+E:\code\dmp\DMP\trunk\DMP\DMP.Repository\bin\Debug\DMP.Repository.pdb
+E:\code\dmp\DMP\trunk\DMP\DMP.Repository\obj\Debug\DMP.Repository.csprojResolveAssemblyReference.cache
+E:\code\dmp\DMP\trunk\DMP\DMP.Repository\obj\Debug\DMP.Repository.dll
+E:\code\dmp\DMP\trunk\DMP\DMP.Repository\obj\Debug\DMP.Repository.pdb

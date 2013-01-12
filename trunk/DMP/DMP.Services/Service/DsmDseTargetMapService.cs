@@ -10,12 +10,10 @@ namespace DMP.Services.Service
     {
 
         private readonly IRepository<DsmDseTargetMap> mapRepo;
-        private IMasterService _masterService;
 
-        public DsmDseTargetMapService(IRepository<DsmDseTargetMap> mapRepo, IMasterService masterService)
+        public DsmDseTargetMapService(IRepository<DsmDseTargetMap> mapRepo)
         {
             this.mapRepo = mapRepo;
-            _masterService = masterService;
         }
 
         public DsmDseTargetMap GetDsmDseTargetMap(int id)
@@ -27,6 +25,12 @@ namespace DMP.Services.Service
         {
             foreach (var dsmDseTargetMap in maps)
             {
+                var map =
+                    mapRepo.Single(
+                        x =>
+                        x.DsmId == dsmDseTargetMap.DsmId && x.DseId == dsmDseTargetMap.DseId &&
+                        x.UserId == dsmDseTargetMap.UserId && x.MonthId == dsmDseTargetMap.MonthId);
+                if(map==null)
                 mapRepo.Add(dsmDseTargetMap);
             }
             mapRepo.SaveChanges();

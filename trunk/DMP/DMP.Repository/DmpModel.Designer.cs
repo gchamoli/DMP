@@ -8,12 +8,13 @@
 //------------------------------------------------------------------------------
 
 using System;
+using System.ComponentModel;
+using System.Data.EntityClient;
 using System.Data.Objects;
 using System.Data.Objects.DataClasses;
-using System.Data.EntityClient;
-using System.ComponentModel;
-using System.Xml.Serialization;
+using System.Linq;
 using System.Runtime.Serialization;
+using System.Xml.Serialization;
 
 [assembly: EdmSchemaAttribute()]
 #region EDM Relationship Metadata
@@ -503,6 +504,7 @@ namespace DMP.Repository
         private ObjectSet<DsmDseTargetMap> _DsmDseTargetMaps;
 
         #endregion
+
         #region AddTo Methods
     
         /// <summary>
@@ -706,11 +708,11 @@ namespace DMP.Repository
         }
 
         #endregion
+
     }
-    
 
     #endregion
-    
+
     #region Entities
     
     /// <summary>
@@ -741,6 +743,7 @@ namespace DMP.Repository
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -843,6 +846,7 @@ namespace DMP.Repository
         partial void OnDesignationChanged();
 
         #endregion
+
         #region Complex Properties
     
         /// <summary>
@@ -877,6 +881,7 @@ namespace DMP.Repository
         partial void OnObjectInfoChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -903,6 +908,7 @@ namespace DMP.Repository
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -931,6 +937,7 @@ namespace DMP.Repository
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -1033,6 +1040,7 @@ namespace DMP.Repository
         partial void OnDateOfLeavingChanged();
 
         #endregion
+
         #region Complex Properties
     
         /// <summary>
@@ -1067,6 +1075,7 @@ namespace DMP.Repository
         partial void OnObjectInfoChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -1147,6 +1156,7 @@ namespace DMP.Repository
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -1177,6 +1187,7 @@ namespace DMP.Repository
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -1279,6 +1290,7 @@ namespace DMP.Repository
         partial void OnDesignationChanged();
 
         #endregion
+
         #region Complex Properties
     
         /// <summary>
@@ -1313,6 +1325,7 @@ namespace DMP.Repository
         partial void OnObjectInfoChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -1339,6 +1352,7 @@ namespace DMP.Repository
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -1371,6 +1385,7 @@ namespace DMP.Repository
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -1497,6 +1512,7 @@ namespace DMP.Repository
         partial void OnDescriptionChanged();
 
         #endregion
+
         #region Complex Properties
     
         /// <summary>
@@ -1531,6 +1547,7 @@ namespace DMP.Repository
         partial void OnObjectInfoChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -1611,6 +1628,7 @@ namespace DMP.Repository
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -1641,6 +1659,7 @@ namespace DMP.Repository
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -1743,6 +1762,7 @@ namespace DMP.Repository
         partial void OnDescriptionChanged();
 
         #endregion
+
         #region Complex Properties
     
         /// <summary>
@@ -1777,6 +1797,7 @@ namespace DMP.Repository
         partial void OnObjectInfoChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -1885,6 +1906,7 @@ namespace DMP.Repository
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -1921,6 +1943,7 @@ namespace DMP.Repository
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -2095,6 +2118,7 @@ namespace DMP.Repository
         partial void OnProductIdChanged();
 
         #endregion
+
         #region Complex Properties
     
         /// <summary>
@@ -2129,6 +2153,7 @@ namespace DMP.Repository
         partial void OnObjectInfoChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -2433,6 +2458,7 @@ namespace DMP.Repository
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -2469,6 +2495,7 @@ namespace DMP.Repository
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -2643,6 +2670,7 @@ namespace DMP.Repository
         partial void OnProductIdChanged();
 
         #endregion
+
         #region Complex Properties
     
         /// <summary>
@@ -2677,6 +2705,7 @@ namespace DMP.Repository
         partial void OnObjectInfoChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -2833,6 +2862,7 @@ namespace DMP.Repository
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -2867,6 +2897,7 @@ namespace DMP.Repository
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -3017,6 +3048,7 @@ namespace DMP.Repository
         partial void OnDescriptionChanged();
 
         #endregion
+
         #region Complex Properties
     
         /// <summary>
@@ -3051,6 +3083,7 @@ namespace DMP.Repository
         partial void OnObjectInfoChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -3131,6 +3164,7 @@ namespace DMP.Repository
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -3165,6 +3199,7 @@ namespace DMP.Repository
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -3291,6 +3326,7 @@ namespace DMP.Repository
         partial void OnMonthIdChanged();
 
         #endregion
+
         #region Complex Properties
     
         /// <summary>
@@ -3325,6 +3361,7 @@ namespace DMP.Repository
         partial void OnObjectInfoChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -3427,6 +3464,7 @@ namespace DMP.Repository
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -3457,6 +3495,7 @@ namespace DMP.Repository
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -3559,6 +3598,7 @@ namespace DMP.Repository
         partial void OnDealerManpowerIdChanged();
 
         #endregion
+
         #region Complex Properties
     
         /// <summary>
@@ -3593,6 +3633,7 @@ namespace DMP.Repository
         partial void OnObjectInfoChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -3635,6 +3676,7 @@ namespace DMP.Repository
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -3667,6 +3709,7 @@ namespace DMP.Repository
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -3793,6 +3836,7 @@ namespace DMP.Repository
         partial void OnNumberOfEmployeeChanged();
 
         #endregion
+
         #region Complex Properties
     
         /// <summary>
@@ -3827,6 +3871,7 @@ namespace DMP.Repository
         partial void OnObjectInfoChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -3941,6 +3986,7 @@ namespace DMP.Repository
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -3973,6 +4019,7 @@ namespace DMP.Repository
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -4099,6 +4146,7 @@ namespace DMP.Repository
         partial void OnIsCommonChanged();
 
         #endregion
+
         #region Complex Properties
     
         /// <summary>
@@ -4133,6 +4181,7 @@ namespace DMP.Repository
         partial void OnObjectInfoChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -4241,6 +4290,7 @@ namespace DMP.Repository
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -4269,6 +4319,7 @@ namespace DMP.Repository
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -4347,6 +4398,7 @@ namespace DMP.Repository
         partial void OnDescriptionChanged();
 
         #endregion
+
         #region Complex Properties
     
         /// <summary>
@@ -4381,6 +4433,7 @@ namespace DMP.Repository
         partial void OnObjectInfoChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -4407,6 +4460,7 @@ namespace DMP.Repository
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -4437,6 +4491,7 @@ namespace DMP.Repository
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -4539,6 +4594,7 @@ namespace DMP.Repository
         partial void OnDescriptionChanged();
 
         #endregion
+
         #region Complex Properties
     
         /// <summary>
@@ -4573,6 +4629,7 @@ namespace DMP.Repository
         partial void OnObjectInfoChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -4637,6 +4694,7 @@ namespace DMP.Repository
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -4665,6 +4723,7 @@ namespace DMP.Repository
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -5103,6 +5162,7 @@ namespace DMP.Repository
         partial void OnAreaRepresentingChanged();
 
         #endregion
+
         #region Complex Properties
     
         /// <summary>
@@ -5137,6 +5197,7 @@ namespace DMP.Repository
         partial void OnObjectInfoChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -5179,6 +5240,7 @@ namespace DMP.Repository
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -5207,6 +5269,7 @@ namespace DMP.Repository
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -5285,6 +5348,7 @@ namespace DMP.Repository
         partial void OnDescriptionChanged();
 
         #endregion
+
         #region Complex Properties
     
         /// <summary>
@@ -5319,6 +5383,7 @@ namespace DMP.Repository
         partial void OnObjectInfoChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -5389,6 +5454,7 @@ namespace DMP.Repository
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -5425,6 +5491,7 @@ namespace DMP.Repository
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -5599,6 +5666,7 @@ namespace DMP.Repository
         partial void OnDealerIdChanged();
 
         #endregion
+
         #region Complex Properties
     
         /// <summary>
@@ -5633,6 +5701,7 @@ namespace DMP.Repository
         partial void OnObjectInfoChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -5713,6 +5782,7 @@ namespace DMP.Repository
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -5745,6 +5815,7 @@ namespace DMP.Repository
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -5871,6 +5942,7 @@ namespace DMP.Repository
         partial void OnSpecialSchemeIdChanged();
 
         #endregion
+
         #region Complex Properties
     
         /// <summary>
@@ -5905,6 +5977,7 @@ namespace DMP.Repository
         partial void OnObjectInfoChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -5947,6 +6020,7 @@ namespace DMP.Repository
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -5977,6 +6051,7 @@ namespace DMP.Repository
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -6079,6 +6154,7 @@ namespace DMP.Repository
         partial void OnDescriptionChanged();
 
         #endregion
+
         #region Complex Properties
     
         /// <summary>
@@ -6113,6 +6189,7 @@ namespace DMP.Repository
         partial void OnObjectInfoChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -6177,6 +6254,7 @@ namespace DMP.Repository
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -6215,6 +6293,7 @@ namespace DMP.Repository
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -6413,6 +6492,7 @@ namespace DMP.Repository
         partial void OnProductVarientIdChanged();
 
         #endregion
+
         #region Complex Properties
     
         /// <summary>
@@ -6447,6 +6527,7 @@ namespace DMP.Repository
         partial void OnObjectInfoChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -6565,6 +6646,7 @@ namespace DMP.Repository
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -6597,6 +6679,7 @@ namespace DMP.Repository
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -6723,6 +6806,7 @@ namespace DMP.Repository
         partial void OnDesignationChanged();
 
         #endregion
+
         #region Complex Properties
     
         /// <summary>
@@ -6757,6 +6841,7 @@ namespace DMP.Repository
         partial void OnObjectInfoChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -6783,6 +6868,7 @@ namespace DMP.Repository
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -6813,6 +6899,7 @@ namespace DMP.Repository
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -6939,6 +7026,7 @@ namespace DMP.Repository
         partial void OnLastTrainingDateChanged();
 
         #endregion
+
         #region Complex Properties
     
         /// <summary>
@@ -6973,6 +7061,7 @@ namespace DMP.Repository
         partial void OnObjectInfoChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -7053,6 +7142,7 @@ namespace DMP.Repository
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -7087,6 +7177,7 @@ namespace DMP.Repository
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -7237,6 +7328,7 @@ namespace DMP.Repository
         partial void OnDescriptionChanged();
 
         #endregion
+
         #region Complex Properties
     
         /// <summary>
@@ -7271,6 +7363,7 @@ namespace DMP.Repository
         partial void OnObjectInfoChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -7385,6 +7478,7 @@ namespace DMP.Repository
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -7415,6 +7509,7 @@ namespace DMP.Repository
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -7517,6 +7612,7 @@ namespace DMP.Repository
         partial void OnUserIdChanged();
 
         #endregion
+
         #region Complex Properties
     
         /// <summary>
@@ -7551,6 +7647,7 @@ namespace DMP.Repository
         partial void OnObjectInfoChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -7631,6 +7728,7 @@ namespace DMP.Repository
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -7661,6 +7759,7 @@ namespace DMP.Repository
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -7763,6 +7862,7 @@ namespace DMP.Repository
         partial void OnUserIdChanged();
 
         #endregion
+
         #region Complex Properties
     
         /// <summary>
@@ -7797,6 +7897,7 @@ namespace DMP.Repository
         partial void OnObjectInfoChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -7877,9 +7978,11 @@ namespace DMP.Repository
         }
 
         #endregion
+
     }
 
     #endregion
+
     #region ComplexTypes
     
     /// <summary>
@@ -7906,6 +8009,7 @@ namespace DMP.Repository
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -7981,8 +8085,10 @@ namespace DMP.Repository
         partial void OnDeletedDateChanged();
 
         #endregion
+
     }
 
     #endregion
+
     
 }

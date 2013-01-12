@@ -599,6 +599,14 @@ namespace DMP.Controllers
             var currentDate = DateTime.Now;
             var currentMonth = masterService.FindAndCreateMonth(currentDate.ToString("MMMM"), currentDate.Year);
             var targets = targetService.FindTargets(x => x.MonthId == currentMonth.Id && model.DseIds.Contains(x.Id));
+            if (model.DseIds != null && model.DseIds.Any())
+            {
+                var user = userService.GetUserByUserName(User.Identity.Name);
+                var dsmDseTargetMaps = model.DseIds.Select(x => new DsmDseTargetMap { MonthId = currentMonth.Id, DseId = x, DsmId = model.DsmId, UserId = user.Id });
+                dsmDseTargetMapService.AddDsmDseTargetMap(dsmDseTargetMaps);
+                targetService.UpdateDsmTarget(model.DsmId,user.Id,currentMonth.Id);
+
+            }
             if (targets.Any())
             {
                 var tempdata = targets.GroupBy(x => x.ProductVarientId);

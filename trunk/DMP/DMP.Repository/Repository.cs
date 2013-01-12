@@ -34,7 +34,7 @@ namespace DMP.Repository {
         }
 
         public TEntity Single(Func<TEntity, bool> predicate) {
-            return dbSet.Single(predicate);
+            return dbSet.SingleOrDefault(predicate);
         }
 
         public TEntity First(Func<TEntity, bool> predicate) {
