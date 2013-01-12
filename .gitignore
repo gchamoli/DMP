@@ -1,3 +1,7 @@
 /trunk/DMP/_ReSharper.DMP/*
 
 /trunk/DMP/DMP.Tests/*
+/trunk/DMP/DMP/bin
+/trunk/DMP/DMP/bin
+/trunk/DMP/DMP/obj
+/trunk/DMP/DMP.Services/bin
