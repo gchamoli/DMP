@@ -466,7 +466,7 @@ namespace DMP.Controllers
                 CsmId = csm.Id,
                 MonthId = month.Id,
                 DealerId = id,
-                Targets = targetList.OrderBy(x=>x.Designation).ThenBy(x=>x.Manpower),
+                Targets = targetList,
                 ProductVarients = products.Select(
                     x =>
                     new ProductVarients
@@ -571,21 +571,21 @@ namespace DMP.Controllers
         #region DSM-DSE Mapping
 
         [Authorize(Roles = "CSM")]
-        public PartialViewResult DsmMapping(int id,int dealerId)
+        public PartialViewResult DsmMapping(int id)
         {
             var dsm = dealerManpowerService.GetDealerManpower(id);
             var csm = userService.GetUserByUserName(User.Identity.Name);
             var currentDate = DateTime.Now;
-            var dseList = dealerManpowerService.FindDealerManpowers(x =>x.DealerId==dealerId && x.UserId == csm.Id && x.Type.ToLower() == "dse");
+            var dseList = dealerManpowerService.FindDealerManpowers(x => x.UserId == csm.Id && x.Type.ToLower() == "dse");
             var currentMonth = masterService.FindAndCreateMonth(currentDate.ToString("MMMM"), currentDate.Year);
             var maps = dsmDseTargetMapService.FindDsmDseTargetMaps(x => x.MonthId == currentMonth.Id && x.UserId == csm.Id).ToList();
-            var list = new List<KeyValuePair<KeyValuePair<int,bool>, string>>();
+            var list = new List<KeyValuePair<KeyValuePair<int, bool>, string>>();
             if (maps.Any())
             {
                 var dseIds = maps.Where(x => x.DsmId == id).Select(x => x.DseId);
                 if (dseIds.Any())
                 {
-                    list.AddRange(dseList.Where(x => dseIds.Contains(x.Id)).Select(x => new KeyValuePair<KeyValuePair<int,bool>, string>(new KeyValuePair<int, bool>(x.Id,true), x.Name)));
+                    list.AddRange(dseList.Where(x => dseIds.Contains(x.Id)).Select(x => new KeyValuePair<KeyValuePair<int, bool>, string>(new KeyValuePair<int, bool>(x.Id, true), x.Name)));
                 }
                 list.AddRange(dseList.Where(x => !maps.Select(y => y.DseId).Contains(x.Id)).Select(x => new KeyValuePair<KeyValuePair<int, bool>, string>(new KeyValuePair<int, bool>(x.Id, false), x.Name)));
             }
@@ -612,7 +612,7 @@ namespace DMP.Controllers
             {
                 var user = userService.GetUserByUserName(User.Identity.Name);
                 var dsmDseTargetMaps = model.DseIds.Select(x => new DsmDseTargetMap { MonthId = currentMonth.Id, DseId = x, DsmId = model.DsmId, UserId = user.Id });
-                dsmDseTargetMapService.AddDsmDseTargetMap(dsmDseTargetMaps);
+                dsmDseTargetMapService.UpdateDsmDseTargetMap(dsmDseTargetMaps, dsmId: model.DsmId, userId: user.Id, monthId: currentMonth.Id);
                 targetService.UpdateDsmTarget(model.DsmId, user.Id, currentMonth.Id);
 
             }

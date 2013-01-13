@@ -79,5 +79,29 @@ namespace DMP.Services.Service
 
 
         }
+
+        public void UpdateDsmDseTargetMap(IEnumerable<DsmDseTargetMap> dsmDseTargetMaps,int userId=0 ,int monthId=0,int dsmId=0,int dseId=0)
+        {
+            var dseTargetMaps = mapRepo.Fetch().Where(x => (dsmId == 0 || x.DsmId == dsmId) && (monthId == 0 || x.MonthId == monthId) && (userId == 0 || x.UserId == userId) && (dseId == 0 || x.DseId == dseId)).ToList();
+            var mapsToBeAdded =
+                dsmDseTargetMaps.Where(
+                    x =>
+                    !dseTargetMaps.Any(
+                        y => y.DsmId == x.DsmId && y.DseId == x.DseId && y.MonthId == x.MonthId && y.UserId == x.UserId));
+            var mapsToBeDeleted =
+                dseTargetMaps.Where(
+                    x =>
+                    !dsmDseTargetMaps.Any(
+                        y => y.DsmId == x.DsmId && y.DseId == x.DseId && y.MonthId == x.MonthId && y.UserId == x.UserId));
+            foreach (var map in mapsToBeAdded)
+            {
+                mapRepo.Add(map);
+            }
+            foreach (var map in mapsToBeDeleted)
+            {
+                mapRepo.Delete(map);
+            }
+            mapRepo.SaveChanges();
+        }
     }
 }

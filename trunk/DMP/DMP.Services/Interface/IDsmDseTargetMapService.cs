@@ -17,5 +17,6 @@ namespace DMP.Services.Interface {
         IEnumerable<DsmDseTargetMap> FindDsmDseTargetMaps(Func<DsmDseTargetMap, bool> predicate);
 
         IEnumerable<DsmDseTargetMap> GetDsmDseTargetMap(IEnumerable<DsmDseTargetMap> dseList);
+        void UpdateDsmDseTargetMap(IEnumerable<DsmDseTargetMap> dsmDseTargetMaps, int userId = 0, int monthId = 0, int dsmId = 0, int dseId = 0);
     }
 }

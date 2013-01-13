@@ -3,62 +3,61 @@
 <table class="table table-striped table-bordered">
     <thead>
         <tr>
-            <th colspan=@(Model.Products.Count() * 2 + 6) class="head1">
-                Manpower - Plan Vs Actual
+            <th colspan=@(Model.Products.Count() * 2 + 6) class="head1">Manpower - Plan Vs Actual
             </th>
         </tr>
         <tr>
-            @if (Model.ReportManpowers.Any() && Model.ReportManpowers.First().User != null) {
-                <th class="head2">
-                </th>
+            @if (Model.ReportManpowers.Any() && Model.ReportManpowers.First().User != null)
+            {
+                <th class="head2"></th>
             }
-            @foreach (var product in Model.Products) {
+            @foreach (var product in Model.Products)
+            {
                 <th colspan="2" class="head2">@product
                 </th>
             }
-            <th colspan="2" class="head2">
-                Total
+            <th colspan="2" class="head2">Total
             </th>
-            <th colspan="3" class="head2">
-                DDC Training
+            <th colspan="3" class="head2">DDC Training
             </th>
         </tr>
         <tr>
-            @if (Model.ReportManpowers.Any() && Model.ReportManpowers.First().User != null) {
-                <th class="head3">
+            @if (Model.ReportManpowers.Any() && Model.ReportManpowers.First().User != null)
+            {
+                <th class="head3"></th>
+            }
+            @foreach (var product in Model.Products)
+            {
+                <th class="head3">Plan
+                </th>
+                <th class="head3">Actual
                 </th>
             }
-            @foreach (var product in Model.Products) {
-                <th class="head3">
-                    Plan
-                </th>
-                <th class="head3">
-                    Actual
-                </th>
-            }
-            <th class="head3">
-                Plan
+            <th class="head3">Plan
             </th>
-            <th class="head3">
-                Actual
+            <th class="head3">Actual
             </th>
-            @foreach (var level in Model.TrainingLevels) {
+            @foreach (var level in Model.TrainingLevels)
+            {
                 if (@level != "None")
                 {       <th class="head3">@level
-                     </th>
+                </th>
                 }
             }
         </tr>
     </thead>
     <tbody>
-        @foreach (var reportItem in Model.ReportManpowers) {
+        @foreach (var reportItem in Model.ReportManpowers)
+        {
             <tr>
-                @if (reportItem.User != null) {
+                @if (reportItem.User != null)
+                {
                     <td>
                         <a href=@reportItem.UserUrl class="user">@reportItem.User</a>
                     </td> 
                 }
-                @foreach (var plan in reportItem.Manpowers) {
+                @foreach (var plan in reportItem.Manpowers)
+                {
                     <td class="data1">@plan.Plan
                     </td>
                     <td class="data1">@plan.Actual
@@ -68,11 +67,13 @@
                 </td>
                 <td class="data1">@reportItem.Manpowers.Sum(x => x.Actual)
                 </td>
-                @foreach (var level in reportItem.TrainingLevels) {
-                   if (@level.Level != "None")
+                @foreach (var level in reportItem.TrainingLevels)
                 {
-                     <td class="data1">@level.LevelCount
+                    if (@level.Level != "None")
+                    {
+                    <td class="data1">@level.LevelCount
                     </td>
+                    }
                 }
             </tr>
         }
