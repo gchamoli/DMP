@@ -56,6 +56,7 @@
                 contentType: 'application/json; charset=utf-8',
                 success: function (data) {
                     if (data.success) {
+                        location.reload(true);
                         //                                            ko.mapping.updateFromJS(viewModel.Manpower, ko.mapping.toJS(data));
                         //                                            viewModel.resetManpower();
                     }
@@ -107,7 +108,7 @@
         {{/each}}
         <td>
             {{if HasMap}}
-                <a href="/Dealer/DsmMapping/${ManpowerId}" class="linkMap">Map DSE</a>
+                <a href="/Dealer/DsmMapping?id=${ManpowerId}&dealerId=@Model.DealerId" class="linkMap">Map DSE</a>
             {{/if}}
         </td>
     </tr>

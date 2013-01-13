@@ -466,7 +466,7 @@ namespace DMP.Controllers
                 CsmId = csm.Id,
                 MonthId = month.Id,
                 DealerId = id,
-                Targets = targetList,
+                Targets = targetList.OrderBy(x=>x.Designation).ThenBy(x=>x.Manpower),
                 ProductVarients = products.Select(
                     x =>
                     new ProductVarients
@@ -571,12 +571,12 @@ namespace DMP.Controllers
         #region DSM-DSE Mapping
 
         [Authorize(Roles = "CSM")]
-        public PartialViewResult DsmMapping(int id)
+        public PartialViewResult DsmMapping(int id,int dealerId)
         {
             var dsm = dealerManpowerService.GetDealerManpower(id);
             var csm = userService.GetUserByUserName(User.Identity.Name);
             var currentDate = DateTime.Now;
-            var dseList = dealerManpowerService.FindDealerManpowers(x => x.UserId == csm.Id && x.Type.ToLower() == "dse");
+            var dseList = dealerManpowerService.FindDealerManpowers(x =>x.DealerId==dealerId && x.UserId == csm.Id && x.Type.ToLower() == "dse");
             var currentMonth = masterService.FindAndCreateMonth(currentDate.ToString("MMMM"), currentDate.Year);
             var maps = dsmDseTargetMapService.FindDsmDseTargetMaps(x => x.MonthId == currentMonth.Id && x.UserId == csm.Id).ToList();
             var list = new List<KeyValuePair<KeyValuePair<int,bool>, string>>();

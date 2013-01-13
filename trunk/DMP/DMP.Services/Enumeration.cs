@@ -22,7 +22,7 @@ namespace DMP.Services {
     }
 
     public enum TrainingLevel {
-        A = 0,
+        None = 0, A = 1,
         B, C
     }
 
