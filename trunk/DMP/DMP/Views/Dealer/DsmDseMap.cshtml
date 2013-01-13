@@ -1,4 +1,4 @@
-﻿@model DMP.ModelsView.DsmDseMapViewModel
+﻿@model DMP.ModelsView.DseDsmMapViewModel
 <link href="../../Assets/plugins/chosen/chosen.css" rel="stylesheet" type="text/css" />
 <script src="../../Assets/plugins/chosen/chosen.jquery.min.js" type="text/javascript"></script>
 <style>
@@ -65,7 +65,22 @@
         <div style="width: 100%">
             @Html.HiddenFor(x => x.DsmId)
             <div>
-                @Html.DropDownListFor(x => x.DseIds, new SelectList(Model.DseList, "Key", "Value"), new { @multiple = "multiple", @id = "ddlDse", @class = "ddl" })
+                <select id="ddlDse" class="ddl chzn-done" name="DseIds" multiple="multiple">
+                @foreach(var item in Model.DseList)
+                {
+
+                    if (item.Key.Value)
+                    {
+                          <option value=@item.Key.Key selected="selected">@item.Value</option>
+                    }
+                    else
+                    {
+                           <option value=@item.Key.Key>@item.Value</option>
+                    
+                    }
+                    
+                }
+            </select>
             </div>
             <div>
                 <input type="submit" value="Save" class="btn btn-primary" />
