@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, and Azure
 -- --------------------------------------------------
--- Date Created: 01/12/2013 16:33:57
+-- Date Created: 01/14/2013 13:50:01
 -- Generated from EDMX file: D:\WORK\Work\DMP\trunk\DMP\DMP.Repository\DmpModel.edmx
 -- --------------------------------------------------
 
@@ -110,6 +110,12 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_ProductVarientTarget]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Targets] DROP CONSTRAINT [FK_ProductVarientTarget];
 GO
+IF OBJECT_ID(N'[dbo].[FK_MonthDsmDseTargetMap]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[DsmDseTargetMaps] DROP CONSTRAINT [FK_MonthDsmDseTargetMap];
+GO
+IF OBJECT_ID(N'[dbo].[FK_UserDsmDseTargetMap]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[DsmDseTargetMaps] DROP CONSTRAINT [FK_UserDsmDseTargetMap];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
@@ -186,6 +192,9 @@ IF OBJECT_ID(N'[dbo].[ManpowerSalaries]', 'U') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[SpecialSchemeIncentives]', 'U') IS NOT NULL
     DROP TABLE [dbo].[SpecialSchemeIncentives];
+GO
+IF OBJECT_ID(N'[dbo].[DsmDseTargetMaps]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[DsmDseTargetMaps];
 GO
 
 -- --------------------------------------------------
@@ -515,6 +524,20 @@ CREATE TABLE [dbo].[SpecialSchemeIncentives] (
 );
 GO
 
+-- Creating table 'DsmDseTargetMaps'
+CREATE TABLE [dbo].[DsmDseTargetMaps] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [DsmId] int  NOT NULL,
+    [DseId] int  NOT NULL,
+    [MonthId] int  NOT NULL,
+    [UserId] int  NOT NULL,
+    [Description] nvarchar(max)  NULL,
+    [ObjectInfo_CreatedDate] datetime  NOT NULL,
+    [ObjectInfo_ModifiedDate] datetime  NOT NULL,
+    [ObjectInfo_DeletedDate] datetime  NULL
+);
+GO
+
 -- --------------------------------------------------
 -- Creating all PRIMARY KEY constraints
 -- --------------------------------------------------
@@ -660,6 +683,12 @@ GO
 -- Creating primary key on [Id] in table 'SpecialSchemeIncentives'
 ALTER TABLE [dbo].[SpecialSchemeIncentives]
 ADD CONSTRAINT [PK_SpecialSchemeIncentives]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'DsmDseTargetMaps'
+ALTER TABLE [dbo].[DsmDseTargetMaps]
+ADD CONSTRAINT [PK_DsmDseTargetMaps]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
@@ -1099,6 +1128,34 @@ ADD CONSTRAINT [FK_ProductVarientTarget]
 CREATE INDEX [IX_FK_ProductVarientTarget]
 ON [dbo].[Targets]
     ([ProductVarientId]);
+GO
+
+-- Creating foreign key on [MonthId] in table 'DsmDseTargetMaps'
+ALTER TABLE [dbo].[DsmDseTargetMaps]
+ADD CONSTRAINT [FK_MonthDsmDseTargetMap]
+    FOREIGN KEY ([MonthId])
+    REFERENCES [dbo].[Months]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_MonthDsmDseTargetMap'
+CREATE INDEX [IX_FK_MonthDsmDseTargetMap]
+ON [dbo].[DsmDseTargetMaps]
+    ([MonthId]);
+GO
+
+-- Creating foreign key on [UserId] in table 'DsmDseTargetMaps'
+ALTER TABLE [dbo].[DsmDseTargetMaps]
+ADD CONSTRAINT [FK_UserDsmDseTargetMap]
+    FOREIGN KEY ([UserId])
+    REFERENCES [dbo].[Users]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_UserDsmDseTargetMap'
+CREATE INDEX [IX_FK_UserDsmDseTargetMap]
+ON [dbo].[DsmDseTargetMaps]
+    ([UserId]);
 GO
 
 -- --------------------------------------------------

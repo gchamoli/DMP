@@ -30,6 +30,7 @@
     <EntitySet Name="UserRegionMaps" EntityType="DmpModel.Store.UserRegionMaps" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="ManpowerSalaries" EntityType="DmpModel.Store.ManpowerSalaries" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="SpecialSchemeIncentives" EntityType="DmpModel.Store.SpecialSchemeIncentives" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="DsmDseTargetMaps" EntityType="DmpModel.Store.DsmDseTargetMaps" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="FK_DealerDealerManpower" Association="DmpModel.Store.FK_DealerDealerManpower">
       <End Role="Dealer" EntitySet="Dealers" />
       <End Role="DealerManpower" EntitySet="DealerManpowers" />
@@ -153,6 +154,14 @@
     <AssociationSet Name="ProductVarientTarget" Association="DmpModel.Store.ProductVarientTarget">
       <End Role="ProductVarient" EntitySet="ProductVarients" />
       <End Role="Target" EntitySet="Targets" />
+    </AssociationSet>
+    <AssociationSet Name="MonthDsmDseTargetMap" Association="DmpModel.Store.MonthDsmDseTargetMap">
+      <End Role="Month" EntitySet="Months" />
+      <End Role="DsmDseTargetMap" EntitySet="DsmDseTargetMaps" />
+    </AssociationSet>
+    <AssociationSet Name="UserDsmDseTargetMap" Association="DmpModel.Store.UserDsmDseTargetMap">
+      <End Role="User" EntitySet="Users" />
+      <End Role="DsmDseTargetMap" EntitySet="DsmDseTargetMaps" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="DealerManpowers">
@@ -477,6 +486,20 @@
     <Property Name="ObjectInfo_ModifiedDate" Type="datetime" Nullable="false" />
     <Property Name="ObjectInfo_DeletedDate" Type="datetime" Nullable="true" />
     <Property Name="SpecialSchemeId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DsmDseTargetMaps">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DsmId" Type="int" Nullable="false" />
+    <Property Name="DseId" Type="int" Nullable="false" />
+    <Property Name="MonthId" Type="int" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="ObjectInfo_CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="ObjectInfo_ModifiedDate" Type="datetime" Nullable="false" />
+    <Property Name="ObjectInfo_DeletedDate" Type="datetime" Nullable="true" />
   </EntityType>
   <Association Name="FK_DealerDealerManpower">
     <End Role="Dealer" Type="DmpModel.Store.Dealers" Multiplicity="1" />
@@ -850,6 +873,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="MonthDsmDseTargetMap">
+    <End Role="Month" Type="DmpModel.Store.Months" Multiplicity="1" />
+    <End Role="DsmDseTargetMap" Type="DmpModel.Store.DsmDseTargetMaps" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Month">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DsmDseTargetMap">
+        <PropertyRef Name="MonthId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserDsmDseTargetMap">
+    <End Role="User" Type="DmpModel.Store.Users" Multiplicity="1" />
+    <End Role="DsmDseTargetMap" Type="DmpModel.Store.DsmDseTargetMaps" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DsmDseTargetMap">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -1003,6 +1050,15 @@
             <End Role="ProductVarient" EntitySet="ProductVarients" />
             <End Role="Target" EntitySet="Targets" />
           </AssociationSet>
+          <EntitySet Name="DsmDseTargetMaps" EntityType="DmpModel.DsmDseTargetMap" />
+          <AssociationSet Name="MonthDsmDseTargetMap" Association="DmpModel.MonthDsmDseTargetMap">
+            <End Role="Month" EntitySet="Months" />
+            <End Role="DsmDseTargetMap" EntitySet="DsmDseTargetMaps" />
+          </AssociationSet>
+          <AssociationSet Name="UserDsmDseTargetMap" Association="DmpModel.UserDsmDseTargetMap">
+            <End Role="User" EntitySet="Users" />
+            <End Role="DsmDseTargetMap" EntitySet="DsmDseTargetMaps" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="DealerManpower">
           <Key>
@@ -1106,6 +1162,7 @@
           <Property Name="ObjectInfo" Type="DmpModel.ObjectInfo" Nullable="false" />
           <NavigationProperty Name="UserDealerMaps" Relationship="DmpModel.UserUserDealerMap" FromRole="User" ToRole="UserDealerMap" />
           <NavigationProperty Name="UserRegionMaps" Relationship="DmpModel.UserUserRegionMap" FromRole="User" ToRole="UserRegionMap" />
+          <NavigationProperty Name="DsmDseTargetMaps" Relationship="DmpModel.UserDsmDseTargetMap" FromRole="User" ToRole="DsmDseTargetMap" />
         </EntityType>
         <EntityType Name="Month">
           <Key>
@@ -1121,6 +1178,7 @@
           <NavigationProperty Name="SpecialSchemes" Relationship="DmpModel.MonthSpecialScheme" FromRole="Month" ToRole="SpecialScheme" />
           <NavigationProperty Name="Incentives" Relationship="DmpModel.MonthIncentive" FromRole="Month" ToRole="Incentive" />
           <Property Type="Int32" Name="NumberOfEmployee" Nullable="false" />
+          <NavigationProperty Name="DsmDseTargetMaps" Relationship="DmpModel.MonthDsmDseTargetMap" FromRole="Month" ToRole="DsmDseTargetMap" />
         </EntityType>
         <EntityType Name="Target">
           <Key>
@@ -1700,6 +1758,44 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="DsmDseTargetMap">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="DsmId" Nullable="false" />
+          <Property Type="Int32" Name="DseId" Nullable="false" />
+          <NavigationProperty Name="Month" Relationship="DmpModel.MonthDsmDseTargetMap" FromRole="DsmDseTargetMap" ToRole="Month" />
+          <Property Type="Int32" Name="MonthId" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="DmpModel.UserDsmDseTargetMap" FromRole="DsmDseTargetMap" ToRole="User" />
+          <Property Type="Int32" Name="UserId" Nullable="false" />
+          <Property Type="String" Name="Description" Nullable="true" />
+          <Property Name="ObjectInfo" Type="DmpModel.ObjectInfo" Nullable="false" />
+        </EntityType>
+        <Association Name="MonthDsmDseTargetMap">
+          <End Type="DmpModel.Month" Role="Month" Multiplicity="1" />
+          <End Type="DmpModel.DsmDseTargetMap" Role="DsmDseTargetMap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Month">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DsmDseTargetMap">
+              <PropertyRef Name="MonthId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="UserDsmDseTargetMap">
+          <End Type="DmpModel.User" Role="User" Multiplicity="1" />
+          <End Type="DmpModel.DsmDseTargetMap" Role="DsmDseTargetMap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DsmDseTargetMap">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2099,6 +2195,23 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="DsmDseTargetMaps">
+      <EntityTypeMapping TypeName="IsTypeOf(DmpModel.DsmDseTargetMap)">
+        <MappingFragment StoreEntitySet="DsmDseTargetMaps">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="DsmId" ColumnName="DsmId" />
+          <ScalarProperty Name="DseId" ColumnName="DseId" />
+          <ScalarProperty Name="MonthId" ColumnName="MonthId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ComplexProperty Name="ObjectInfo" TypeName="DmpModel.ObjectInfo">
+            <ScalarProperty Name="CreatedDate" ColumnName="ObjectInfo_CreatedDate" />
+            <ScalarProperty Name="ModifiedDate" ColumnName="ObjectInfo_ModifiedDate" />
+            <ScalarProperty Name="DeletedDate" ColumnName="ObjectInfo_DeletedDate" />
+          </ComplexProperty>
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <AssociationSetMapping Name="DealerManpowerProfile" TypeName="DmpModel.DealerManpowerProfile" StoreEntitySet="DealerManpowers">
       <EndProperty Name="Profile">
         <ScalarProperty Name="Id" ColumnName="Profile_Id" />
@@ -2142,20 +2255,20 @@
         <EntityTypeShape EntityType="DmpModel.Region" Width="2.25" PointX="4" PointY="1.875" Height="1.9802864583333339" />
         <EntityTypeShape EntityType="DmpModel.State" Width="1.5" PointX="1.5" PointY="2.375" Height="2.3648893229166656" />
         <EntityTypeShape EntityType="DmpModel.User" Width="1.875" PointX="2" PointY="15.125" Height="3.1340950520833353" />
-        <EntityTypeShape EntityType="DmpModel.Month" Width="1.5" PointX="7.25" PointY="4.375" Height="2.9417936197916665" />
+        <EntityTypeShape EntityType="DmpModel.Month" Width="1.875" PointX="7.25" PointY="4.375" Height="2.9417936197916665" />
         <EntityTypeShape EntityType="DmpModel.Target" Width="2" PointX="7.875" PointY="7.75" Height="3.1340950520833335" />
         <EntityTypeShape EntityType="DmpModel.Profile" Width="2.125" PointX="13" PointY="12.625" Height="4.672506510416671" />
         <EntityTypeShape EntityType="DmpModel.ProductCategory" Width="1.875" PointX="18" PointY="6.125" Height="1.9802864583333335" />
         <EntityTypeShape EntityType="DmpModel.Training" Width="2.75" PointX="19.25" PointY="12.125" Height="2.1725878906249996" />
         <EntityTypeShape EntityType="DmpModel.DealerManpowerTargets" Width="2" PointX="2.25" PointY="11.375" Height="2.5571907552083317" />
         <AssociationConnector Association="DmpModel.FK_DealerDealerManpower" >
-          <ConnectorPoint PointX="6.0596154716606252" PointY="10.1244921875" />
-          <ConnectorPoint PointX="6.0596154716606252" PointY="14.52857973645599" />
-          <ConnectorPoint PointX="7.6205236979166671" PointY="14.52857973645599" />
-          <ConnectorPoint PointX="7.7871903645833331" PointY="14.52857973645599" />
-          <ConnectorPoint PointX="8.1725279166666649" PointY="14.52857973645599" />
-          <ConnectorPoint PointX="8.3391945833333327" PointY="14.52857973645599" />
-          <ConnectorPoint PointX="9.625" PointY="14.52857973645599" />
+          <ConnectorPoint PointX="6.062346938935228" PointY="10.1244921875" />
+          <ConnectorPoint PointX="6.062346938935228" PointY="12.782864180355407" />
+          <ConnectorPoint PointX="7.408854166666667" PointY="12.782864180355407" />
+          <ConnectorPoint PointX="7.575520833333333" PointY="12.782864180355407" />
+          <ConnectorPoint PointX="7.631510416666667" PointY="12.782864180355407" />
+          <ConnectorPoint PointX="7.798177083333333" PointY="12.782864180355407" />
+          <ConnectorPoint PointX="9.625" PointY="12.782864180355407" />
         </AssociationConnector>
         <AssociationConnector Association="DmpModel.FK_ProductProductVarient" >
           <ConnectorPoint PointX="14.75" PointY="7.4324446614583328" />
@@ -2167,48 +2280,46 @@
         </AssociationConnector>
         <AssociationConnector Association="DmpModel.FK_DealerManpowerTarget" >
           <ConnectorPoint PointX="10.4375025" PointY="12.125" />
-          <ConnectorPoint PointX="10.4375025" PointY="9.7807421875" />
-          <ConnectorPoint PointX="9.875" PointY="9.7807421875" />
+          <ConnectorPoint PointX="10.4375025" PointY="9.8768929036458317" />
+          <ConnectorPoint PointX="9.875" PointY="9.8768929036458317" />
         </AssociationConnector>
         <AssociationConnector Association="DmpModel.FK_StateDealer" >
           <ConnectorPoint PointX="2.59375" PointY="4.7398893229166656" />
-          <ConnectorPoint PointX="2.59375" PointY="8.09375" />
-          <ConnectorPoint PointX="3.7916666666666665" PointY="8.09375" />
-          <ConnectorPoint PointX="3.9583333333333335" PointY="8.09375" />
-          <ConnectorPoint PointX="4.375" PointY="8.09375" />
+          <ConnectorPoint PointX="2.59375" PointY="8.37474609375" />
+          <ConnectorPoint PointX="3.4947916433836017" PointY="8.37474609375" />
+          <ConnectorPoint PointX="3.6614583100502687" PointY="8.37474609375" />
+          <ConnectorPoint PointX="4.375" PointY="8.37474609375" />
         </AssociationConnector>
         <AssociationConnector Association="DmpModel.FK_MonthTarget" >
-          <ConnectorPoint PointX="8.3125" PointY="7.3167936197916665" />
-          <ConnectorPoint PointX="8.3125" PointY="7.75" />
+          <ConnectorPoint PointX="8.5" PointY="7.3167936197916665" />
+          <ConnectorPoint PointX="8.5" PointY="7.75" />
         </AssociationConnector>
         <AssociationConnector Association="DmpModel.UserDealerManpower" >
-          <ConnectorPoint PointX="3.875" PointY="15.947310852315329" />
-          <ConnectorPoint PointX="5.5395020204121357" PointY="15.947310852315329" />
-          <ConnectorPoint PointX="5.7061686870788018" PointY="15.947310852315329" />
-          <ConnectorPoint PointX="7.6205236979166671" PointY="15.947310852315329" />
-          <ConnectorPoint PointX="7.7871903645833331" PointY="15.947310852315329" />
-          <ConnectorPoint PointX="8.1725279166666649" PointY="15.947310852315329" />
-          <ConnectorPoint PointX="8.3391945833333327" PointY="15.947310852315329" />
-          <ConnectorPoint PointX="9.625" PointY="15.947310852315329" />
+          <ConnectorPoint PointX="3.875" PointY="15.927902245312522" />
+          <ConnectorPoint PointX="5.5728006208680876" PointY="15.927902245312522" />
+          <ConnectorPoint PointX="5.7394672875347537" PointY="15.927902245312522" />
+          <ConnectorPoint PointX="7.631510416666667" PointY="15.927902245312522" />
+          <ConnectorPoint PointX="7.798177083333333" PointY="15.927902245312522" />
+          <ConnectorPoint PointX="8.1571697013346345" PointY="15.927902245312522" />
+          <ConnectorPoint PointX="8.3238363680013023" PointY="15.927902245312522" />
+          <ConnectorPoint PointX="9.625" PointY="15.927902245312522" />
         </AssociationConnector>
         <AssociationConnector Association="DmpModel.ProductCategoryProduct" >
           <ConnectorPoint PointX="18" PointY="7.1776432291666667" />
           <ConnectorPoint PointX="16.25" PointY="7.1776432291666667" />
         </AssociationConnector>
         <AssociationConnector Association="DmpModel.MonthDealerManpowerTargets" >
-          <ConnectorPoint PointX="7.4702140625" PointY="7.3167936197916665" />
-          <ConnectorPoint PointX="7.4702140625" PointY="12.781234946985322" />
-          <ConnectorPoint PointX="6.1429488049939582" PointY="12.781234946985322" />
-          <ConnectorPoint PointX="5.9762821383272922" PointY="12.781234946985322" />
-          <ConnectorPoint PointX="5.2693885691636462" PointY="12.781234946985322" />
-          <ConnectorPoint PointX="5.10272190249698" PointY="12.781234946985322" />
-          <ConnectorPoint PointX="4.583333333333333" PointY="12.781234946985322" />
-          <ConnectorPoint PointX="4.416666666666667" PointY="12.781234946985322" />
-          <ConnectorPoint PointX="4.25" PointY="12.781234946985322" />
+          <ConnectorPoint PointX="7.4921875" PointY="7.5090950520833326" />
+          <ConnectorPoint PointX="7.4921875" PointY="13.231244756360312" />
+          <ConnectorPoint PointX="5.3332543028009471" PointY="13.231244756360312" />
+          <ConnectorPoint PointX="5.1665876361342811" PointY="13.231244756360312" />
+          <ConnectorPoint PointX="4.583333333333333" PointY="13.231244756360312" />
+          <ConnectorPoint PointX="4.416666666666667" PointY="13.231244756360312" />
+          <ConnectorPoint PointX="4.25" PointY="13.231244756360312" />
         </AssociationConnector>
         <AssociationConnector Association="DmpModel.UserDealerManpowerTargets" >
-          <ConnectorPoint PointX="3.2390131640625" PointY="15.125" />
-          <ConnectorPoint PointX="3.2390131640625" PointY="14.701396484375" />
+          <ConnectorPoint PointX="3.3095691406250003" PointY="15.125" />
+          <ConnectorPoint PointX="3.3095691406250003" PointY="14.701396484375" />
         </AssociationConnector>
         <AssociationConnector Association="DmpModel.DealerManpowerProfile">
           <ConnectorPoint PointX="11.75" PointY="14.518951822916668" />
@@ -2255,30 +2366,30 @@
           <ConnectorPoint PointX="8.27344" PointY="16.375" />
         </AssociationConnector>
         <AssociationConnector Association="DmpModel.DealerDealerManpowerTargets">
-          <ConnectorPoint PointX="5.1860552358303131" PointY="10.1244921875" />
-          <ConnectorPoint PointX="5.1860552358303131" PointY="13.633263623446922" />
-          <ConnectorPoint PointX="4.583333333333333" PointY="13.633263623446922" />
-          <ConnectorPoint PointX="4.416666666666667" PointY="13.633263623446922" />
-          <ConnectorPoint PointX="4.25" PointY="13.633263623446922" />
+          <ConnectorPoint PointX="5.187294251913638" PointY="10.1244921875" />
+          <ConnectorPoint PointX="5.187294251913638" PointY="13.6438484225528" />
+          <ConnectorPoint PointX="4.583333333333333" PointY="13.6438484225528" />
+          <ConnectorPoint PointX="4.416666666666667" PointY="13.6438484225528" />
+          <ConnectorPoint PointX="4.25" PointY="13.6438484225528" />
         </AssociationConnector>
         <AssociationConnector Association="DmpModel.ProductDealerManpowerTargets">
-          <ConnectorPoint PointX="15.67187625" PointY="8.9994921875" />
-          <ConnectorPoint PointX="15.67187625" PointY="11.92920627052373" />
-          <ConnectorPoint PointX="15.481768958333335" PointY="11.92920627052373" />
-          <ConnectorPoint PointX="15.315102291666667" PointY="11.92920627052373" />
-          <ConnectorPoint PointX="10.520835833333335" PointY="11.92920627052373" />
-          <ConnectorPoint PointX="10.354169166666667" PointY="11.92920627052373" />
-          <ConnectorPoint PointX="7.7871903645833331" PointY="11.92920627052373" />
-          <ConnectorPoint PointX="7.6205236979166671" PointY="11.92920627052373" />
-          <ConnectorPoint PointX="7.5535473958333332" PointY="11.92920627052373" />
-          <ConnectorPoint PointX="7.3868807291666672" PointY="11.92920627052373" />
-          <ConnectorPoint PointX="6.1429488049939582" PointY="11.92920627052373" />
-          <ConnectorPoint PointX="5.9762821383272922" PointY="11.92920627052373" />
-          <ConnectorPoint PointX="5.2693885691636462" PointY="11.92920627052373" />
-          <ConnectorPoint PointX="5.10272190249698" PointY="11.92920627052373" />
-          <ConnectorPoint PointX="4.583333333333333" PointY="11.92920627052373" />
-          <ConnectorPoint PointX="4.416666666666667" PointY="11.92920627052373" />
-          <ConnectorPoint PointX="4.25" PointY="11.92920627052373" />
+          <ConnectorPoint PointX="15.6992203125" PointY="8.9994921875" />
+          <ConnectorPoint PointX="15.6992203125" PointY="11.966095377604166" />
+          <ConnectorPoint PointX="15.495440989583335" PointY="11.966095377604166" />
+          <ConnectorPoint PointX="15.328774322916667" PointY="11.966095377604166" />
+          <ConnectorPoint PointX="10.520835833333335" PointY="11.966095377604166" />
+          <ConnectorPoint PointX="10.354169166666667" PointY="11.966095377604166" />
+          <ConnectorPoint PointX="7.798177083333333" PointY="11.966095377604166" />
+          <ConnectorPoint PointX="7.631510416666667" PointY="11.966095377604166" />
+          <ConnectorPoint PointX="7.575520833333333" PointY="11.966095377604166" />
+          <ConnectorPoint PointX="7.408854166666667" PointY="11.966095377604166" />
+          <ConnectorPoint PointX="6.1456802722685611" PointY="11.966095377604166" />
+          <ConnectorPoint PointX="5.979013605601895" PointY="11.966095377604166" />
+          <ConnectorPoint PointX="5.3332543028009471" PointY="11.966095377604166" />
+          <ConnectorPoint PointX="5.1665876361342811" PointY="11.966095377604166" />
+          <ConnectorPoint PointX="4.583333333333333" PointY="11.966095377604166" />
+          <ConnectorPoint PointX="4.416666666666667" PointY="11.966095377604166" />
+          <ConnectorPoint PointX="4.25" PointY="11.966095377604166" />
         </AssociationConnector>
         <EntityTypeShape EntityType="DmpModel.Attrition" Width="1.5" PointX="16.375" PointY="13" Height="2.1725878906249996" />
         <EntityTypeShape EntityType="DmpModel.AttritionProfileMap" Width="1.75" PointX="16.375" PointY="15.5" Height="2.1725878906249996" />
@@ -2287,8 +2398,8 @@
           <ConnectorPoint PointX="17.125" PointY="15.5" />
         </AssociationConnector>
         <AssociationConnector Association="DmpModel.MonthIncentive">
-          <ConnectorPoint PointX="7.70385703125" PointY="7.3167936197916665" />
-          <ConnectorPoint PointX="7.70385703125" PointY="16.375" />
+          <ConnectorPoint PointX="7.71484375" PointY="7.5090950520833326" />
+          <ConnectorPoint PointX="7.71484375" PointY="16.375" />
         </AssociationConnector>
         <AssociationConnector Association="DmpModel.DealerManpowerAttritionProfileMap">
           <ConnectorPoint PointX="11.75" PointY="12.399236284704168" />
@@ -2302,13 +2413,15 @@
         <EntityTypeShape EntityType="DmpModel.UserDealerMap" Width="1.5" PointX="0.625" PointY="8.875" Height="2.3648893229166674" />
         <AssociationConnector Association="DmpModel.DealerUserDealerMap">
           <ConnectorPoint PointX="4.375" PointY="9.49974609375" />
-          <ConnectorPoint PointX="3.9583333333333335" PointY="9.49974609375" />
-          <ConnectorPoint PointX="3.7916666666666665" PointY="9.49974609375" />
+          <ConnectorPoint PointX="3.6614583100502687" PointY="9.49974609375" />
+          <ConnectorPoint PointX="3.4947916433836017" PointY="9.49974609375" />
           <ConnectorPoint PointX="2.125" PointY="9.49974609375" />
         </AssociationConnector>
-        <AssociationConnector Association="DmpModel.UserUserDealerMap">
-          <ConnectorPoint PointX="2" PointY="16.692047526041669" />
-          <ConnectorPoint PointX="1.3124995" PointY="16.692047526041669" />
+        <AssociationConnector Association="DmpModel.UserUserDealerMap" ManuallyRouted="true">
+          <ConnectorPoint PointX="2" PointY="16.788198242187498" />
+          <ConnectorPoint PointX="1.773124835" PointY="16.788198242187498" />
+          <ConnectorPoint PointX="1.773124835" PointY="15.952497393724407" />
+          <ConnectorPoint PointX="1.3124995" PointY="15.952497393724407" />
           <ConnectorPoint PointX="1.3124995" PointY="11.239889322916667" />
         </AssociationConnector>
         <AssociationConnector Association="DmpModel.ProductDealerManpower">
@@ -2321,26 +2434,26 @@
           <ConnectorPoint PointX="4.875" PointY="4.2398893229166665" />
           <ConnectorPoint PointX="4.875" PointY="4.75" />
         </AssociationConnector>
-        <AssociationConnector Association="DmpModel.UserUserRegionMap">
-          <ConnectorPoint PointX="2.499998" PointY="15.125" />
-          <ConnectorPoint PointX="2.499998" PointY="14.951396484375" />
-          <ConnectorPoint PointX="2.9791666666666665" PointY="14.951396484375" />
-          <ConnectorPoint PointX="3.1458333333333335" PointY="14.951396484375" />
+        <AssociationConnector Association="DmpModel.UserUserRegionMap" ManuallyRouted="true">
+          <ConnectorPoint PointX="2.6235325703125003" PointY="15.124999999999998" />
+          <ConnectorPoint PointX="2.6235325703125003" PointY="14.951396484375" />
+          <ConnectorPoint PointX="3.2284329518229167" PointY="14.951396484375" />
+          <ConnectorPoint PointX="3.3950996184895836" PointY="14.951396484375" />
           <ConnectorPoint PointX="4.5" PointY="14.951396484375" />
-          <ConnectorPoint PointX="4.5" PointY="10.3744921875" />
-          <ConnectorPoint PointX="3.875" PointY="10.3744921875" />
-          <ConnectorPoint PointX="3.875" PointY="5.9324446614583328" />
+          <ConnectorPoint PointX="4.5" PointY="10.489075409356843" />
+          <ConnectorPoint PointX="3.5781249767169352" PointY="10.489075409356843" />
+          <ConnectorPoint PointX="3.5781249767169352" PointY="5.9324446614583328" />
           <ConnectorPoint PointX="4.125" PointY="5.9324446614583328" />
         </AssociationConnector>
         <EntityTypeShape EntityType="DmpModel.ManpowerSalary" Width="1.875" PointX="4.25" PointY="17.375" Height="2.1725878906250031" />
         <AssociationConnector Association="DmpModel.DealerManpowerManpowerSalary">
-          <ConnectorPoint PointX="9.625" PointY="15.418101168345164" />
-          <ConnectorPoint PointX="8.3391945833333327" PointY="15.418101168345164" />
-          <ConnectorPoint PointX="8.1725279166666649" PointY="15.418101168345164" />
-          <ConnectorPoint PointX="7.7871903645833331" PointY="15.418101168345164" />
-          <ConnectorPoint PointX="7.6205236979166671" PointY="15.418101168345164" />
-          <ConnectorPoint PointX="5.6228353537454687" PointY="15.418101168345164" />
-          <ConnectorPoint PointX="5.6228353537454687" PointY="17.375" />
+          <ConnectorPoint PointX="9.625" PointY="15.418304490625044" />
+          <ConnectorPoint PointX="8.3238363680013023" PointY="15.418304490625044" />
+          <ConnectorPoint PointX="8.1571697013346345" PointY="15.418304490625044" />
+          <ConnectorPoint PointX="7.798177083333333" PointY="15.418304490625044" />
+          <ConnectorPoint PointX="7.631510416666667" PointY="15.418304490625044" />
+          <ConnectorPoint PointX="5.6561339542014206" PointY="15.418304490625044" />
+          <ConnectorPoint PointX="5.6561339542014206" PointY="17.375" />
         </AssociationConnector>
         <EntityTypeShape EntityType="DmpModel.SpecialSchemeIncentive" Width="2.375" PointX="7.75" PointY="19.875" Height="2.364889322916671" />
         <AssociationConnector Association="DmpModel.IncentiveSpecialSchemeIncentive">
@@ -2350,6 +2463,20 @@
         <AssociationConnector Association="DmpModel.ProductVarientTarget">
           <ConnectorPoint PointX="11" PointY="8.1824446614583337" />
           <ConnectorPoint PointX="9.875" PointY="8.1824446614583337" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="DmpModel.DsmDseTargetMap" Width="1.5" PointX="0.5" PointY="5.125" Height="2.7494921875" />
+        <AssociationConnector Association="DmpModel.MonthDsmDseTargetMap">
+          <ConnectorPoint PointX="7.25" PointY="7.2449446614583337" />
+          <ConnectorPoint PointX="3.6614583100502687" PointY="7.2449446614583328" />
+          <ConnectorPoint PointX="3.4947916433836017" PointY="7.2449446614583337" />
+          <ConnectorPoint PointX="2.6770833333333335" PointY="7.2449446614583328" />
+          <ConnectorPoint PointX="2.5104166666666665" PointY="7.2449446614583337" />
+          <ConnectorPoint PointX="2" PointY="7.2449446614583337" />
+        </AssociationConnector>
+        <AssociationConnector Association="DmpModel.UserDsmDseTargetMap">
+          <ConnectorPoint PointX="2" PointY="17.702075023469835" />
+          <ConnectorPoint PointX="0.53125" PointY="17.702075023469835" />
+          <ConnectorPoint PointX="0.53125" PointY="7.8744921875" />
         </AssociationConnector>
         </Diagram>
     </edmx:Diagrams>

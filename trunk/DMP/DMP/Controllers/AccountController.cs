@@ -96,6 +96,10 @@ namespace DMP.Controllers {
                 ParentUsers = id > 0 ? GetUsers(user.Role) : GetUsers(roles.First().Key),
                 Regions = masterService.GetAllRegions().Select(x => new KeyValuePair<int, string>(x.Id, x.Name))
             };
+            if (id > 0) {
+                model.User.Password = "password";
+                model.User.ConfirmPassword = "password";
+            }
             return PartialView("EditUser", model);
         }
 
@@ -165,6 +169,13 @@ namespace DMP.Controllers {
             }
             userService.DeleteUser(id);
             return Json(new { success = true }, JsonRequestBehavior.AllowGet);
+        }
+
+        public void DeleteMembershipUser(string userName, string role) {
+            membershipService.DeleteUser(userName);
+            if (Roles.RoleExists(role) && Roles.IsUserInRole(userName, role)) {
+                Roles.RemoveUserFromRole(userName, role);
+            }
         }
 
         public List<KeyValuePair<int, string>> GetUsers(string role) {

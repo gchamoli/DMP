@@ -25,6 +25,7 @@
     <EntitySet Name="UserRegionMaps" EntityType="DmpModel.Store.UserRegionMaps" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="ManpowerSalaries" EntityType="DmpModel.Store.ManpowerSalaries" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="SpecialSchemeIncentives" EntityType="DmpModel.Store.SpecialSchemeIncentives" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="DsmDseTargetMaps" EntityType="DmpModel.Store.DsmDseTargetMaps" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="FK_DealerDealerManpower" Association="DmpModel.Store.FK_DealerDealerManpower">
       <End Role="Dealer" EntitySet="Dealers" />
       <End Role="DealerManpower" EntitySet="DealerManpowers" />
@@ -148,6 +149,14 @@
     <AssociationSet Name="ProductVarientTarget" Association="DmpModel.Store.ProductVarientTarget">
       <End Role="ProductVarient" EntitySet="ProductVarients" />
       <End Role="Target" EntitySet="Targets" />
+    </AssociationSet>
+    <AssociationSet Name="MonthDsmDseTargetMap" Association="DmpModel.Store.MonthDsmDseTargetMap">
+      <End Role="Month" EntitySet="Months" />
+      <End Role="DsmDseTargetMap" EntitySet="DsmDseTargetMaps" />
+    </AssociationSet>
+    <AssociationSet Name="UserDsmDseTargetMap" Association="DmpModel.Store.UserDsmDseTargetMap">
+      <End Role="User" EntitySet="Users" />
+      <End Role="DsmDseTargetMap" EntitySet="DsmDseTargetMaps" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="DealerManpowers">
@@ -472,6 +481,20 @@
     <Property Name="ObjectInfo_ModifiedDate" Type="datetime" Nullable="false" />
     <Property Name="ObjectInfo_DeletedDate" Type="datetime" Nullable="true" />
     <Property Name="SpecialSchemeId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DsmDseTargetMaps">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DsmId" Type="int" Nullable="false" />
+    <Property Name="DseId" Type="int" Nullable="false" />
+    <Property Name="MonthId" Type="int" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="ObjectInfo_CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="ObjectInfo_ModifiedDate" Type="datetime" Nullable="false" />
+    <Property Name="ObjectInfo_DeletedDate" Type="datetime" Nullable="true" />
   </EntityType>
   <Association Name="FK_DealerDealerManpower">
     <End Role="Dealer" Type="DmpModel.Store.Dealers" Multiplicity="1" />
@@ -842,6 +865,30 @@
       </Principal>
       <Dependent Role="Target">
         <PropertyRef Name="ProductVarientId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MonthDsmDseTargetMap">
+    <End Role="Month" Type="DmpModel.Store.Months" Multiplicity="1" />
+    <End Role="DsmDseTargetMap" Type="DmpModel.Store.DsmDseTargetMaps" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Month">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DsmDseTargetMap">
+        <PropertyRef Name="MonthId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserDsmDseTargetMap">
+    <End Role="User" Type="DmpModel.Store.Users" Multiplicity="1" />
+    <End Role="DsmDseTargetMap" Type="DmpModel.Store.DsmDseTargetMaps" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DsmDseTargetMap">
+        <PropertyRef Name="UserId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

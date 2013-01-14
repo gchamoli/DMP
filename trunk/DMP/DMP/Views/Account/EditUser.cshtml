@@ -1,8 +1,7 @@
 ﻿@model DMP.ModelsView.UserViewModel
 @using DMP.Utils
-<style type="text/css">
-    
-</style>
+<script src = "@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src = "@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
 <script type="text/javascript">
     $(document).ready(function () {
         setDefault();
@@ -29,6 +28,12 @@
                 $('#dvParent').hide();
             }
         });
+
+        $('#btnSubmit').bind('click', function(e) {
+            if(!validation()) {
+                e.preventDefault();
+            }
+        });
         
         function setDefault() {
             var role = $('#ddlRole option:selected').text();
@@ -37,6 +42,29 @@
             }else {
                 $('#dvRegion').hide();
             }
+        }
+        
+        function validation() {
+            $('#txtUserPwd').removeClass('inputError');
+            $('#pwdMsg').html('').hide();
+            $('#txtUserCnfPwd').removeClass('inputError');
+            $('#cnfPwdMsg').html('').hide();
+            var pwd = $('#txtUserPwd').val();
+            var cnfPwd = $('#txtUserCnfPwd').val();
+            if(pwd.indexOf(' ') >= 0) {
+                $('#txtUserPwd').addClass('inputError');
+                $('#pwdMsg').html('Password is not in correct format').show();
+                return false;
+            }else if(pwd.length < 6) {
+                $('#txtUserPwd').addClass('inputError');
+                $('#pwdMsg').html('Password must be of min 6 characters').show();
+                return false;
+            }else if(pwd.toLowerCase().trim() != cnfPwd.toLowerCase().trim()) {
+                $('#txtUserCnfPwd').addClass('inputError');
+                $('#cnfPwdMsg').html('Password not matched').show();
+                return false;
+            }
+            return true;
         }
     });
 </script>
@@ -71,21 +99,25 @@
                 </div>
                 <div>
                     @Html.LabelFor(x => x.User.Password)
-                    @Html.TextBoxFor(x => x.User.Password, new { @id = "txtUserPwd" })
+                    @Html.PasswordFor(x => x.User.Password, new { @id = "txtUserPwd" })
+                    <span id="pwdMsg" style="display: none; color: red; font-size: 12px;"></span>
                 </div>
                 <div>
                     @Html.LabelFor(x => x.User.ConfirmPassword)
-                    @Html.TextBoxFor(x => x.User.ConfirmPassword, new { @id = "txtUserCnfPwd" })
+                    @Html.PasswordFor(x => x.User.ConfirmPassword, new { @id = "txtUserCnfPwd" })
+                    <span id="cnfPwdMsg" style="display: none; color: red; font-size: 12px;"></span>
                 </div>
             } else {
                 @Html.HiddenFor(x => x.User.Email)
+                @Html.HiddenFor(x => x.User.Password)
+                @Html.HiddenFor(x => x.User.ConfirmPassword)
             }
             <div>
                 @Html.LabelFor(x => x.User.Description)
                 @Html.TextAreaFor(x => x.User.Description, new { @id = "txtUserDescription" })
             </div>
             <div>
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Save" class="btn btn-primary" id="btnSubmit" />
                 <input type="reset" value="Reset" class="btn btn-primary" />
             </div>
         </div>

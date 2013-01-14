@@ -14,7 +14,8 @@
 <script type="text/javascript">
     $(document).ready(function () {
 
-        $('.ddl').chosen();
+        $('#ddlDsm').data('placeholder', 'Select DSM').chosen();
+        $('#ddlDse').data('placeholder', 'Select DSE').chosen();
 
         $('#linkSave').bind('click', function () {
             var dsmId = $('#ddlDsm').val();

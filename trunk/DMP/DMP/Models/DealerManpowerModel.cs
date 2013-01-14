@@ -50,7 +50,7 @@ namespace DMP.Models {
         [Display(Name = "Total Work Experience")]
         public double? TotalWorkExperience { get; set; }
 
-        [Display(Name = "Experience With VE")]
+        [Display(Name = "Experience With ETB")]
         public double? ExperienceWithVE { get; set; }
 
         [Display(Name = "TIV Representing")]

@@ -49,6 +49,8 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("DmpModel", "DealerManpowerManpowerSalary", "DealerManpower", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DMP.Repository.DealerManpower), "ManpowerSalary", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DMP.Repository.ManpowerSalary), true)]
 [assembly: EdmRelationshipAttribute("DmpModel", "IncentiveSpecialSchemeIncentive", "Incentive", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DMP.Repository.Incentive), "SpecialSchemeIncentive", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DMP.Repository.SpecialSchemeIncentive), true)]
 [assembly: EdmRelationshipAttribute("DmpModel", "ProductVarientTarget", "ProductVarient", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DMP.Repository.ProductVarient), "Target", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DMP.Repository.Target), true)]
+[assembly: EdmRelationshipAttribute("DmpModel", "MonthDsmDseTargetMap", "Month", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DMP.Repository.Month), "DsmDseTargetMap", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DMP.Repository.DsmDseTargetMap), true)]
+[assembly: EdmRelationshipAttribute("DmpModel", "UserDsmDseTargetMap", "User", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DMP.Repository.User), "DsmDseTargetMap", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DMP.Repository.DsmDseTargetMap), true)]
 
 #endregion
 
@@ -483,6 +485,22 @@ namespace DMP.Repository
             }
         }
         private ObjectSet<SpecialSchemeIncentive> _SpecialSchemeIncentives;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<DsmDseTargetMap> DsmDseTargetMaps
+        {
+            get
+            {
+                if ((_DsmDseTargetMaps == null))
+                {
+                    _DsmDseTargetMaps = base.CreateObjectSet<DsmDseTargetMap>("DsmDseTargetMaps");
+                }
+                return _DsmDseTargetMaps;
+            }
+        }
+        private ObjectSet<DsmDseTargetMap> _DsmDseTargetMaps;
 
         #endregion
         #region AddTo Methods
@@ -677,6 +695,14 @@ namespace DMP.Repository
         public void AddToSpecialSchemeIncentives(SpecialSchemeIncentive specialSchemeIncentive)
         {
             base.AddObject("SpecialSchemeIncentives", specialSchemeIncentive);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the DsmDseTargetMaps EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToDsmDseTargetMaps(DsmDseTargetMap dsmDseTargetMap)
+        {
+            base.AddObject("DsmDseTargetMaps", dsmDseTargetMap);
         }
 
         #endregion
@@ -2812,6 +2838,304 @@ namespace DMP.Repository
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="DmpModel", Name="DsmDseTargetMap")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class DsmDseTargetMap : EntityObject,IObjectInfo
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new DsmDseTargetMap object.
+        /// </summary>
+        /// <param name="id">Initial value of the Id property.</param>
+        /// <param name="dsmId">Initial value of the DsmId property.</param>
+        /// <param name="dseId">Initial value of the DseId property.</param>
+        /// <param name="monthId">Initial value of the MonthId property.</param>
+        /// <param name="userId">Initial value of the UserId property.</param>
+        /// <param name="objectInfo">Initial value of the ObjectInfo property.</param>
+        public static DsmDseTargetMap CreateDsmDseTargetMap(global::System.Int32 id, global::System.Int32 dsmId, global::System.Int32 dseId, global::System.Int32 monthId, global::System.Int32 userId, ObjectInfo objectInfo)
+        {
+            DsmDseTargetMap dsmDseTargetMap = new DsmDseTargetMap();
+            dsmDseTargetMap.Id = id;
+            dsmDseTargetMap.DsmId = dsmId;
+            dsmDseTargetMap.DseId = dseId;
+            dsmDseTargetMap.MonthId = monthId;
+            dsmDseTargetMap.UserId = userId;
+            dsmDseTargetMap.ObjectInfo = StructuralObject.VerifyComplexObjectIsNotNull(objectInfo, "ObjectInfo");
+            return dsmDseTargetMap;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 Id
+        {
+            get
+            {
+                return _Id;
+            }
+            set
+            {
+                if (_Id != value)
+                {
+                    OnIdChanging(value);
+                    ReportPropertyChanging("Id");
+                    _Id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("Id");
+                    OnIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _Id;
+        partial void OnIdChanging(global::System.Int32 value);
+        partial void OnIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 DsmId
+        {
+            get
+            {
+                return _DsmId;
+            }
+            set
+            {
+                OnDsmIdChanging(value);
+                ReportPropertyChanging("DsmId");
+                _DsmId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("DsmId");
+                OnDsmIdChanged();
+            }
+        }
+        private global::System.Int32 _DsmId;
+        partial void OnDsmIdChanging(global::System.Int32 value);
+        partial void OnDsmIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 DseId
+        {
+            get
+            {
+                return _DseId;
+            }
+            set
+            {
+                OnDseIdChanging(value);
+                ReportPropertyChanging("DseId");
+                _DseId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("DseId");
+                OnDseIdChanged();
+            }
+        }
+        private global::System.Int32 _DseId;
+        partial void OnDseIdChanging(global::System.Int32 value);
+        partial void OnDseIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 MonthId
+        {
+            get
+            {
+                return _MonthId;
+            }
+            set
+            {
+                OnMonthIdChanging(value);
+                ReportPropertyChanging("MonthId");
+                _MonthId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("MonthId");
+                OnMonthIdChanged();
+            }
+        }
+        private global::System.Int32 _MonthId;
+        partial void OnMonthIdChanging(global::System.Int32 value);
+        partial void OnMonthIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 UserId
+        {
+            get
+            {
+                return _UserId;
+            }
+            set
+            {
+                OnUserIdChanging(value);
+                ReportPropertyChanging("UserId");
+                _UserId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("UserId");
+                OnUserIdChanged();
+            }
+        }
+        private global::System.Int32 _UserId;
+        partial void OnUserIdChanging(global::System.Int32 value);
+        partial void OnUserIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Description
+        {
+            get
+            {
+                return _Description;
+            }
+            set
+            {
+                OnDescriptionChanging(value);
+                ReportPropertyChanging("Description");
+                _Description = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Description");
+                OnDescriptionChanged();
+            }
+        }
+        private global::System.String _Description;
+        partial void OnDescriptionChanging(global::System.String value);
+        partial void OnDescriptionChanged();
+
+        #endregion
+        #region Complex Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmComplexPropertyAttribute()]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+        [XmlElement(IsNullable=true)]
+        [SoapElement(IsNullable=true)]
+        [DataMemberAttribute()]
+        public ObjectInfo ObjectInfo
+        {
+            get
+            {
+                _ObjectInfo = GetValidValue(_ObjectInfo, "ObjectInfo", false, _ObjectInfoInitialized);
+                _ObjectInfoInitialized = true;
+                return _ObjectInfo;
+            }
+            set
+            {
+                OnObjectInfoChanging(value);
+                ReportPropertyChanging("ObjectInfo");
+                _ObjectInfo = SetValidValue(_ObjectInfo, value, "ObjectInfo");
+                _ObjectInfoInitialized = true;
+                ReportPropertyChanged("ObjectInfo");
+                OnObjectInfoChanged();
+            }
+        }
+        private ObjectInfo _ObjectInfo;
+        private bool _ObjectInfoInitialized;
+        partial void OnObjectInfoChanging(ObjectInfo value);
+        partial void OnObjectInfoChanged();
+
+        #endregion
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("DmpModel", "MonthDsmDseTargetMap", "Month")]
+        public Month Month
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Month>("DmpModel.MonthDsmDseTargetMap", "Month").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Month>("DmpModel.MonthDsmDseTargetMap", "Month").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Month> MonthReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Month>("DmpModel.MonthDsmDseTargetMap", "Month");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Month>("DmpModel.MonthDsmDseTargetMap", "Month", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("DmpModel", "UserDsmDseTargetMap", "User")]
+        public User User
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<User>("DmpModel.UserDsmDseTargetMap", "User").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<User>("DmpModel.UserDsmDseTargetMap", "User").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<User> UserReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<User>("DmpModel.UserDsmDseTargetMap", "User");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<User>("DmpModel.UserDsmDseTargetMap", "User", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
     [EdmEntityTypeAttribute(NamespaceName="DmpModel", Name="Incentive")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
@@ -3590,6 +3914,28 @@ namespace DMP.Repository
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Incentive>("DmpModel.MonthIncentive", "Incentive", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("DmpModel", "MonthDsmDseTargetMap", "DsmDseTargetMap")]
+        public EntityCollection<DsmDseTargetMap> DsmDseTargetMaps
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<DsmDseTargetMap>("DmpModel.MonthDsmDseTargetMap", "DsmDseTargetMap");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<DsmDseTargetMap>("DmpModel.MonthDsmDseTargetMap", "DsmDseTargetMap", value);
                 }
             }
         }
@@ -6990,6 +7336,28 @@ namespace DMP.Repository
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<UserRegionMap>("DmpModel.UserUserRegionMap", "UserRegionMap", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("DmpModel", "UserDsmDseTargetMap", "DsmDseTargetMap")]
+        public EntityCollection<DsmDseTargetMap> DsmDseTargetMaps
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<DsmDseTargetMap>("DmpModel.UserDsmDseTargetMap", "DsmDseTargetMap");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<DsmDseTargetMap>("DmpModel.UserDsmDseTargetMap", "DsmDseTargetMap", value);
                 }
             }
         }

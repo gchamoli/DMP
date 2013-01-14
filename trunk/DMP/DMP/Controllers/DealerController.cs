@@ -477,6 +477,8 @@ namespace DMP.Controllers {
 
         [Authorize(Roles = "CSM")]
         public ActionResult DsmMapping() {
+            var currentDate = DateTime.Now;
+            var currentMonth = masterService.FindAndCreateMonth(currentDate.ToString("MMMM"), currentDate.Year);
             var csm = userService.GetUserByUserName(User.Identity.Name);
             var model = new DsmDseMapViewModel {
                 DsmList = dealerManpowerService.FindDealerManpowers(x => x.UserId == csm.Id && x.Type.ToLower() == "dsm").Select(x => new KeyValuePair<int, string>(x.Id, x.Name)),

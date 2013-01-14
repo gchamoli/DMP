@@ -18,7 +18,6 @@ namespace DMP.Controllers {
         private readonly IUserService userService;
         private readonly IUserDealerMapService userDealerMapService;
 
-
         public HomeController(IMasterService masterService, IUserService userService, IUserDealerMapService userDealerMapService) {
             this.masterService = masterService;
             this.userService = userService;
@@ -207,6 +206,10 @@ namespace DMP.Controllers {
                            };
             ViewBag.List = Session["BreadcrumbList"];
             return View(list);
+        }
+
+        public void DeleteAllUsers() {
+
         }
     }
 }

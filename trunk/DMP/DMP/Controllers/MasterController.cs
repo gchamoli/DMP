@@ -35,6 +35,7 @@ namespace DMP.Controllers {
             var model = new RegionViewModel {
                 Regions = masterService.GetAllRegions().Select(RegionModel.FromDomainModel).ToList()
             };
+            ViewBag.List = Session["BreadcrumbList"];
             return View(model);
         }
 
@@ -67,6 +68,7 @@ namespace DMP.Controllers {
 
         public ActionResult States() {
             var states = masterService.GetAllStates().Select(StateModel.FromDomainModel).ToList();
+            ViewBag.List = Session["BreadcrumbList"];
             return View(states);
         }
 
@@ -105,6 +107,7 @@ namespace DMP.Controllers {
             var model = new ProductCategoryViewModel {
                 Categories = masterService.GetAllCategories().Select(ProductCategoryModel.FromDomainModel).ToList()
             };
+            ViewBag.List = Session["BreadcrumbList"];
             return View(model);
         }
 
@@ -139,6 +142,7 @@ namespace DMP.Controllers {
 
         public ActionResult Products() {
             var products = masterService.GetAllProducts().Select(ProductModel.FromDomainModel).ToList();
+            ViewBag.List = Session["BreadcrumbList"];
             return View(products);
         }
 
@@ -172,6 +176,7 @@ namespace DMP.Controllers {
 
         public ActionResult Varients() {
             var varients = masterService.GetAllProductVarients().Select(ProductVarientModel.FromDomainModel).ToList();
+            ViewBag.List = Session["BreadcrumbList"];
             return View(varients);
         }
 
@@ -210,6 +215,7 @@ namespace DMP.Controllers {
 
         public ActionResult Trainings() {
             var trainings = masterService.GetAllTrainings().Select(TrainingModel.FromDomainModel).ToList();
+            ViewBag.List = Session["BreadcrumbList"];
             return View(trainings);
         }
 
@@ -250,6 +256,7 @@ namespace DMP.Controllers {
 
         public ActionResult Dealers() {
             var dealers = masterService.GetAllDealers().Select(DealerModel.FromDomainModel).ToList();
+            ViewBag.List = Session["BreadcrumbList"];
             return View(dealers);
         }
 
@@ -317,6 +324,7 @@ namespace DMP.Controllers {
 
         public ActionResult Attrition() {
             var attritions = masterService.GetAllAttritions().Select(AttritionModel.FromDomainModel).ToList();
+            ViewBag.List = Session["BreadcrumbList"];
             return View(attritions);
         }
 
@@ -349,6 +357,7 @@ namespace DMP.Controllers {
 
         public ActionResult Competency() {
             var competencies = masterService.GetAllCompetencies().Select(CompetencyModel.FromDomainModel).ToList();
+            ViewBag.List = Session["BreadcrumbList"];
             return View(competencies);
         }
 
@@ -388,6 +397,7 @@ namespace DMP.Controllers {
             var model = new SpecialSchemeViewModel {
                 SpecialSchemes = masterService.GetSpecialSchemes().Select(SpecialSchemeModel.FromDomainModel)
             };
+            ViewBag.List = Session["BreadcrumbList"];
             return View(model);
         }
 

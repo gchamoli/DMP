@@ -149,6 +149,15 @@
       <End Role="ProductVarient" EntitySet="ProductVarients" />
       <End Role="Target" EntitySet="Targets" />
     </AssociationSet>
+    <EntitySet Name="DsmDseTargetMaps" EntityType="DmpModel.DsmDseTargetMap" />
+    <AssociationSet Name="MonthDsmDseTargetMap" Association="DmpModel.MonthDsmDseTargetMap">
+      <End Role="Month" EntitySet="Months" />
+      <End Role="DsmDseTargetMap" EntitySet="DsmDseTargetMaps" />
+    </AssociationSet>
+    <AssociationSet Name="UserDsmDseTargetMap" Association="DmpModel.UserDsmDseTargetMap">
+      <End Role="User" EntitySet="Users" />
+      <End Role="DsmDseTargetMap" EntitySet="DsmDseTargetMaps" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="DealerManpower">
     <Key>
@@ -252,6 +261,7 @@
     <Property Name="ObjectInfo" Type="DmpModel.ObjectInfo" Nullable="false" />
     <NavigationProperty Name="UserDealerMaps" Relationship="DmpModel.UserUserDealerMap" FromRole="User" ToRole="UserDealerMap" />
     <NavigationProperty Name="UserRegionMaps" Relationship="DmpModel.UserUserRegionMap" FromRole="User" ToRole="UserRegionMap" />
+    <NavigationProperty Name="DsmDseTargetMaps" Relationship="DmpModel.UserDsmDseTargetMap" FromRole="User" ToRole="DsmDseTargetMap" />
   </EntityType>
   <EntityType Name="Month">
     <Key>
@@ -267,6 +277,7 @@
     <NavigationProperty Name="SpecialSchemes" Relationship="DmpModel.MonthSpecialScheme" FromRole="Month" ToRole="SpecialScheme" />
     <NavigationProperty Name="Incentives" Relationship="DmpModel.MonthIncentive" FromRole="Month" ToRole="Incentive" />
     <Property Type="Int32" Name="NumberOfEmployee" Nullable="false" />
+    <NavigationProperty Name="DsmDseTargetMaps" Relationship="DmpModel.MonthDsmDseTargetMap" FromRole="Month" ToRole="DsmDseTargetMap" />
   </EntityType>
   <EntityType Name="Target">
     <Key>
@@ -843,6 +854,44 @@
       </Principal>
       <Dependent Role="Target">
         <PropertyRef Name="ProductVarientId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="DsmDseTargetMap">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="DsmId" Nullable="false" />
+    <Property Type="Int32" Name="DseId" Nullable="false" />
+    <NavigationProperty Name="Month" Relationship="DmpModel.MonthDsmDseTargetMap" FromRole="DsmDseTargetMap" ToRole="Month" />
+    <Property Type="Int32" Name="MonthId" Nullable="false" />
+    <NavigationProperty Name="User" Relationship="DmpModel.UserDsmDseTargetMap" FromRole="DsmDseTargetMap" ToRole="User" />
+    <Property Type="Int32" Name="UserId" Nullable="false" />
+    <Property Type="String" Name="Description" Nullable="true" />
+    <Property Name="ObjectInfo" Type="DmpModel.ObjectInfo" Nullable="false" />
+  </EntityType>
+  <Association Name="MonthDsmDseTargetMap">
+    <End Type="DmpModel.Month" Role="Month" Multiplicity="1" />
+    <End Type="DmpModel.DsmDseTargetMap" Role="DsmDseTargetMap" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Month">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DsmDseTargetMap">
+        <PropertyRef Name="MonthId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserDsmDseTargetMap">
+    <End Type="DmpModel.User" Role="User" Multiplicity="1" />
+    <End Type="DmpModel.DsmDseTargetMap" Role="DsmDseTargetMap" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DsmDseTargetMap">
+        <PropertyRef Name="UserId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

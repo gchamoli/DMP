@@ -37,6 +37,7 @@ namespace DMP.IOC {
             kernel.Bind<IRepository<ManpowerSalary>>().To<Repository<ManpowerSalary>>();
             kernel.Bind<IRepository<SpecialSchemeIncentive>>().To<Repository<SpecialSchemeIncentive>>();
             kernel.Bind<IRepository<UserRegionMap>>().To<Repository<UserRegionMap>>();
+            kernel.Bind<IRepository<DsmDseTargetMap>>().To<Repository<DsmDseTargetMap>>();
 
             //Binding Services
             kernel.Bind<IFormsAuthenticationService>().To<FormsAuthenticationService>();

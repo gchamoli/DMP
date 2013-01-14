@@ -394,6 +394,23 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="DsmDseTargetMaps">
+      <EntityTypeMapping TypeName="IsTypeOf(DmpModel.DsmDseTargetMap)">
+        <MappingFragment StoreEntitySet="DsmDseTargetMaps">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="DsmId" ColumnName="DsmId" />
+          <ScalarProperty Name="DseId" ColumnName="DseId" />
+          <ScalarProperty Name="MonthId" ColumnName="MonthId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ComplexProperty Name="ObjectInfo" TypeName="DmpModel.ObjectInfo">
+            <ScalarProperty Name="CreatedDate" ColumnName="ObjectInfo_CreatedDate" />
+            <ScalarProperty Name="ModifiedDate" ColumnName="ObjectInfo_ModifiedDate" />
+            <ScalarProperty Name="DeletedDate" ColumnName="ObjectInfo_DeletedDate" />
+          </ComplexProperty>
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <AssociationSetMapping Name="DealerManpowerProfile" TypeName="DmpModel.DealerManpowerProfile" StoreEntitySet="DealerManpowers">
       <EndProperty Name="Profile">
         <ScalarProperty Name="Id" ColumnName="Profile_Id" />
