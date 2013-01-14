@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using DMP.Repository;
 using DMP.Services.Interface;
+using System.Linq;
 
 namespace DMP.Services.Service {
     public class DsmDseTargetMapService : IDsmDseTargetMapService {
@@ -13,27 +14,38 @@ namespace DMP.Services.Service {
         }
 
         public DsmDseTargetMap GetDsmDseTargetMap(int id) {
-            throw new NotImplementedException();
+            return mapRepo.Single(x => x.Id == id);
         }
 
         public void AddDsmDseTargetMap(IEnumerable<DsmDseTargetMap> maps) {
-            throw new NotImplementedException();
+            foreach (var dsmDseTargetMap in maps) {
+                mapRepo.Add(dsmDseTargetMap);
+            }
+            mapRepo.SaveChanges();
         }
 
         public void UpdateDsmDseTargetMap(DsmDseTargetMap map) {
-            throw new NotImplementedException();
+            var oldMap = GetDsmDseTargetMap(map.Id);
+            oldMap.DsmId = map.DsmId;
+            oldMap.DseId = map.DseId;
+            oldMap.MonthId = map.MonthId;
+            oldMap.UserId = map.UserId;
+            oldMap.Description = map.Description;
+            mapRepo.SaveChanges();
         }
 
         public void DeleteDsmDseTargetMap(int id) {
-            throw new NotImplementedException();
+            var map = GetDsmDseTargetMap(id);
+            map.ObjectInfo.DeletedDate = DateTime.Now;
+            mapRepo.SaveChanges();
         }
 
         public IEnumerable<DsmDseTargetMap> GetAllDsmDseTargetMaps() {
-            throw new NotImplementedException();
+            return mapRepo.GetAll().Where(x => x.ObjectInfo.DeletedDate == null);
         }
 
         public IEnumerable<DsmDseTargetMap> FindDsmDseTargetMaps(Func<DsmDseTargetMap, bool> predicate) {
-            throw new NotImplementedException();
+            return mapRepo.Find(predicate).Where(x => x.ObjectInfo.DeletedDate == null);
         }
     }
 }

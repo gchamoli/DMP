@@ -17,8 +17,8 @@ namespace DMP.Services {
     }
 
     public enum Designation {
-        Dse = 0,
-        Dsm
+        DSE = 0,
+        DSM
     }
 
     public enum TrainingLevel {

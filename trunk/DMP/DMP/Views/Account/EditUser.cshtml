@@ -51,11 +51,12 @@
             $('#cnfPwdMsg').html('').hide();
             var pwd = $('#txtUserPwd').val();
             var cnfPwd = $('#txtUserCnfPwd').val();
-            if(pwd.indexOf(' ') >= 0) {
-                $('#txtUserPwd').addClass('inputError');
-                $('#pwdMsg').html('Password is not in correct format').show();
-                return false;
-            }else if(pwd.length < 6) {
+//            if(pwd.indexOf(' ') >= 0) {
+//                $('#txtUserPwd').addClass('inputError');
+//                $('#pwdMsg').html('Password is not in correct format').show();
+//                return false;
+//            }
+            if(pwd.length < 6) {
                 $('#txtUserPwd').addClass('inputError');
                 $('#pwdMsg').html('Password must be of min 6 characters').show();
                 return false;

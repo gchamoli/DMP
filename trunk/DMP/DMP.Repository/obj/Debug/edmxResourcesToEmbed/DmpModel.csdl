@@ -304,14 +304,14 @@
     <Property Type="String" Name="ContactNumber" Nullable="true" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Type="String" Name="Address" Nullable="true" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Type="String" Name="Designation" Nullable="true" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Type="String" Name="Email" Nullable="true" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Email" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Type="String" Name="PANNumber" Nullable="true" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Type="DateTime" Name="DateOfJoining" Nullable="false" />
+    <Property Type="DateTime" Name="DateOfJoining" Nullable="true" />
     <Property Type="String" Name="PreviousCompany" Nullable="true" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Type="String" Name="PreviousJobProfile" Nullable="true" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Type="Double" Name="TotalWorkExperience" Nullable="true" />
     <Property Type="Double" Name="ExperienceWithVE" Nullable="true" />
-    <Property Type="String" Name="TIVRepresenting" Nullable="false" />
+    <Property Type="String" Name="TIVRepresenting" Nullable="true" />
     <Property Type="String" Name="Description" Nullable="true" />
     <Property Type="DateTime" Name="DateOfLeaving" Nullable="true" />
     <Property Name="ObjectInfo" Type="DmpModel.ObjectInfo" Nullable="false" />
@@ -319,7 +319,7 @@
     <Property Type="String" Name="TrainingLevel" Nullable="true" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Type="String" Name="SAPCode" Nullable="true" />
     <Property Type="DateTime" Name="DateOfBirth" Nullable="true" />
-    <Property Type="String" Name="AreaRepresenting" Nullable="false" />
+    <Property Type="String" Name="AreaRepresenting" Nullable="true" />
   </EntityType>
   <EntityType Name="ProductCategory">
     <Key>

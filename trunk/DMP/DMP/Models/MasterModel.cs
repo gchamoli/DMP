@@ -139,7 +139,7 @@ namespace DMP.Models {
         public string Description { get; set; }
 
         [Required]
-        [Display(Name = "Product")]
+        [Display(Name = "Segment")]
         public int ProductId { get; set; }
 
         public string Product { get; set; }
@@ -268,6 +268,7 @@ namespace DMP.Models {
         [Display(Name = "Parent")]
         public int? ParentId { get; set; }
 
+        [Display(Name = "Region")]
         public int? RegionId { get; set; }
 
         public static User ToDomainModel(UserModel model) {
@@ -366,17 +367,21 @@ namespace DMP.Models {
         [Required]
         public string Name { get; set; }
 
+        [Display(Name = "Region")]
         public int? RegionId { get; set; }
 
         public string Region { get; set; }
 
+        [Display(Name = "State")]
         public int? StateId { get; set; }
 
+        [Display(Name = "Dealer")]
         public int? DealerId { get; set; }
 
         public int MonthId { get; set; }
 
         [Required]
+        [Display(Name = "Month")]
         public int DisplayMonthId { get; set; }
 
         public string Month { get; set; }

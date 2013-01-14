@@ -285,14 +285,14 @@
     <Property Name="ContactNumber" Type="nvarchar(max)" Nullable="true" />
     <Property Name="Address" Type="nvarchar(max)" Nullable="true" />
     <Property Name="Designation" Type="nvarchar(max)" Nullable="true" />
-    <Property Name="Email" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
     <Property Name="PANNumber" Type="nvarchar(max)" Nullable="true" />
-    <Property Name="DateOfJoining" Type="datetime" Nullable="false" />
+    <Property Name="DateOfJoining" Type="datetime" Nullable="true" />
     <Property Name="PreviousCompany" Type="nvarchar(max)" Nullable="true" />
     <Property Name="PreviousJobProfile" Type="nvarchar(max)" Nullable="true" />
     <Property Name="TotalWorkExperience" Type="float" Nullable="true" />
     <Property Name="ExperienceWithVE" Type="float" Nullable="true" />
-    <Property Name="TIVRepresenting" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="TIVRepresenting" Type="nvarchar(max)" Nullable="true" />
     <Property Name="Description" Type="nvarchar(max)" Nullable="true" />
     <Property Name="DateOfLeaving" Type="datetime" Nullable="true" />
     <Property Name="ObjectInfo_CreatedDate" Type="datetime" Nullable="false" />
@@ -301,7 +301,7 @@
     <Property Name="TrainingLevel" Type="nvarchar(max)" Nullable="true" />
     <Property Name="SAPCode" Type="nvarchar(max)" Nullable="true" />
     <Property Name="DateOfBirth" Type="datetime" Nullable="true" />
-    <Property Name="AreaRepresenting" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="AreaRepresenting" Type="nvarchar(max)" Nullable="true" />
   </EntityType>
   <EntityType Name="ProductCategories">
     <Key>

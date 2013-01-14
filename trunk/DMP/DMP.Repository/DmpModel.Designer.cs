@@ -4627,18 +4627,14 @@ namespace DMP.Repository
         /// Create a new Profile object.
         /// </summary>
         /// <param name="id">Initial value of the Id property.</param>
-        /// <param name="dateOfJoining">Initial value of the DateOfJoining property.</param>
-        /// <param name="tIVRepresenting">Initial value of the TIVRepresenting property.</param>
+        /// <param name="email">Initial value of the Email property.</param>
         /// <param name="objectInfo">Initial value of the ObjectInfo property.</param>
-        /// <param name="areaRepresenting">Initial value of the AreaRepresenting property.</param>
-        public static Profile CreateProfile(global::System.Int32 id, global::System.DateTime dateOfJoining, global::System.String tIVRepresenting, ObjectInfo objectInfo, global::System.String areaRepresenting)
+        public static Profile CreateProfile(global::System.Int32 id, global::System.String email, ObjectInfo objectInfo)
         {
             Profile profile = new Profile();
             profile.Id = id;
-            profile.DateOfJoining = dateOfJoining;
-            profile.TIVRepresenting = tIVRepresenting;
+            profile.Email = email;
             profile.ObjectInfo = StructuralObject.VerifyComplexObjectIsNotNull(objectInfo, "ObjectInfo");
-            profile.AreaRepresenting = areaRepresenting;
             return profile;
         }
 
@@ -4747,7 +4743,7 @@ namespace DMP.Repository
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.String Email
         {
@@ -4759,7 +4755,7 @@ namespace DMP.Repository
             {
                 OnEmailChanging(value);
                 ReportPropertyChanging("Email");
-                _Email = StructuralObject.SetValidValue(value, true);
+                _Email = StructuralObject.SetValidValue(value, false);
                 ReportPropertyChanged("Email");
                 OnEmailChanged();
             }
@@ -4795,9 +4791,9 @@ namespace DMP.Repository
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.DateTime DateOfJoining
+        public Nullable<global::System.DateTime> DateOfJoining
         {
             get
             {
@@ -4812,8 +4808,8 @@ namespace DMP.Repository
                 OnDateOfJoiningChanged();
             }
         }
-        private global::System.DateTime _DateOfJoining;
-        partial void OnDateOfJoiningChanging(global::System.DateTime value);
+        private Nullable<global::System.DateTime> _DateOfJoining;
+        partial void OnDateOfJoiningChanging(Nullable<global::System.DateTime> value);
         partial void OnDateOfJoiningChanged();
     
         /// <summary>
@@ -4915,7 +4911,7 @@ namespace DMP.Repository
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
         public global::System.String TIVRepresenting
         {
@@ -4927,7 +4923,7 @@ namespace DMP.Repository
             {
                 OnTIVRepresentingChanging(value);
                 ReportPropertyChanging("TIVRepresenting");
-                _TIVRepresenting = StructuralObject.SetValidValue(value, false);
+                _TIVRepresenting = StructuralObject.SetValidValue(value, true);
                 ReportPropertyChanged("TIVRepresenting");
                 OnTIVRepresentingChanged();
             }
@@ -5059,7 +5055,7 @@ namespace DMP.Repository
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
         public global::System.String AreaRepresenting
         {
@@ -5071,7 +5067,7 @@ namespace DMP.Repository
             {
                 OnAreaRepresentingChanging(value);
                 ReportPropertyChanging("AreaRepresenting");
-                _AreaRepresenting = StructuralObject.SetValidValue(value, false);
+                _AreaRepresenting = StructuralObject.SetValidValue(value, true);
                 ReportPropertyChanged("AreaRepresenting");
                 OnAreaRepresentingChanged();
             }

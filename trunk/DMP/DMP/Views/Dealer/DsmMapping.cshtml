@@ -17,6 +17,10 @@
         $('#ddlDsm').data('placeholder', 'Select DSM').chosen();
         $('#ddlDse').data('placeholder', 'Select DSE').chosen();
 
+        $('#ddlDsm').bind('change', function () {
+            getDseList();
+        });
+
         $('#linkSave').bind('click', function () {
             var dsmId = $('#ddlDsm').val();
             var dseIds = $('#ddlDse').val();
@@ -38,6 +42,24 @@
             }
             return false;
         });
+
+        function getDseList() {
+            var dsmId = $('#ddlDsm').val();
+            if (dsmId != null) {
+                $.post('/Dealer/GetDseFromDsm', { id: dsmId }, function (res) {
+                    if (res.success) {
+                        $('#ddlDse').html('');
+                        var str = '';
+                        for (var i = 0; i < res.dse.length; i++) {
+                            var item = res.dse[i];
+                            str += '<option value="' + item.Key + '">' + item.Value + '</option>';
+                        }
+                        $('#ddlDse').html(str);
+                        $('#ddlDse').trigger('listz:updated');
+                    }
+                });
+            }
+        }
     });
 </script>
 <div class="row-fluid">

@@ -8,8 +8,10 @@ namespace DMP.Models {
     public class DealerManpowerModel {
         public int Id { get; set; }
 
+        [Required]
         public string Name { get; set; }
 
+        [Required]
         [Display(Name = "Designation")]
         public string Type { get; set; }
 
@@ -23,6 +25,7 @@ namespace DMP.Models {
 
         public int ProfileId { get; set; }
 
+        [Required]
         [Display(Name = "Segment Representing")]
         public int ProductId { get; set; }
 
@@ -36,6 +39,7 @@ namespace DMP.Models {
 
         public string Designation { get; set; }
 
+        [Required]
         public string Email { get; set; }
 
         [Display(Name = "PAN Number")]
@@ -63,25 +67,25 @@ namespace DMP.Models {
 
         [Display(Name = "Date of Birth")]
         public string DOBString {
-            get { return DateOfBirth.HasValue ? DateOfBirth.Value.ToString("dd-MMMM-yyyy") : string.Empty; }
+            get { return DateOfBirth.HasValue && DateOfBirth.Value.Ticks > 0 ? DateOfBirth.Value.ToString("dd-MMMM-yyyy") : string.Empty; }
             set {
                 DateTime date;
                 if (!DateTime.TryParseExact(value, "dd-MMMM-yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out date)) {
-                    DateOfBirth = DateTime.UtcNow;
+                    DateOfBirth = DateTime.Now;
                 }
                 DateOfBirth = date;
             }
         }
 
-        public DateTime DateOfJoining { get; set; }
+        public DateTime? DateOfJoining { get; set; }
 
         [Display(Name = "Date of Joining")]
         public string DOJString {
-            get { return DateOfJoining.Ticks > 0 ? DateOfJoining.ToString("dd-MMMM-yyyy") : string.Empty; }
+            get { return DateOfJoining.HasValue && DateOfJoining.Value.Ticks > 0 ? DateOfJoining.Value.ToString("dd-MMMM-yyyy") : string.Empty; }
             set {
                 DateTime date;
                 if (!DateTime.TryParseExact(value, "dd-MMMM-yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out date)) {
-                    DateOfJoining = DateTime.UtcNow;
+                    DateOfJoining = DateTime.Now;
                 }
                 DateOfJoining = date;
             }
@@ -126,7 +130,7 @@ namespace DMP.Models {
                 Designation = model.Type,
                 Email = model.Email,
                 PANNumber = model.PANNumber,
-                DateOfJoining = model.DateOfJoining,
+                DateOfJoining = model.DateOfJoining.HasValue && model.DateOfJoining.Value.Ticks > 0 ? model.DateOfJoining : null,
                 PreviousCompany = model.PreviousCompany,
                 PreviousJobProfile = model.PreviousJobProfile,
                 TotalWorkExperience = model.TotalWorkExperience,
@@ -134,7 +138,7 @@ namespace DMP.Models {
                 TIVRepresenting = model.TIVRepresenting,
                 TrainingLevel = model.TrainingLevel,
                 DateOfLeaving = model.DateOfLeaving,
-                DateOfBirth = model.DateOfBirth,
+                DateOfBirth = model.DateOfBirth.HasValue && model.DateOfBirth.Value.Ticks > 0 ? model.DateOfBirth : null,
                 Description = model.Description,
                 SAPCode = model.SAPId,
                 AreaRepresenting = model.AreaRepresenting

@@ -26,11 +26,11 @@ namespace DMP.Controllers {
         private readonly IDealerManpowerTargetService manpowerTargetService;
         private readonly IUserDealerMapService userDealerMapServiceService;
         private readonly ITargetService targetService;
-        private readonly IIncentiveService incentiveService;
         private readonly IManpowerSalaryService salaryService;
         private readonly IDealerManpowerService dealerManpowerService;
+        private readonly IDsmDseTargetMapService dsmDseTargetMapService;
 
-        public DealerController(IDealerManpowerService manpowerService, IUserService userService, IProfileService profileService, IMasterService masterService, ICompetencyProfileMapService competencyProfileMapService, ITrainingProfileMapService trainingProfileMapService, IAttritionProfileMapService attritionProfileMapService, IDealerManpowerTargetService manpowerTargetService, IUserDealerMapService userDealerMapServiceService, ITargetService targetService, IIncentiveService incentiveService, IManpowerSalaryService salaryService, IDealerManpowerService dealerManpowerService) {
+        public DealerController(IDealerManpowerService manpowerService, IUserService userService, IProfileService profileService, IMasterService masterService, ICompetencyProfileMapService competencyProfileMapService, ITrainingProfileMapService trainingProfileMapService, IAttritionProfileMapService attritionProfileMapService, IDealerManpowerTargetService manpowerTargetService, IUserDealerMapService userDealerMapServiceService, ITargetService targetService, IManpowerSalaryService salaryService, IDealerManpowerService dealerManpowerService, IDsmDseTargetMapService dsmDseTargetMapService) {
             this.manpowerService = manpowerService;
             this.userService = userService;
             this.profileService = profileService;
@@ -41,9 +41,9 @@ namespace DMP.Controllers {
             this.manpowerTargetService = manpowerTargetService;
             this.userDealerMapServiceService = userDealerMapServiceService;
             this.targetService = targetService;
-            this.incentiveService = incentiveService;
             this.salaryService = salaryService;
             this.dealerManpowerService = dealerManpowerService;
+            this.dsmDseTargetMapService = dsmDseTargetMapService;
             if (System.Web.HttpContext.Current.Session["BreadcrumbList"] == null) {
                 System.Web.HttpContext.Current.Session["BreadcrumbList"] = new List<BreadcrumbModel>();
             }
@@ -171,13 +171,6 @@ namespace DMP.Controllers {
                 profileService.AddProfile(new[] { profile });
             }
 
-            //Add/Update Competency
-            //var competencies = masterService.GetAllCompetencies();
-            //var competencyList = competencies.Select(comp => new CompetencyProfileMap {
-            //    Id = 0, DealerManpowerId = manpower.Id, CompetencyId = comp.Id, Score = 0
-            //}).ToList();
-            //competencyProfileMapService.AddCompetencyProfileMap(competencyList);
-
             //Add Salary
             if (model.Manpower.Salary > 0) {
                 salaryService.AddManpowerSalary(new[]{new ManpowerSalary
@@ -289,7 +282,7 @@ namespace DMP.Controllers {
         public ActionResult ManageDse(int csmId, int dealerId) {
             Session["BreadcrumbList"] = Utils.HtmlExtensions.SetBreadcrumbs((List<BreadcrumbModel>)Session["BreadcrumbList"], string.Format("/Dealer/ManageDse?csmId={0}&dealerId={1}", csmId, dealerId), "Manage DSE");
             var model = new ManageDseViewModel() {
-                Manpowers = manpowerService.FindDealerManpowers(x => x.UserId == csmId && x.DealerId == dealerId).Select(DealerManpowerModel.FromDomainModel)
+                Manpowers = manpowerService.FindDealerManpowers(x => x.UserId == csmId && x.DealerId == dealerId).OrderBy(x => x.Type).Select(DealerManpowerModel.FromDomainModel)
             };
             ViewBag.List = Session["BreadcrumbList"];
             return View(model);
@@ -510,6 +503,26 @@ namespace DMP.Controllers {
                 }
             }
             return Json(new { success = true }, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult GetDseFromDsm(int id) {
+            var csm = userService.GetUserByUserName(User.Identity.Name);
+            var currentDate = DateTime.Now;
+            var dsmList = dealerManpowerService.FindDealerManpowers(x => x.UserId == csm.Id && x.Type.ToLower() == "dsm");
+            var dseList = dealerManpowerService.FindDealerManpowers(x => x.UserId == csm.Id && x.Type.ToLower() == "dse");
+            var currentMonth = masterService.FindAndCreateMonth(currentDate.ToString("MMMM"), currentDate.Year);
+            var maps = dsmDseTargetMapService.FindDsmDseTargetMaps(x => x.MonthId == currentMonth.Id && x.UserId == csm.Id).ToList();
+            var list = new List<KeyValuePair<int, string>>();
+            if (maps.Any()) {
+                var dseIds = maps.Where(x => x.DsmId == id).Select(x => x.DseId);
+                if (dseIds.Any()) {
+                    list.AddRange(dseList.Where(x => dseIds.Contains(x.Id)).Select(x => new KeyValuePair<int, string>(x.Id, x.Name)));
+                }
+                list.AddRange(dseList.Where(x => !maps.Select(y => y.DseId).Contains(x.Id)).Select(x => new KeyValuePair<int, string>(x.Id, x.Name)));
+            } else {
+                list.AddRange(dseList.Select(x => new KeyValuePair<int, string>(x.Id, x.Name)));
+            }
+            return Json(new { success = true, dse = list }, JsonRequestBehavior.AllowGet);
         }
 
         #endregion

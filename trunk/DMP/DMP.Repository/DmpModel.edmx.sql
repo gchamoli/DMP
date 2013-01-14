@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, and Azure
 -- --------------------------------------------------
--- Date Created: 01/14/2013 13:50:01
+-- Date Created: 01/14/2013 18:01:54
 -- Generated from EDMX file: D:\WORK\Work\DMP\trunk\DMP\DMP.Repository\DmpModel.edmx
 -- --------------------------------------------------
 
@@ -325,14 +325,14 @@ CREATE TABLE [dbo].[Profiles] (
     [ContactNumber] nvarchar(max)  NULL,
     [Address] nvarchar(max)  NULL,
     [Designation] nvarchar(max)  NULL,
-    [Email] nvarchar(max)  NULL,
+    [Email] nvarchar(max)  NOT NULL,
     [PANNumber] nvarchar(max)  NULL,
-    [DateOfJoining] datetime  NOT NULL,
+    [DateOfJoining] datetime  NULL,
     [PreviousCompany] nvarchar(max)  NULL,
     [PreviousJobProfile] nvarchar(max)  NULL,
     [TotalWorkExperience] float  NULL,
     [ExperienceWithVE] float  NULL,
-    [TIVRepresenting] nvarchar(max)  NOT NULL,
+    [TIVRepresenting] nvarchar(max)  NULL,
     [Description] nvarchar(max)  NULL,
     [DateOfLeaving] datetime  NULL,
     [ObjectInfo_CreatedDate] datetime  NOT NULL,
@@ -341,7 +341,7 @@ CREATE TABLE [dbo].[Profiles] (
     [TrainingLevel] nvarchar(max)  NULL,
     [SAPCode] nvarchar(max)  NULL,
     [DateOfBirth] datetime  NULL,
-    [AreaRepresenting] nvarchar(max)  NOT NULL
+    [AreaRepresenting] nvarchar(max)  NULL
 );
 GO
 
