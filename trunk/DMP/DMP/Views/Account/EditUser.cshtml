@@ -68,41 +68,41 @@
         }
     });
 </script>
-<div class="span6">
+<div class="span8">
     @using (Ajax.BeginForm(new AjaxOptions { OnComplete = "closePopUp()", OnSuccess = "reLoad('/Account/Users')" })) {
         <div style="width: 100%">
             @Html.HiddenFor(x => x.User.Id)
-            <div>
+            <div class="span3">
                 @Html.LabelFor(x => x.User.Role)
                 @Html.DropDownListFor(x => x.User.Role, new SelectList(Model.Roles, "Key", "Value"), new { @id = "ddlRole" })
             </div>
             @if (Model.ParentUsers.Any()) {
-                <div id="dvParent">
+                <div id="dvParent" class="span3">
                     @Html.LabelFor(x => x.User.ParentId)
                     @Html.DropDownListFor(x => x.User.ParentId, new SelectList(Model.ParentUsers, "Key", "Value"), new { @id = "ddlParent" })
                 </div>
             }
             @if (Model.Regions.Any()) {
-                <div id="dvRegion" style="display: none">
+                <div id="dvRegion" style="display: none" class="span3">
                     @Html.LabelFor(x => x.User.RegionId)
                     @Html.DropDownListFor(x => x.User.RegionId, new SelectList(Model.Regions, "Key", "Value"), new { @id = "ddlRegion" })
                 </div>
             }
-            <div>
+            <div class="span3">
                 @Html.LabelFor(x => x.User.Name)
                 @Html.TextBoxFor(x => x.User.Name, new { @id = "txtUserName" })
             </div>
             @if (Model.User.Id <= 0) {
-                <div>
+                <div class="span3">
                     @Html.LabelFor(x => x.User.Email)
                     @Html.TextBoxFor(x => x.User.Email, new { @id = "txtUserEmail" })
                 </div>
-                <div>
+                <div class="span3">
                     @Html.LabelFor(x => x.User.Password)
                     @Html.PasswordFor(x => x.User.Password, new { @id = "txtUserPwd" })
                     <span id="pwdMsg" style="display: none; color: red; font-size: 12px;"></span>
                 </div>
-                <div>
+                <div class="span3">
                     @Html.LabelFor(x => x.User.ConfirmPassword)
                     @Html.PasswordFor(x => x.User.ConfirmPassword, new { @id = "txtUserCnfPwd" })
                     <span id="cnfPwdMsg" style="display: none; color: red; font-size: 12px;"></span>
@@ -112,11 +112,11 @@
                 @Html.HiddenFor(x => x.User.Password)
                 @Html.HiddenFor(x => x.User.ConfirmPassword)
             }
-            <div>
+            <div class="span3">
                 @Html.LabelFor(x => x.User.Description)
-                @Html.TextAreaFor(x => x.User.Description, new { @id = "txtUserDescription" })
+                @Html.TextBoxFor(x => x.User.Description, new { @id = "txtUserDescription" })
             </div>
-            <div>
+            <div class="span6">
                 <input type="submit" value="Save" class="btn btn-primary" id="btnSubmit" />
                 <input type="reset" value="Reset" class="btn btn-primary" />
             </div>

@@ -54,6 +54,7 @@ namespace DMP.IOC {
             kernel.Bind<IIncentiveService>().To<IncentiveService>();
             kernel.Bind<ITargetService>().To<TargetService>();
             kernel.Bind<IManpowerSalaryService>().To<ManpowerSalaryService>();
+            kernel.Bind<IDsmDseTargetMapService>().To<DsmDseTargetMapService>();
         }
     }
 }

@@ -50,6 +50,7 @@
     <Compile Include="Interface\ICompetencyProfileMapService.cs" />
     <Compile Include="Interface\IDealerManpowerService.cs" />
     <Compile Include="Interface\IDealerManpowerTargetService.cs" />
+    <Compile Include="Interface\IDsmDseTargetMapService.cs" />
     <Compile Include="Interface\IFormsAuthenticationService.cs" />
     <Compile Include="Interface\IIncentiveService.cs" />
     <Compile Include="Interface\IManpowerSalaryService.cs" />
@@ -65,6 +66,7 @@
     <Compile Include="Service\CompetencyProfileMapService.cs" />
     <Compile Include="Service\DealerManpowerService.cs" />
     <Compile Include="Service\DealerManpowerTargetService.cs" />
+    <Compile Include="Service\DsmDseTargetMapService.cs" />
     <Compile Include="Service\FormsAuthenticationService.cs" />
     <Compile Include="Service\IncentiveService.cs" />
     <Compile Include="Service\ManpowerSalaryService.cs" />
