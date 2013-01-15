@@ -115,7 +115,7 @@ namespace DMP.Controllers {
             }
             var currentDate = DateTime.Now;
             var currentMonth = masterService.FindAndCreateMonth(currentDate.ToString("MMMM"), currentDate.Year);
-            var rsmUsers = userService.FindUsers(x => x.ParentId == id || x.Role.ToLower() == "rsm");
+            var rsmUsers = userService.FindUsers(x => x.ParentId == id );
             var products = masterService.GetAllProducts().OrderBy(x => x.Id);
             var trainingLevels = Enumeration.GetAll<TrainingLevel>();
             var reportList = new List<ReportManpowerModel>();
@@ -188,7 +188,7 @@ namespace DMP.Controllers {
             }
             var currentDate = DateTime.Now;
             var currentMonth = masterService.FindAndCreateMonth(currentDate.ToString("MMMM"), currentDate.Year);
-            var csmUsers = userService.FindUsers(x => x.ParentId == id || x.Role.ToLower() == "csm");
+            var csmUsers = userService.FindUsers(x => x.ParentId == id );
             var products = masterService.GetAllProducts().OrderBy(x => x.Id);
             var trainingLevels = Enumeration.GetAll<TrainingLevel>();
             var reportList = new List<ReportManpowerModel>();
