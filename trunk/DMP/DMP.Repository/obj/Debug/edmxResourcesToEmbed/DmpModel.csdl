@@ -209,6 +209,7 @@
     <Property Name="ObjectInfo" Type="DmpModel.ObjectInfo" Nullable="false" />
     <NavigationProperty Name="DealerManpowerTargets" Relationship="DmpModel.ProductDealerManpowerTargets" FromRole="Product" ToRole="DealerManpowerTargets" />
     <NavigationProperty Name="DealerManpowers" Relationship="DmpModel.ProductDealerManpower" FromRole="Product" ToRole="DealerManpower" />
+    <Property Type="Boolean" Name="IsCommon" Nullable="false" />
   </EntityType>
   <EntityType Name="ProductVarient">
     <Key>

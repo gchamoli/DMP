@@ -48,15 +48,15 @@ namespace DMP.Controllers {
                              };
             masterService.AddStates(states);
 
-            //Add Dealer
-            var dealers = new List<Dealer>
-                             {
-                                 new Dealer {Id=0, Name="Dealer1", Description="dealer",StateId = 1},
-                                 new Dealer {Id=0, Name="Dealer2", Description="dealer",StateId = 2},
-                                 new Dealer {Id=0, Name="Dealer3", Description="dealer",StateId = 3},
-                                 new Dealer {Id=0, Name="Dealer4", Description="dealer",StateId = 4}
-                             };
-            masterService.AddDealer(dealers);
+            ////Add Dealer
+            //var dealers = new List<Dealer>
+            //                 {
+            //                     new Dealer {Id=0, Name="Dealer1", Description="dealer",StateId = 1},
+            //                     new Dealer {Id=0, Name="Dealer2", Description="dealer",StateId = 2},
+            //                     new Dealer {Id=0, Name="Dealer3", Description="dealer",StateId = 3},
+            //                     new Dealer {Id=0, Name="Dealer4", Description="dealer",StateId = 4}
+            //                 };
+            //masterService.AddDealer(dealers);
 
             //Add Category
             var category = new List<ProductCategory>
@@ -68,9 +68,9 @@ namespace DMP.Controllers {
             //Add Product
             var products = new List<Product>
                              {
-                                 new Product {Id=0, Name="Haulage", Description="Haulage",ProductCategoryId = 1},
-                                 new Product {Id=0, Name="Tipper", Description="Tipper",ProductCategoryId = 1},
-                                 new Product {Id=0, Name="Common", Description="common",ProductCategoryId = 1}
+                                 new Product {Id=0, Name="Haulage", Description="Haulage",ProductCategoryId = 1,IsCommon = false},
+                                 new Product {Id=0, Name="Tipper", Description="Tipper",ProductCategoryId = 1,IsCommon = false},
+                                 new Product {Id=0, Name="Common", Description="common",ProductCategoryId = 1,IsCommon = true}
                              };
             masterService.AddProduct(products);
 
@@ -121,34 +121,27 @@ namespace DMP.Controllers {
             var users = new List<User>
                               {
                                   new User {Id=0, Name="hq",Email= "hq@eicher.in",Role="HQ",Description="user",ParentId = 0},
-                                  new User {Id=0, Name="rm1",Email="rm1@eicher.in",Role="RM", Description="user",ParentId = 1},
-                                  new User {Id=0, Name="rsm",Email="rsm@eicher.in",Role="RSM", Description="user",ParentId = 2},
-                                  new User {Id=0, Name="csm",Email="csm@eicher.in",Role="CSM", Description="user",ParentId = 3},
-                                  new User {Id=0, Name="hqr",Email="hqr@eicher.in",Role="HQR", Description="user",ParentId = 0},
-                                  new User {Id=0, Name="rm2",Email="rm2@eicher.in",Role="RM", Description="user",ParentId = 1},
-                                  new User {Id=0, Name="rm3",Email="rm3@eicher.in",Role="RM", Description="user",ParentId = 1},
-                                  new User {Id=0, Name="rm4",Email="rm4@eicher.in",Role="RM", Description="user",ParentId = 1}
                               };
 
             userService.AddUser(users);
 
-            //Add User-Region Map
-            var userRegionMaps = new List<UserRegionMap>
-                              {
-                                  new UserRegionMap {Id=0, RegionId= 1,UserId = 2,Description="user-region"},
-                                  new UserRegionMap {Id=0, RegionId= 2,UserId = 6,Description="user-region"},
-                                  new UserRegionMap {Id=0, RegionId= 3,UserId = 7,Description="user-region"},
-                                  new UserRegionMap {Id=0, RegionId= 4,UserId = 8,Description="user-region"},
-                              };
-            masterService.AddUserRegionMap(userRegionMaps);
+            ////Add User-Region Map
+            //var userRegionMaps = new List<UserRegionMap>
+            //                  {
+            //                      new UserRegionMap {Id=0, RegionId= 1,UserId = 2,Description="user-region"},
+            //                      new UserRegionMap {Id=0, RegionId= 2,UserId = 6,Description="user-region"},
+            //                      new UserRegionMap {Id=0, RegionId= 3,UserId = 7,Description="user-region"},
+            //                      new UserRegionMap {Id=0, RegionId= 4,UserId = 8,Description="user-region"},
+            //                  };
+            //masterService.AddUserRegionMap(userRegionMaps);
 
-            //Add UserDealerMap
-            var userDealerMaps = new List<UserDealerMap>
-                              {
-                                  new UserDealerMap {Id=0, UserId= 4,DealerId = 1,Description="user-dealer maps"},
-                                  new UserDealerMap {Id=0, UserId= 4,DealerId = 2,Description="user-dealer maps"}
-                              };
-            userDealerMapService.AddUserDealerMap(userDealerMaps);
+            ////Add UserDealerMap
+            //var userDealerMaps = new List<UserDealerMap>
+            //                  {
+            //                      new UserDealerMap {Id=0, UserId= 4,DealerId = 1,Description="user-dealer maps"},
+            //                      new UserDealerMap {Id=0, UserId= 4,DealerId = 2,Description="user-dealer maps"}
+            //                  };
+            //userDealerMapService.AddUserDealerMap(userDealerMaps);
 
             // Add Training
             var trainings = new List<Training>
@@ -160,14 +153,14 @@ namespace DMP.Controllers {
                               };
             masterService.AddTraining(trainings);
 
-            // Add SpecialScheme
-            var schemes = new List<SpecialScheme>
-                              {
-                                  new SpecialScheme {Id=0, Name="Diwali", Description="Diwali special",MonthId= 3,RegionId = 1,StateId = 1,DealerId = 1},
-                                  new SpecialScheme {Id=0, Name="Cristmas", Description="Cristmas special",MonthId= 2,RegionId = 1,StateId = 1,DealerId = 1},
-                                  new SpecialScheme {Id=0, Name="New Year", Description="New Year special",MonthId= 3,RegionId = 1,StateId = 1,DealerId = 1}
-                              };
-            masterService.AddSpecialScheme(schemes);
+            //// Add SpecialScheme
+            //var schemes = new List<SpecialScheme>
+            //                  {
+            //                      new SpecialScheme {Id=0, Name="Diwali", Description="Diwali special",MonthId= 3,RegionId = 1,StateId = 1,DealerId = 1},
+            //                      new SpecialScheme {Id=0, Name="Cristmas", Description="Cristmas special",MonthId= 2,RegionId = 1,StateId = 1,DealerId = 1},
+            //                      new SpecialScheme {Id=0, Name="New Year", Description="New Year special",MonthId= 3,RegionId = 1,StateId = 1,DealerId = 1}
+            //                  };
+            //masterService.AddSpecialScheme(schemes);
 
         }
 

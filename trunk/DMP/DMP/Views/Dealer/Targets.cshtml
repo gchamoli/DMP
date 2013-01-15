@@ -45,7 +45,7 @@
             //                return false;
             //            }
             $.ajax({
-                url: '/Dealer/SaveDsmMapping',
+                url: '/Dealer/SaveTargets',
                 type: 'POST',
                 dataType: 'json',
                 data: JSON.stringify(ko.mapping.toJS(viewModel)),
@@ -143,8 +143,8 @@
                 </tbody>
             </table>
             <div class="editInput">
-                <input type="submit" value="Update" class="btn btn-primary" />
-                <input type="reset" value="Cancel" data-bind="click: resetTarget" class="btn btn-primary" />
+                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="reset" value="Reset" data-bind="click: resetTarget" class="btn btn-primary" />
             </div>
         }
     </div>

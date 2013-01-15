@@ -47,7 +47,7 @@
         <table class="table table-bordered">
             <thead>
                 <tr>
-                    <th colspan="3" class="head1">
+                    <th colspan="4" class="head1">
                         Products
                     </th>
                     @if (User.IsInRole("HQ")) {
@@ -63,6 +63,9 @@
                     </th>
                     <th class="head2">
                         Category
+                    </th>
+                    <th class="head2">
+                        IsCommon
                     </th>
                     <th class="head2">
                         Description
@@ -82,6 +85,15 @@
                         </td>
                         <td>@product.Category
                         </td>
+                        @if (product.IsCommon) {
+                            <td>
+                                True
+                            </td>
+                        } else {
+                            <td>
+                                False
+                            </td>
+                        }
                         <td>@product.Description
                         </td>
                         @if (User.IsInRole("HQ")) {

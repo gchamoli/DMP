@@ -359,13 +359,14 @@ namespace DMP.Controllers {
             var manpowers = manpowerService.FindDealerManpowers(x => x.UserId == csm.Id && x.DealerId == id).OrderBy(y => y.Name).ToList();
             var manpowerIds = manpowers.Select(x => x.Id);
             var allVarients = masterService.GetAllProductVarients();
-            var products = masterService.FindProducts(x => x.ProductVarients.Count > 0).OrderBy(x => x.Id);
+            var products = masterService.FindProducts(x => x.ProductVarients.Count > 0 && !x.IsCommon).OrderBy(x => x.Id);
             var data = targetService.FindTargets(x => manpowerIds.Contains(x.DealerManpowerId) && x.MonthId == month.Id);
             var previousTargets =
                 targetService.FindTargets(x => manpowerIds.Contains(x.DealerManpowerId) && x.MonthId == previousMonth.Id);
             var targetList = new List<TargetModel>();
 
             foreach (var manpower in manpowers) {
+                var isEdit = manpower.Product.IsCommon;
                 var targetModel = new TargetModel { ManpowerId = manpower.Id, Manpower = manpower.Name, MonthId = month.Id };
                 var targetPlanList = new List<TargetPlanModel>();
                 var manpowerProductVarientIds = allVarients.Where(x => x.ProductId == manpower.ProductId).Select(x => x.Id);
@@ -381,7 +382,7 @@ namespace DMP.Controllers {
                         ProductVarientId = varient.Id,
                         preTarget1 = preTempData.Any() ? preTempData.Sum(x => x.Target1) : 0,
                         preTarget2 = preTempData.Any() ? preTempData.Sum(x => x.Target2) : 0,
-                        IsEditable = manpowerProductVarientIds.Contains(varient.Id)
+                        IsEditable = manpowerProductVarientIds.Contains(varient.Id) || isEdit
                     });
                 }
                 targetModel.Targets = targetPlanList;

@@ -3960,13 +3960,15 @@ namespace DMP.Repository
         /// <param name="name">Initial value of the Name property.</param>
         /// <param name="productCategoryId">Initial value of the ProductCategoryId property.</param>
         /// <param name="objectInfo">Initial value of the ObjectInfo property.</param>
-        public static Product CreateProduct(global::System.Int32 id, global::System.String name, global::System.Int32 productCategoryId, ObjectInfo objectInfo)
+        /// <param name="isCommon">Initial value of the IsCommon property.</param>
+        public static Product CreateProduct(global::System.Int32 id, global::System.String name, global::System.Int32 productCategoryId, ObjectInfo objectInfo, global::System.Boolean isCommon)
         {
             Product product = new Product();
             product.Id = id;
             product.Name = name;
             product.ProductCategoryId = productCategoryId;
             product.ObjectInfo = StructuralObject.VerifyComplexObjectIsNotNull(objectInfo, "ObjectInfo");
+            product.IsCommon = isCommon;
             return product;
         }
 
@@ -4071,6 +4073,30 @@ namespace DMP.Repository
         private global::System.Int32 _ProductCategoryId;
         partial void OnProductCategoryIdChanging(global::System.Int32 value);
         partial void OnProductCategoryIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean IsCommon
+        {
+            get
+            {
+                return _IsCommon;
+            }
+            set
+            {
+                OnIsCommonChanging(value);
+                ReportPropertyChanging("IsCommon");
+                _IsCommon = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IsCommon");
+                OnIsCommonChanged();
+            }
+        }
+        private global::System.Boolean _IsCommon;
+        partial void OnIsCommonChanging(global::System.Boolean value);
+        partial void OnIsCommonChanged();
 
         #endregion
         #region Complex Properties

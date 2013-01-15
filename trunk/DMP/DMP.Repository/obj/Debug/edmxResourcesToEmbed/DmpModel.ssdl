@@ -198,6 +198,7 @@
     <Property Name="ObjectInfo_CreatedDate" Type="datetime" Nullable="false" />
     <Property Name="ObjectInfo_ModifiedDate" Type="datetime" Nullable="false" />
     <Property Name="ObjectInfo_DeletedDate" Type="datetime" Nullable="true" />
+    <Property Name="IsCommon" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="ProductVarients">
     <Key>

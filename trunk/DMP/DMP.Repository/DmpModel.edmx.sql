@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, and Azure
 -- --------------------------------------------------
--- Date Created: 01/14/2013 18:01:54
+-- Date Created: 01/15/2013 12:43:32
 -- Generated from EDMX file: D:\WORK\Work\DMP\trunk\DMP\DMP.Repository\DmpModel.edmx
 -- --------------------------------------------------
 
@@ -237,7 +237,8 @@ CREATE TABLE [dbo].[Products] (
     [ProductCategoryId] int  NOT NULL,
     [ObjectInfo_CreatedDate] datetime  NOT NULL,
     [ObjectInfo_ModifiedDate] datetime  NOT NULL,
-    [ObjectInfo_DeletedDate] datetime  NULL
+    [ObjectInfo_DeletedDate] datetime  NULL,
+    [IsCommon] bit  NOT NULL
 );
 GO
 

@@ -14,6 +14,10 @@
             @Html.DropDownListFor(x => x.Product.CategoryId, new SelectList(Model.Categories, "Key", "Value"))
         </div>
         <div>
+            IsCommon 
+            @Html.EditorFor(x => x.Product.IsCommon)
+        </div>
+        <div>
             @Html.LabelFor(x => x.Product.Description)
             @Html.TextAreaFor(x => x.Product.Description)
         </div>

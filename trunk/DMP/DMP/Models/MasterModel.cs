@@ -104,6 +104,8 @@ namespace DMP.Models {
 
         public string Description { get; set; }
 
+        public bool IsCommon { get; set; }
+
         [Required]
         [Display(Name = "Category")]
         public int CategoryId { get; set; }
@@ -115,7 +117,8 @@ namespace DMP.Models {
                 Id = model.Id,
                 Name = model.Name,
                 Description = model.Description,
-                ProductCategoryId = model.CategoryId
+                ProductCategoryId = model.CategoryId,
+                IsCommon = model.IsCommon
             };
         }
 
@@ -124,7 +127,8 @@ namespace DMP.Models {
                 Id = product.Id,
                 Name = product.Name,
                 Description = product.Description,
-                Category = product.ProductCategory.Name
+                Category = product.ProductCategory.Name,
+                IsCommon = product.IsCommon
             };
         }
     }

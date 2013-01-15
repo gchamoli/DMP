@@ -203,6 +203,7 @@
     <Property Name="ObjectInfo_CreatedDate" Type="datetime" Nullable="false" />
     <Property Name="ObjectInfo_ModifiedDate" Type="datetime" Nullable="false" />
     <Property Name="ObjectInfo_DeletedDate" Type="datetime" Nullable="true" />
+    <Property Name="IsCommon" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="ProductVarients">
     <Key>
@@ -1110,6 +1111,7 @@
           <Property Name="ObjectInfo" Type="DmpModel.ObjectInfo" Nullable="false" />
           <NavigationProperty Name="DealerManpowerTargets" Relationship="DmpModel.ProductDealerManpowerTargets" FromRole="Product" ToRole="DealerManpowerTargets" />
           <NavigationProperty Name="DealerManpowers" Relationship="DmpModel.ProductDealerManpower" FromRole="Product" ToRole="DealerManpower" />
+          <Property Type="Boolean" Name="IsCommon" Nullable="false" />
         </EntityType>
         <EntityType Name="ProductVarient">
           <Key>
@@ -1847,6 +1849,7 @@
             <ScalarProperty Name="ModifiedDate" ColumnName="ObjectInfo_ModifiedDate" />
             <ScalarProperty Name="DeletedDate" ColumnName="ObjectInfo_DeletedDate" />
           </ComplexProperty>
+          <ScalarProperty Name="IsCommon" ColumnName="IsCommon" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -2250,7 +2253,7 @@
       <Diagram Name="DmpModel" ZoomLevel="88" >
         <EntityTypeShape EntityType="DmpModel.DealerManpower" Width="2.125" PointX="9.625" PointY="12.125" Height="3.9033007812499996" />
         <EntityTypeShape EntityType="DmpModel.Dealer" Width="2.125" PointX="4.375" PointY="7.375" Height="2.1725878906249996" />
-        <EntityTypeShape EntityType="DmpModel.Product" Width="1.5" PointX="14.75" PointY="6.25" Height="2.1725878906249996" />
+        <EntityTypeShape EntityType="DmpModel.Product" Width="1.5" PointX="14.75" PointY="6.25" Height="2.9417936197916656" />
         <EntityTypeShape EntityType="DmpModel.ProductVarient" Width="1.5" PointX="11" PointY="6.25" Height="2.1725878906249996" />
         <EntityTypeShape EntityType="DmpModel.Region" Width="2.25" PointX="4" PointY="1.875" Height="1.9802864583333339" />
         <EntityTypeShape EntityType="DmpModel.State" Width="1.5" PointX="1.5" PointY="2.375" Height="2.3648893229166656" />
@@ -2262,13 +2265,13 @@
         <EntityTypeShape EntityType="DmpModel.Training" Width="2.75" PointX="19.25" PointY="12.125" Height="2.1725878906249996" />
         <EntityTypeShape EntityType="DmpModel.DealerManpowerTargets" Width="2" PointX="2.25" PointY="11.375" Height="2.5571907552083317" />
         <AssociationConnector Association="DmpModel.FK_DealerDealerManpower" >
-          <ConnectorPoint PointX="6.062346938935228" PointY="10.1244921875" />
-          <ConnectorPoint PointX="6.062346938935228" PointY="12.782864180355407" />
-          <ConnectorPoint PointX="7.408854166666667" PointY="12.782864180355407" />
-          <ConnectorPoint PointX="7.575520833333333" PointY="12.782864180355407" />
-          <ConnectorPoint PointX="7.631510416666667" PointY="12.782864180355407" />
-          <ConnectorPoint PointX="7.798177083333333" PointY="12.782864180355407" />
-          <ConnectorPoint PointX="9.625" PointY="12.782864180355407" />
+          <ConnectorPoint PointX="6.07806697710071" PointY="10.1244921875" />
+          <ConnectorPoint PointX="6.07806697710071" PointY="14.2976224534639" />
+          <ConnectorPoint PointX="7.6110013541666666" PointY="14.2976224534639" />
+          <ConnectorPoint PointX="7.7776680208333326" PointY="14.2976224534639" />
+          <ConnectorPoint PointX="8.1803410416666669" PointY="14.2976224534639" />
+          <ConnectorPoint PointX="8.3470077083333347" PointY="14.2976224534639" />
+          <ConnectorPoint PointX="9.625" PointY="14.2976224534639" />
         </AssociationConnector>
         <AssociationConnector Association="DmpModel.FK_ProductProductVarient" >
           <ConnectorPoint PointX="14.75" PointY="7.4324446614583328" />
@@ -2305,17 +2308,19 @@
           <ConnectorPoint PointX="9.625" PointY="15.927902245312522" />
         </AssociationConnector>
         <AssociationConnector Association="DmpModel.ProductCategoryProduct" >
-          <ConnectorPoint PointX="18" PointY="7.1776432291666667" />
-          <ConnectorPoint PointX="16.25" PointY="7.1776432291666667" />
+          <ConnectorPoint PointX="18" PointY="7.1776432291666659" />
+          <ConnectorPoint PointX="16.25" PointY="7.1776432291666659" />
         </AssociationConnector>
         <AssociationConnector Association="DmpModel.MonthDealerManpowerTargets" >
-          <ConnectorPoint PointX="7.4921875" PointY="7.5090950520833326" />
-          <ConnectorPoint PointX="7.4921875" PointY="13.231244756360312" />
-          <ConnectorPoint PointX="5.3332543028009471" PointY="13.231244756360312" />
-          <ConnectorPoint PointX="5.1665876361342811" PointY="13.231244756360312" />
-          <ConnectorPoint PointX="4.583333333333333" PointY="13.231244756360312" />
-          <ConnectorPoint PointX="4.416666666666667" PointY="13.231244756360312" />
-          <ConnectorPoint PointX="4.25" PointY="13.231244756360312" />
+          <ConnectorPoint PointX="7.451169375" PointY="7.5090950520833326" />
+          <ConnectorPoint PointX="7.451169375" PointY="12.699435205518233" />
+          <ConnectorPoint PointX="6.1614003104340433" PointY="12.699435205518233" />
+          <ConnectorPoint PointX="5.9947336437673773" PointY="12.699435205518233" />
+          <ConnectorPoint PointX="5.3411143218836878" PointY="12.699435205518233" />
+          <ConnectorPoint PointX="5.1744476552170218" PointY="12.699435205518233" />
+          <ConnectorPoint PointX="4.583333333333333" PointY="12.699435205518233" />
+          <ConnectorPoint PointX="4.416666666666667" PointY="12.699435205518233" />
+          <ConnectorPoint PointX="4.25" PointY="12.699435205518233" />
         </AssociationConnector>
         <AssociationConnector Association="DmpModel.UserDealerManpowerTargets" >
           <ConnectorPoint PointX="3.3095691406250003" PointY="15.125" />
@@ -2366,27 +2371,27 @@
           <ConnectorPoint PointX="8.27344" PointY="16.375" />
         </AssociationConnector>
         <AssociationConnector Association="DmpModel.DealerDealerManpowerTargets">
-          <ConnectorPoint PointX="5.187294251913638" PointY="10.1244921875" />
-          <ConnectorPoint PointX="5.187294251913638" PointY="13.6438484225528" />
-          <ConnectorPoint PointX="4.583333333333333" PointY="13.6438484225528" />
-          <ConnectorPoint PointX="4.416666666666667" PointY="13.6438484225528" />
-          <ConnectorPoint PointX="4.25" PointY="13.6438484225528" />
+          <ConnectorPoint PointX="5.2577809885503548" PointY="10.1244921875" />
+          <ConnectorPoint PointX="5.2577809885503548" PointY="13.52978132949106" />
+          <ConnectorPoint PointX="4.583333333333333" PointY="13.52978132949106" />
+          <ConnectorPoint PointX="4.416666666666667" PointY="13.52978132949106" />
+          <ConnectorPoint PointX="4.25" PointY="13.52978132949106" />
         </AssociationConnector>
         <AssociationConnector Association="DmpModel.ProductDealerManpowerTargets">
-          <ConnectorPoint PointX="15.6992203125" PointY="8.9994921875" />
-          <ConnectorPoint PointX="15.6992203125" PointY="11.966095377604166" />
-          <ConnectorPoint PointX="15.495440989583335" PointY="11.966095377604166" />
-          <ConnectorPoint PointX="15.328774322916667" PointY="11.966095377604166" />
+          <ConnectorPoint PointX="15.674803828125" PointY="9.1917936197916656" />
+          <ConnectorPoint PointX="15.674803828125" PointY="11.966095377604166" />
+          <ConnectorPoint PointX="15.483232747395833" PointY="11.966095377604166" />
+          <ConnectorPoint PointX="15.316566080729166" PointY="11.966095377604166" />
           <ConnectorPoint PointX="10.520835833333335" PointY="11.966095377604166" />
           <ConnectorPoint PointX="10.354169166666667" PointY="11.966095377604166" />
-          <ConnectorPoint PointX="7.798177083333333" PointY="11.966095377604166" />
-          <ConnectorPoint PointX="7.631510416666667" PointY="11.966095377604166" />
-          <ConnectorPoint PointX="7.575520833333333" PointY="11.966095377604166" />
-          <ConnectorPoint PointX="7.408854166666667" PointY="11.966095377604166" />
-          <ConnectorPoint PointX="6.1456802722685611" PointY="11.966095377604166" />
-          <ConnectorPoint PointX="5.979013605601895" PointY="11.966095377604166" />
-          <ConnectorPoint PointX="5.3332543028009471" PointY="11.966095377604166" />
-          <ConnectorPoint PointX="5.1665876361342811" PointY="11.966095377604166" />
+          <ConnectorPoint PointX="7.7776680208333326" PointY="11.966095377604166" />
+          <ConnectorPoint PointX="7.6110013541666666" PointY="11.966095377604166" />
+          <ConnectorPoint PointX="7.5345027083333331" PointY="11.966095377604166" />
+          <ConnectorPoint PointX="7.3678360416666671" PointY="11.966095377604166" />
+          <ConnectorPoint PointX="6.1614003104340433" PointY="11.966095377604166" />
+          <ConnectorPoint PointX="5.9947336437673773" PointY="11.966095377604166" />
+          <ConnectorPoint PointX="5.3411143218836878" PointY="11.966095377604166" />
+          <ConnectorPoint PointX="5.1744476552170218" PointY="11.966095377604166" />
           <ConnectorPoint PointX="4.583333333333333" PointY="11.966095377604166" />
           <ConnectorPoint PointX="4.416666666666667" PointY="11.966095377604166" />
           <ConnectorPoint PointX="4.25" PointY="11.966095377604166" />
@@ -2398,8 +2403,8 @@
           <ConnectorPoint PointX="17.125" PointY="15.5" />
         </AssociationConnector>
         <AssociationConnector Association="DmpModel.MonthIncentive">
-          <ConnectorPoint PointX="7.71484375" PointY="7.5090950520833326" />
-          <ConnectorPoint PointX="7.71484375" PointY="16.375" />
+          <ConnectorPoint PointX="7.6943346875" PointY="7.5090950520833326" />
+          <ConnectorPoint PointX="7.6943346875" PointY="16.375" />
         </AssociationConnector>
         <AssociationConnector Association="DmpModel.DealerManpowerAttritionProfileMap">
           <ConnectorPoint PointX="11.75" PointY="12.399236284704168" />
@@ -2425,9 +2430,9 @@
           <ConnectorPoint PointX="1.3124995" PointY="11.239889322916667" />
         </AssociationConnector>
         <AssociationConnector Association="DmpModel.ProductDealerManpower">
-          <ConnectorPoint PointX="15.398435625000001" PointY="8.9994921875" />
-          <ConnectorPoint PointX="15.398435625000001" PointY="12.511483379605558" />
-          <ConnectorPoint PointX="11.75" PointY="12.511483379605558" />
+          <ConnectorPoint PointX="15.3998994140625" PointY="9.1917936197916656" />
+          <ConnectorPoint PointX="15.3998994140625" PointY="12.171324061160686" />
+          <ConnectorPoint PointX="11.75" PointY="12.171324061160686" />
         </AssociationConnector>
         <EntityTypeShape EntityType="DmpModel.UserRegionMap" Width="1.5" PointX="4.125" PointY="4.75" Height="2.3648893229166656" />
         <AssociationConnector Association="DmpModel.RegionUserRegionMap">
@@ -2435,7 +2440,7 @@
           <ConnectorPoint PointX="4.875" PointY="4.75" />
         </AssociationConnector>
         <AssociationConnector Association="DmpModel.UserUserRegionMap" ManuallyRouted="true">
-          <ConnectorPoint PointX="2.6235325703125003" PointY="15.124999999999998" />
+          <ConnectorPoint PointX="2.6235325703125003" PointY="15.124999999999995" />
           <ConnectorPoint PointX="2.6235325703125003" PointY="14.951396484375" />
           <ConnectorPoint PointX="3.2284329518229167" PointY="14.951396484375" />
           <ConnectorPoint PointX="3.3950996184895836" PointY="14.951396484375" />

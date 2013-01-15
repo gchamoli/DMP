@@ -161,6 +161,7 @@ namespace DMP.Services.Service {
             var oldProduct = GetProduct(product.Id);
             oldProduct.Name = product.Name;
             oldProduct.Description = product.Description;
+            oldProduct.IsCommon = product.IsCommon;
             oldProduct.ProductCategoryId = product.ProductCategoryId;
             productRepo.SaveChanges();
         }

@@ -106,7 +106,7 @@ namespace DMP.Controllers {
         [HttpPost]
         public void EditUser(UserViewModel model) {
             var flag = false;
-            if (model.User.Role == "HQ") {
+            if (model.User.Role == "HQ" || model.User.Role == "HQR") {
                 model.User.ParentId = 0;
                 flag = true;
             } else {

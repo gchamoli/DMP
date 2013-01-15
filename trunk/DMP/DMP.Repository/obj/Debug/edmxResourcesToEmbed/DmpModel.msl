@@ -46,6 +46,7 @@
             <ScalarProperty Name="ModifiedDate" ColumnName="ObjectInfo_ModifiedDate" />
             <ScalarProperty Name="DeletedDate" ColumnName="ObjectInfo_DeletedDate" />
           </ComplexProperty>
+          <ScalarProperty Name="IsCommon" ColumnName="IsCommon" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
