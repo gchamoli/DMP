@@ -32,6 +32,7 @@ namespace DMP.Services.Service {
             toUpdate.Name = user.Name;
             toUpdate.Role = user.Role;
             toUpdate.Description = user.Description;
+            toUpdate.ParentId = user.ParentId;
             userRepo.SaveChanges();
         }
 

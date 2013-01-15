@@ -32,6 +32,7 @@ namespace DMP.Models {
         [Display(Name = "Segment Representing")]
         public string Product { get; set; }
 
+        [Required]
         [Display(Name = "Contact")]
         public string ContactNumber { get; set; }
 
@@ -39,7 +40,6 @@ namespace DMP.Models {
 
         public string Designation { get; set; }
 
-        [Required]
         public string Email { get; set; }
 
         [Display(Name = "PAN Number")]

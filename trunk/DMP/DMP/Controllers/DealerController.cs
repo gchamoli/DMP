@@ -392,11 +392,14 @@ namespace DMP.Controllers {
                 MonthId = month.Id,
                 DealerId = id,
                 Targets = targetList,
-            };
-            model.ProductVarients =
-                products.Select(
+                ProductVarients = products.Select(
                     x =>
-                    new ProductVarients { Product = x.Name, Varients = x.ProductVarients.OrderBy(y => y.Name).Select(y => y.Name).ToList() }).ToList();
+                    new ProductVarients {
+                        Product = x.Name,
+                        Varients = x.ProductVarients.OrderBy(y => y.Name).Select(y => y.Name).ToList()
+                    }).
+                    ToList(),
+            };
 
             ViewBag.Month = string.Format("{0} - {1}", month.Name, month.Year);
             ViewBag.List = Session["BreadcrumbList"];

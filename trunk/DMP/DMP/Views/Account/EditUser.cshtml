@@ -30,8 +30,11 @@
         });
 
         $('#btnSubmit').bind('click', function(e) {
-            if(!validation()) {
-                e.preventDefault();
+            var id = $('#hidUserId').val();
+            if(id <= 0) {
+                 if(!validation()) {
+                    e.preventDefault();
+                }
             }
         });
         
@@ -51,11 +54,11 @@
             $('#cnfPwdMsg').html('').hide();
             var pwd = $('#txtUserPwd').val();
             var cnfPwd = $('#txtUserCnfPwd').val();
-//            if(pwd.indexOf(' ') >= 0) {
-//                $('#txtUserPwd').addClass('inputError');
-//                $('#pwdMsg').html('Password is not in correct format').show();
-//                return false;
-//            }
+            if(pwd.indexOf(' ') >= 0) {
+                $('#txtUserPwd').addClass('inputError');
+                $('#pwdMsg').html('Password is not in correct format').show();
+                return false;
+            }
             if(pwd.length < 6) {
                 $('#txtUserPwd').addClass('inputError');
                 $('#pwdMsg').html('Password must be of min 6 characters').show();
@@ -72,17 +75,15 @@
 <div class="span8">
     @using (Ajax.BeginForm(new AjaxOptions { OnComplete = "closePopUp()", OnSuccess = "reLoad('/Account/Users')" })) {
         <div style="width: 100%">
-            @Html.HiddenFor(x => x.User.Id)
+            @Html.HiddenFor(x => x.User.Id, new { @id = "hidUserId" })
             <div class="span3">
                 @Html.LabelFor(x => x.User.Role)
                 @Html.DropDownListFor(x => x.User.Role, new SelectList(Model.Roles, "Key", "Value"), new { @id = "ddlRole" })
             </div>
-            @if (Model.ParentUsers.Any()) {
-                <div id="dvParent" class="span3">
-                    @Html.LabelFor(x => x.User.ParentId)
-                    @Html.DropDownListFor(x => x.User.ParentId, new SelectList(Model.ParentUsers, "Key", "Value"), new { @id = "ddlParent" })
-                </div>
-            }
+            <div id="dvParent" class="span3">
+                @Html.LabelFor(x => x.User.ParentId)
+                @Html.DropDownListFor(x => x.User.ParentId, new SelectList(Model.ParentUsers, "Key", "Value"), new { @id = "ddlParent" })
+            </div>
             @if (Model.Regions.Any()) {
                 <div id="dvRegion" style="display: none" class="span3">
                     @Html.LabelFor(x => x.User.RegionId)
