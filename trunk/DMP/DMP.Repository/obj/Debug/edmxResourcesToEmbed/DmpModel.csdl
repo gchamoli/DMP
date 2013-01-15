@@ -302,10 +302,10 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Type="String" Name="ContactNumber" Nullable="true" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="ContactNumber" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Type="String" Name="Address" Nullable="true" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Type="String" Name="Designation" Nullable="true" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Type="String" Name="Email" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Email" Nullable="true" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Type="String" Name="PANNumber" Nullable="true" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Type="DateTime" Name="DateOfJoining" Nullable="true" />
     <Property Type="String" Name="PreviousCompany" Nullable="true" MaxLength="Max" FixedLength="false" Unicode="true" />

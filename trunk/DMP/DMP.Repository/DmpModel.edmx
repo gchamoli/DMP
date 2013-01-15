@@ -288,10 +288,10 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="ContactNumber" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="ContactNumber" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Address" Type="nvarchar(max)" Nullable="true" />
     <Property Name="Designation" Type="nvarchar(max)" Nullable="true" />
-    <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Email" Type="nvarchar(max)" Nullable="true" />
     <Property Name="PANNumber" Type="nvarchar(max)" Nullable="true" />
     <Property Name="DateOfJoining" Type="datetime" Nullable="true" />
     <Property Name="PreviousCompany" Type="nvarchar(max)" Nullable="true" />
@@ -1204,10 +1204,10 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="ContactNumber" Nullable="true" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ContactNumber" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="Address" Nullable="true" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="Designation" Nullable="true" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Email" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="PANNumber" Nullable="true" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Type="DateTime" Name="DateOfJoining" Nullable="true" />
           <Property Type="String" Name="PreviousCompany" Nullable="true" MaxLength="Max" FixedLength="false" Unicode="true" />

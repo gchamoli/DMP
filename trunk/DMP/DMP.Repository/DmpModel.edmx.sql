@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, and Azure
 -- --------------------------------------------------
--- Date Created: 01/15/2013 12:43:32
+-- Date Created: 01/15/2013 13:18:28
 -- Generated from EDMX file: D:\WORK\Work\DMP\trunk\DMP\DMP.Repository\DmpModel.edmx
 -- --------------------------------------------------
 
@@ -323,10 +323,10 @@ GO
 -- Creating table 'Profiles'
 CREATE TABLE [dbo].[Profiles] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [ContactNumber] nvarchar(max)  NULL,
+    [ContactNumber] nvarchar(max)  NOT NULL,
     [Address] nvarchar(max)  NULL,
     [Designation] nvarchar(max)  NULL,
-    [Email] nvarchar(max)  NOT NULL,
+    [Email] nvarchar(max)  NULL,
     [PANNumber] nvarchar(max)  NULL,
     [DateOfJoining] datetime  NULL,
     [PreviousCompany] nvarchar(max)  NULL,

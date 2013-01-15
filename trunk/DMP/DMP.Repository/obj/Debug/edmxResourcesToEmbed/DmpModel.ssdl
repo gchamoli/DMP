@@ -283,10 +283,10 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="ContactNumber" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="ContactNumber" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Address" Type="nvarchar(max)" Nullable="true" />
     <Property Name="Designation" Type="nvarchar(max)" Nullable="true" />
-    <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Email" Type="nvarchar(max)" Nullable="true" />
     <Property Name="PANNumber" Type="nvarchar(max)" Nullable="true" />
     <Property Name="DateOfJoining" Type="datetime" Nullable="true" />
     <Property Name="PreviousCompany" Type="nvarchar(max)" Nullable="true" />
