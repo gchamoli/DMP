@@ -5,7 +5,9 @@ using System.Web;
 
 namespace DMP.ModelsView {
     public class DsmDseMapViewModel {
-        public IEnumerable<KeyValuePair<int, string>> DsmList { get; set; }
+        public string Dsm { get; set; }
         public IEnumerable<KeyValuePair<int, string>> DseList { get; set; }
+        public IEnumerable<int> DseIds { get; set; }
+        public int DsmId { get; set; }
     }
 }

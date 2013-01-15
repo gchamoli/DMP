@@ -367,7 +367,7 @@ namespace DMP.Controllers {
 
             foreach (var manpower in manpowers) {
                 var isEdit = manpower.Product.IsCommon;
-                var targetModel = new TargetModel { ManpowerId = manpower.Id, Manpower = manpower.Name, MonthId = month.Id };
+                var targetModel = new TargetModel { ManpowerId = manpower.Id, Manpower = manpower.Name, MonthId = month.Id, Designation = manpower.Type };
                 var targetPlanList = new List<TargetPlanModel>();
                 var manpowerProductVarientIds = allVarients.Where(x => x.ProductId == manpower.ProductId).Select(x => x.Id);
                 foreach (var varient in allVarients) {
@@ -382,7 +382,7 @@ namespace DMP.Controllers {
                         ProductVarientId = varient.Id,
                         preTarget1 = preTempData.Any() ? preTempData.Sum(x => x.Target1) : 0,
                         preTarget2 = preTempData.Any() ? preTempData.Sum(x => x.Target2) : 0,
-                        IsEditable = manpowerProductVarientIds.Contains(varient.Id) || isEdit
+                        IsEditable = manpower.Type.ToLower() != "dsm" && (manpowerProductVarientIds.Contains(varient.Id) || isEdit)
                     });
                 }
                 targetModel.Targets = targetPlanList;
@@ -473,32 +473,50 @@ namespace DMP.Controllers {
         #region DSM-DSE Mapping
 
         [Authorize(Roles = "CSM")]
-        public ActionResult DsmMapping() {
-            var currentDate = DateTime.Now;
-            var currentMonth = masterService.FindAndCreateMonth(currentDate.ToString("MMMM"), currentDate.Year);
+        public PartialViewResult DsmMapping(int id) {
+            var dsm = dealerManpowerService.GetDealerManpower(id);
             var csm = userService.GetUserByUserName(User.Identity.Name);
+            var currentDate = DateTime.Now;
+            var dseList = dealerManpowerService.FindDealerManpowers(x => x.UserId == csm.Id && x.Type.ToLower() == "dse");
+            var currentMonth = masterService.FindAndCreateMonth(currentDate.ToString("MMMM"), currentDate.Year);
+            var maps = dsmDseTargetMapService.FindDsmDseTargetMaps(x => x.MonthId == currentMonth.Id && x.UserId == csm.Id).ToList();
+            var list = new List<KeyValuePair<int, string>>();
+            if (maps.Any()) {
+                var dseIds = maps.Where(x => x.DsmId == id).Select(x => x.DseId);
+                if (dseIds.Any()) {
+                    list.AddRange(dseList.Where(x => dseIds.Contains(x.Id)).Select(x => new KeyValuePair<int, string>(x.Id, x.Name)));
+                }
+                list.AddRange(dseList.Where(x => !maps.Select(y => y.DseId).Contains(x.Id)).Select(x => new KeyValuePair<int, string>(x.Id, x.Name)));
+            } else {
+                list.AddRange(dseList.Select(x => new KeyValuePair<int, string>(x.Id, x.Name)));
+            }
             var model = new DsmDseMapViewModel {
-                DsmList = dealerManpowerService.FindDealerManpowers(x => x.UserId == csm.Id && x.Type.ToLower() == "dsm").Select(x => new KeyValuePair<int, string>(x.Id, x.Name)),
-                DseList = dealerManpowerService.FindDealerManpowers(x => x.UserId == csm.Id && x.Type.ToLower() == "dse").Select(x => new KeyValuePair<int, string>(x.Id, x.Name))
+                DsmId = id,
+                Dsm = dsm.Name,
+                DseList = list
             };
-            return View(model);
+            return PartialView("DsmDseMap", model);
         }
 
-        public ActionResult SaveDsmMapping(int dsmId, int[] dseIds) {
+        [HttpPost]
+        public ActionResult DsmMapping(DsmDseMapViewModel model) {
             var currentDate = DateTime.Now;
             var currentMonth = masterService.FindAndCreateMonth(currentDate.ToString("MMMM"), currentDate.Year);
-            var targets = targetService.FindTargets(x => x.MonthId == currentMonth.Id && dseIds.Contains(x.Id));
+            var targets = targetService.FindTargets(x => x.MonthId == currentMonth.Id && model.DseIds.Contains(x.Id));
             if (targets.Any()) {
                 var tempdata = targets.GroupBy(x => x.ProductVarientId);
                 foreach (var target in tempdata) {
                     var dsm =
                         targetService.FindTargets(
                             x =>
-                            x.MonthId == currentMonth.Id && x.DealerManpowerId == dsmId && x.ProductVarientId == target.Key);
+                            x.MonthId == currentMonth.Id && x.DealerManpowerId == model.DsmId && x.ProductVarientId == target.Key);
                     var dsmTarget = dsm.Any() ? dsm.First() : new Target();
                     dsmTarget.Actual = target.Sum(x => x.Actual);
                     dsmTarget.Target1 = target.Sum(x => x.Target1);
                     dsmTarget.Target2 = target.Sum(x => x.Target2);
+                    dsmTarget.ProductVarientId = target.Key;
+                    dsmTarget.MonthId = currentMonth.Id;
+                    dsmTarget.DealerManpowerId = model.DsmId;
                     if (dsmTarget.Id > 0) {
                         targetService.UpdateTarget(dsmTarget);
                     } else {
@@ -512,7 +530,6 @@ namespace DMP.Controllers {
         public ActionResult GetDseFromDsm(int id) {
             var csm = userService.GetUserByUserName(User.Identity.Name);
             var currentDate = DateTime.Now;
-            var dsmList = dealerManpowerService.FindDealerManpowers(x => x.UserId == csm.Id && x.Type.ToLower() == "dsm");
             var dseList = dealerManpowerService.FindDealerManpowers(x => x.UserId == csm.Id && x.Type.ToLower() == "dse");
             var currentMonth = masterService.FindAndCreateMonth(currentDate.ToString("MMMM"), currentDate.Year);
             var maps = dsmDseTargetMapService.FindDsmDseTargetMaps(x => x.MonthId == currentMonth.Id && x.UserId == csm.Id).ToList();

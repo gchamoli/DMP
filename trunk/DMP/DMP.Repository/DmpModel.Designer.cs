@@ -719,7 +719,7 @@ namespace DMP.Repository
     [EdmEntityTypeAttribute(NamespaceName="DmpModel", Name="Attrition")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class Attrition : EntityObject
+    public partial class Attrition : EntityObject,IObjectInfo
     {
         #region Factory Method
     
@@ -911,7 +911,7 @@ namespace DMP.Repository
     [EdmEntityTypeAttribute(NamespaceName="DmpModel", Name="AttritionProfileMap")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class AttritionProfileMap : EntityObject
+    public partial class AttritionProfileMap : EntityObject,IObjectInfo
     {
         #region Factory Method
     
@@ -1155,7 +1155,7 @@ namespace DMP.Repository
     [EdmEntityTypeAttribute(NamespaceName="DmpModel", Name="Competency")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class Competency : EntityObject
+    public partial class Competency : EntityObject,IObjectInfo
     {
         #region Factory Method
     
@@ -1347,7 +1347,7 @@ namespace DMP.Repository
     [EdmEntityTypeAttribute(NamespaceName="DmpModel", Name="CompetencyProfileMap")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class CompetencyProfileMap : EntityObject
+    public partial class CompetencyProfileMap : EntityObject,IObjectInfo
     {
         #region Factory Method
     
@@ -1619,7 +1619,7 @@ namespace DMP.Repository
     [EdmEntityTypeAttribute(NamespaceName="DmpModel", Name="Dealer")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class Dealer : EntityObject
+    public partial class Dealer : EntityObject,IObjectInfo
     {
         #region Factory Method
     
@@ -1893,7 +1893,7 @@ namespace DMP.Repository
     [EdmEntityTypeAttribute(NamespaceName="DmpModel", Name="DealerManpower")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class DealerManpower : EntityObject
+    public partial class DealerManpower : EntityObject,IObjectInfo
     {
         #region Factory Method
     
@@ -2441,7 +2441,7 @@ namespace DMP.Repository
     [EdmEntityTypeAttribute(NamespaceName="DmpModel", Name="DealerManpowerTargets")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class DealerManpowerTargets : EntityObject
+    public partial class DealerManpowerTargets : EntityObject,IObjectInfo
     {
         #region Factory Method
     
@@ -2841,7 +2841,7 @@ namespace DMP.Repository
     [EdmEntityTypeAttribute(NamespaceName="DmpModel", Name="DsmDseTargetMap")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class DsmDseTargetMap : EntityObject
+    public partial class DsmDseTargetMap : EntityObject,IObjectInfo
     {
         #region Factory Method
     
@@ -3139,7 +3139,7 @@ namespace DMP.Repository
     [EdmEntityTypeAttribute(NamespaceName="DmpModel", Name="Incentive")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class Incentive : EntityObject
+    public partial class Incentive : EntityObject,IObjectInfo
     {
         #region Factory Method
     
@@ -3435,7 +3435,7 @@ namespace DMP.Repository
     [EdmEntityTypeAttribute(NamespaceName="DmpModel", Name="ManpowerSalary")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class ManpowerSalary : EntityObject
+    public partial class ManpowerSalary : EntityObject,IObjectInfo
     {
         #region Factory Method
     
@@ -3643,7 +3643,7 @@ namespace DMP.Repository
     [EdmEntityTypeAttribute(NamespaceName="DmpModel", Name="Month")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class Month : EntityObject
+    public partial class Month : EntityObject,IObjectInfo
     {
         #region Factory Method
     
@@ -3949,7 +3949,7 @@ namespace DMP.Repository
     [EdmEntityTypeAttribute(NamespaceName="DmpModel", Name="Product")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class Product : EntityObject
+    public partial class Product : EntityObject,IObjectInfo
     {
         #region Factory Method
     
@@ -4249,7 +4249,7 @@ namespace DMP.Repository
     [EdmEntityTypeAttribute(NamespaceName="DmpModel", Name="ProductCategory")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class ProductCategory : EntityObject
+    public partial class ProductCategory : EntityObject,IObjectInfo
     {
         #region Factory Method
     
@@ -4415,7 +4415,7 @@ namespace DMP.Repository
     [EdmEntityTypeAttribute(NamespaceName="DmpModel", Name="ProductVarient")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class ProductVarient : EntityObject
+    public partial class ProductVarient : EntityObject,IObjectInfo
     {
         #region Factory Method
     
@@ -4645,7 +4645,7 @@ namespace DMP.Repository
     [EdmEntityTypeAttribute(NamespaceName="DmpModel", Name="Profile")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class Profile : EntityObject
+    public partial class Profile : EntityObject,IObjectInfo
     {
         #region Factory Method
     
@@ -5187,7 +5187,7 @@ namespace DMP.Repository
     [EdmEntityTypeAttribute(NamespaceName="DmpModel", Name="Region")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class Region : EntityObject
+    public partial class Region : EntityObject,IObjectInfo
     {
         #region Factory Method
     
@@ -5397,7 +5397,7 @@ namespace DMP.Repository
     [EdmEntityTypeAttribute(NamespaceName="DmpModel", Name="SpecialScheme")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class SpecialScheme : EntityObject
+    public partial class SpecialScheme : EntityObject,IObjectInfo
     {
         #region Factory Method
     
@@ -5721,7 +5721,7 @@ namespace DMP.Repository
     [EdmEntityTypeAttribute(NamespaceName="DmpModel", Name="SpecialSchemeIncentive")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class SpecialSchemeIncentive : EntityObject
+    public partial class SpecialSchemeIncentive : EntityObject,IObjectInfo
     {
         #region Factory Method
     
@@ -5955,7 +5955,7 @@ namespace DMP.Repository
     [EdmEntityTypeAttribute(NamespaceName="DmpModel", Name="State")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class State : EntityObject
+    public partial class State : EntityObject,IObjectInfo
     {
         #region Factory Method
     
@@ -6185,7 +6185,7 @@ namespace DMP.Repository
     [EdmEntityTypeAttribute(NamespaceName="DmpModel", Name="Target")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class Target : EntityObject
+    public partial class Target : EntityObject,IObjectInfo
     {
         #region Factory Method
     
@@ -6573,7 +6573,7 @@ namespace DMP.Repository
     [EdmEntityTypeAttribute(NamespaceName="DmpModel", Name="Training")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class Training : EntityObject
+    public partial class Training : EntityObject,IObjectInfo
     {
         #region Factory Method
     
@@ -6791,7 +6791,7 @@ namespace DMP.Repository
     [EdmEntityTypeAttribute(NamespaceName="DmpModel", Name="TrainingProfileMap")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class TrainingProfileMap : EntityObject
+    public partial class TrainingProfileMap : EntityObject,IObjectInfo
     {
         #region Factory Method
     
@@ -7061,7 +7061,7 @@ namespace DMP.Repository
     [EdmEntityTypeAttribute(NamespaceName="DmpModel", Name="User")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class User : EntityObject
+    public partial class User : EntityObject,IObjectInfo
     {
         #region Factory Method
     
@@ -7393,7 +7393,7 @@ namespace DMP.Repository
     [EdmEntityTypeAttribute(NamespaceName="DmpModel", Name="UserDealerMap")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class UserDealerMap : EntityObject
+    public partial class UserDealerMap : EntityObject,IObjectInfo
     {
         #region Factory Method
     
@@ -7639,7 +7639,7 @@ namespace DMP.Repository
     [EdmEntityTypeAttribute(NamespaceName="DmpModel", Name="UserRegionMap")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class UserRegionMap : EntityObject
+    public partial class UserRegionMap : EntityObject,IObjectInfo
     {
         #region Factory Method
     

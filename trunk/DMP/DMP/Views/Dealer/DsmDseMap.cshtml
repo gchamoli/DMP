@@ -1,0 +1,75 @@
+﻿@model DMP.ModelsView.DsmDseMapViewModel
+<link href="../../Assets/plugins/chosen/chosen.css" rel="stylesheet" type="text/css" />
+<script src="../../Assets/plugins/chosen/chosen.jquery.min.js" type="text/javascript"></script>
+<style>
+    .ddl
+    {
+        width: 500px !important;
+    }
+</style>
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $('#ddlDse').data('placeholder', 'Select DSE').chosen();
+
+        //        $('#ddlDsm').bind('change', function () {
+        ////            getDseList();
+        //        });
+
+        //        $('#linkSave').bind('click', function () {
+        //            var dsmId = $('#ddlDsm').val();
+        //            var dseIds = $('#ddlDse').val();
+        //            if (dsmId != null && dseIds != null) {
+        //                var mapData = '{"dsmId":' + dsmId + ',"dseIds":' + dseIds + '}';
+        //                $.ajax({
+        //                    url: '/Dealer/SaveDsmMapping',
+        //                    type: 'POST',
+        //                    dataType: 'json',
+        //                    data: mapData,
+        //                    contentType: 'application/json; charset=utf-8',
+        //                    success: function (data) {
+        //                        if (data.success) {
+        //                            //                                            ko.mapping.updateFromJS(viewModel.Manpower, ko.mapping.toJS(data));
+        //                            //                                            viewModel.resetManpower();
+        //                        }
+        //                    }
+        //                });
+        //            }
+        //            return false;
+        //        });
+
+        function getDseList() {
+            var dsmId = $('#ddlDsm').val();
+            if (dsmId != null) {
+                $.post('/Dealer/GetDseFromDsm', { id: dsmId }, function (res) {
+                    if (res.success) {
+                        $('#ddlDse').html('');
+                        var str = '';
+                        for (var i = 0; i < res.dse.length; i++) {
+                            var item = res.dse[i];
+                            str += '<option value="' + item.Key + '">' + item.Value + '</option>';
+                        }
+                        $('#ddlDse').html(str);
+                        $('#ddlDse').trigger('listz:updated');
+                    }
+                });
+            }
+        }
+    });
+</script>
+<div class="span8">
+    <div style="margin-bottom: 10px;" class="text-align-right">
+        @Model.Dsm
+    </div>
+    @using (Ajax.BeginForm(new AjaxOptions { OnComplete = "closePopUp()" })) {
+        <div style="width: 100%">
+            @Html.HiddenFor(x => x.DsmId)
+            <div>
+                @Html.DropDownListFor(x => x.DseIds, new SelectList(Model.DseList, "Key", "Value"), new { @multiple = "multiple", @id = "ddlDse", @class = "ddl" })
+            </div>
+            <div>
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </div>
+    }
+</div>

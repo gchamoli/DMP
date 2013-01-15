@@ -13,6 +13,12 @@ namespace DMP.Models {
 
         public string Manpower { get; set; }
 
+        public string Designation { get; set; }
+
+        public bool HasMap {
+            get { return Designation.ToLower() == "dsm"; }
+        }
+
         public IEnumerable<TargetPlanModel> Targets { get; set; }
 
         public static Target ToDomainModel(TargetPlanModel model) {

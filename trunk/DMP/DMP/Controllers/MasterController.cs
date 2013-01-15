@@ -274,20 +274,22 @@ namespace DMP.Controllers {
 
         [HttpPost]
         public void EditDealer(DealerViewModel model) {
-            var dealer = DealerModel.ToDomainModel(model.Dealer);
-            if (dealer.Id > 0) {
-                masterService.UpdateDealer(dealer);
-            } else {
-                masterService.AddDealer(new[] { dealer });
-            }
-            //Add-Update Dealer-User Map
-            var maps = userDealerMapService.FindUserDealerMaps(x => x.UserId == model.Dealer.UserId && x.DealerId == dealer.Id);
-            if (maps.Any()) {
-                var map = maps.First();
-                map.UserId = model.Dealer.UserId;
-                userDealerMapService.UpdateUserDealerMap(map);
-            } else {
-                userDealerMapService.AddUserDealerMap(new[] { new UserDealerMap { Id = 0, DealerId = dealer.Id, UserId = model.Dealer.UserId } });
+            if (model.Dealer.UserId > 0) {
+                var dealer = DealerModel.ToDomainModel(model.Dealer);
+                if (dealer.Id > 0) {
+                    masterService.UpdateDealer(dealer);
+                } else {
+                    masterService.AddDealer(new[] { dealer });
+                }
+                //Add-Update Dealer-User Map
+                var maps = userDealerMapService.FindUserDealerMaps(x => x.UserId == model.Dealer.UserId && x.DealerId == dealer.Id);
+                if (maps.Any()) {
+                    var map = maps.First();
+                    map.UserId = model.Dealer.UserId;
+                    userDealerMapService.UpdateUserDealerMap(map);
+                } else {
+                    userDealerMapService.AddUserDealerMap(new[] { new UserDealerMap { Id = 0, DealerId = dealer.Id, UserId = model.Dealer.UserId } });
+                }
             }
         }
 
