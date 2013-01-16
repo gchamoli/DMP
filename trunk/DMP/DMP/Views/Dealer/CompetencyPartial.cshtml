@@ -15,14 +15,23 @@
                             <td>
                                 <input type="hidden" name=@string.Format("Competencies[{0}].Id", i) value="@competency.Id" />
                                 <input type="hidden" name=@string.Format("Competencies[{0}].ComptencyId", i) value="@competency.ComptencyId" />
-                                <input type="text" name=@string.Format("Competencies[{0}].Score", i) value="@competency.Score"/>
+                                <input type="text" name=@string.Format("Competencies[{0}].Score", i) value="@competency.Score"/> /10
                             </td>
+                            
                         </tr>
                     
                         {
                             i++;
                         }
                     }
+                    <tr>
+                    <td>
+                        <br />
+                        <br />
+                        <b>*Rating on the scale of 1-10</b>
+                    </td>
+                    </tr>
+                    
                 </tbody>
                 <tfoot>
                     <tr>

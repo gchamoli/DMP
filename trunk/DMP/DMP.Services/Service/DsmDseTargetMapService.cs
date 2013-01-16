@@ -64,17 +64,34 @@ namespace DMP.Services.Service
             return mapRepo.Find(predicate).Where(x => x.ObjectInfo.DeletedDate == null);
         }
 
+        //public IEnumerable<DsmDseTargetMap> GetDsmDseTargetMap(IEnumerable<DsmDseTargetMap> dseList)
+        //{
+        //    var dseTargetMaps = new List<DsmDseTargetMap>();
+        //    foreach (var dse in dseList)
+        //    {
+        //        var map = mapRepo.Single(x => x.DseId == dse.DseId && x.MonthId == dse.MonthId && x.UserId == dse.UserId);
+        //        dseTargetMaps.Add(map);
+        //    }
+        //    return dseTargetMaps.GroupBy(x => x.DsmId).Select(x => x.ElementAt(0)).ToList();
+
+
+        //}
+
         public IEnumerable<DsmDseTargetMap> GetDsmDseTargetMap(IEnumerable<DsmDseTargetMap> dseList)
         {
             var dseTargetMaps = new List<DsmDseTargetMap>();
             foreach (var dse in dseList)
             {
-                var map = mapRepo.Single(x => x.DseId == dse.DseId && x.MonthId == dse.MonthId && x.UserId == dse.UserId);
-                dseTargetMaps.Add(map);
+                var maps = mapRepo.Find(x => x.DseId == dse.DseId && x.MonthId == dse.MonthId && x.UserId == dse.UserId);
+                if (maps.Any())
+                {
+                    dseTargetMaps.Add(maps.First());
+                }
             }
             return dseTargetMaps.GroupBy(x => x.DsmId).Select(x => x.ElementAt(0)).ToList();
 
 
         }
+
     }
 }
