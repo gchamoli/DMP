@@ -201,7 +201,8 @@ namespace DMP.Controllers {
                              select new TrainingProfileModel {
                                  Id = 0, TrainingId = training.Key.Id, Training = training.Key.Name, TrainingDate = maxDate, NumberOfTrainings = training.Count(), NumberOfDays = date.HasValue ? date.Value.Days : 0
                              }).ToList(),
-                Months = new[] { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" }
+                Months = new[] { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" },
+                Varients = new[] { "20.16", "30.25", "35.31", "40.35", "40.40", "Terra 16", "Terra 25" }
             };
             model.Manpower.Productivity = manpower.Targets.Any() ? Math.Round(manpower.Targets.Average(x => x.Actual), 2) : 0;
             ViewBag.List = Session["BreadcrumbList"];
