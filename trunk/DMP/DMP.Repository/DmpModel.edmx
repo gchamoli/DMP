@@ -2287,8 +2287,8 @@
           <ConnectorPoint PointX="9.875" PointY="9.8768929036458317" />
         </AssociationConnector>
         <AssociationConnector Association="DmpModel.FK_StateDealer" >
-          <ConnectorPoint PointX="2.59375" PointY="4.7398893229166656" />
-          <ConnectorPoint PointX="2.59375" PointY="8.37474609375" />
+          <ConnectorPoint PointX="2.65625" PointY="4.7398893229166656" />
+          <ConnectorPoint PointX="2.65625" PointY="8.37474609375" />
           <ConnectorPoint PointX="3.4947916433836017" PointY="8.37474609375" />
           <ConnectorPoint PointX="3.6614583100502687" PointY="8.37474609375" />
           <ConnectorPoint PointX="4.375" PointY="8.37474609375" />
@@ -2440,7 +2440,7 @@
           <ConnectorPoint PointX="4.875" PointY="4.75" />
         </AssociationConnector>
         <AssociationConnector Association="DmpModel.UserUserRegionMap" ManuallyRouted="true">
-          <ConnectorPoint PointX="2.6235325703125003" PointY="15.124999999999995" />
+          <ConnectorPoint PointX="2.6235325703125003" PointY="15.124999999999991" />
           <ConnectorPoint PointX="2.6235325703125003" PointY="14.951396484375" />
           <ConnectorPoint PointX="3.2284329518229167" PointY="14.951396484375" />
           <ConnectorPoint PointX="3.3950996184895836" PointY="14.951396484375" />
@@ -2469,14 +2469,14 @@
           <ConnectorPoint PointX="11" PointY="8.1824446614583337" />
           <ConnectorPoint PointX="9.875" PointY="8.1824446614583337" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="DmpModel.DsmDseTargetMap" Width="1.5" PointX="0.5" PointY="5.125" Height="2.7494921875" />
+        <EntityTypeShape EntityType="DmpModel.DsmDseTargetMap" Width="1.75" PointX="0.5" PointY="5.125" Height="2.7494921875" />
         <AssociationConnector Association="DmpModel.MonthDsmDseTargetMap">
           <ConnectorPoint PointX="7.25" PointY="7.2449446614583337" />
           <ConnectorPoint PointX="3.6614583100502687" PointY="7.2449446614583328" />
           <ConnectorPoint PointX="3.4947916433836017" PointY="7.2449446614583337" />
-          <ConnectorPoint PointX="2.6770833333333335" PointY="7.2449446614583328" />
-          <ConnectorPoint PointX="2.5104166666666665" PointY="7.2449446614583337" />
-          <ConnectorPoint PointX="2" PointY="7.2449446614583337" />
+          <ConnectorPoint PointX="2.7395833333333335" PointY="7.2449446614583328" />
+          <ConnectorPoint PointX="2.5729166666666665" PointY="7.2449446614583337" />
+          <ConnectorPoint PointX="2.25" PointY="7.2449446614583337" />
         </AssociationConnector>
         <AssociationConnector Association="DmpModel.UserDsmDseTargetMap">
           <ConnectorPoint PointX="2" PointY="17.702075023469835" />

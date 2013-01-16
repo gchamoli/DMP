@@ -163,10 +163,10 @@ namespace DMP.Controllers {
         [Authorize(Roles = "HQ")]
         public ActionResult DeleteUser(int id) {
             var user = userService.GetUser(id);
-            membershipService.DeleteUser(user.Email);
             if (Roles.RoleExists(user.Role) && Roles.IsUserInRole(user.Email, user.Role)) {
                 Roles.RemoveUserFromRole(user.Email, user.Role);
             }
+            membershipService.DeleteUser(user.Email);
             userService.DeleteUser(id);
             return Json(new { success = true }, JsonRequestBehavior.AllowGet);
         }
