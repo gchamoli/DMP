@@ -76,7 +76,7 @@ namespace DMP.Services.Service
             foreach (var target in targets)
             {
                 var dsmTarget =
-                    _targetRepo.Single(
+                    _targetRepo.First(
                         x => x.MonthId == monthId && x.ProductVarientId == target.Key && x.MonthId == monthId&&x.DealerManpowerId==dsmId);
                 if (dsmTarget == null)
                 {
