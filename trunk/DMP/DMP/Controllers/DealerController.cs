@@ -466,7 +466,7 @@ namespace DMP.Controllers
                 CsmId = csm.Id,
                 MonthId = month.Id,
                 DealerId = id,
-                Targets = targetList,
+                Targets = targetList.OrderBy(x=>x.Designation).ThenBy(x=>x.Manpower),
                 ProductVarients = products.Select(
                     x =>
                     new ProductVarients
