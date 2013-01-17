@@ -187,6 +187,7 @@ namespace DMP.Models {
         public int Id { get; set; }
         public int ComptencyId { get; set; }
         public string Competency { get; set; }
+        [Range(0,10,ErrorMessage = "Please select a value betwwen 0 and 10")]
         public double Score { get; set; }
 
         public static CompetencyProfileMap ToDomainModel(CompetencyProfileModel model) {

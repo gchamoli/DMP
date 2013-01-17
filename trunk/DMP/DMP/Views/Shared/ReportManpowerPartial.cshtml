@@ -68,11 +68,13 @@
                 </td>
                 <td class="data1">@reportItem.Manpowers.Sum(x => x.Actual)
                 </td>
-                @foreach (var level in reportItem.TrainingLevels) {
-                   if (@level.Level != "None")
+                @foreach (var level in reportItem.TrainingLevels)
                 {
-                     <td class="data1">@level.LevelCount
-                    </td>
+                    if (@level.Level != "None")
+                    {
+                        <td class="data1">@level.LevelCount
+                        </td>
+                    }
                 }
             </tr>
         }
