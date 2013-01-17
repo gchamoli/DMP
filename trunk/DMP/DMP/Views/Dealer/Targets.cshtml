@@ -56,6 +56,7 @@
                 contentType: 'application/json; charset=utf-8',
                 success: function (data) {
                     if (data.success) {
+                        location.reload(true);
                         //                                            ko.mapping.updateFromJS(viewModel.Manpower, ko.mapping.toJS(data));
                         //                                            viewModel.resetManpower();
                     }
